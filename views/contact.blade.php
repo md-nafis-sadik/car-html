@@ -38,32 +38,6 @@
             </div>
         @endcomponent
     </header> -->
-    <section class="oy-header-top d-block d-md-none bg-primary bg-opacity-10 py-3 overflow-hidden">
-        <div class="container">
-            <oy-swiper data-items="1" data-loop="true" data-speed="600" data-lazy="true" data-space="30" data-autoplay="true" data-autoplay-delay="3000">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="d-flex align-items-center justify-content-center gap-3 fw-medium">
-                            <img src="../assets/img/header/rent.svg" alt="icon">
-                            <span>1000+ Satisfied Customers</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="d-flex align-items-center justify-content-center gap-3 fw-medium">
-                            <img src="../assets/img/header/rent.svg" alt="icon">
-                            <span>Over 200 Vehicles</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="d-flex align-items-center justify-content-center gap-3 fw-medium">
-                            <img src="../assets/img/header/rent.svg" alt="icon">
-                            <span>Rent with Confidence</span>
-                        </div>
-                    </div>
-                </div>
-            </oy-swiper>
-        </div>
-    </section>
     <section class="py-5">
         <div class="container-fluid px-3 px-lg-5">
             <div class="oy-banner bg-dark" style="background-image: url('../assets/img/banners/gradient-banner-desktop-10.png');">
@@ -568,97 +542,97 @@
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-jaguar.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-jaguar.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-lamborghini.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-lamborghini.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-mercedes.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-mercedes.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-bmw.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-bmw.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-b.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-b.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-porsche.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-porsche.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-land-rover.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-land-rover.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-audi.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-audi.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-jaguar.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-jaguar.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-lamborghini.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-lamborghini.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-mercedes.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-mercedes.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-bmw.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-bmw.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-b.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-b.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-porsche.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-porsche.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-land-rover.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-land-rover.png') }}" alt="">
                     </div>
                 </div>
                 <!-- Partner Item -->
                 <div class="oy-partner-item marquee-item">
                     <div class="oy-partner-item__thumb">
-                        <img class="img-fluid" src="../assets/img/brands/partner-audi.png" alt="">
+                        <img class="img-fluid" src="{{ asset('assets/img/brands/partner-audi.png') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -681,7 +655,7 @@
                 <!-- Testimonial Item -->
                 <div class="oy-testimonial-item marquee-item">
                     <div class="item-author">
-                        <img class="item-author__thumb" src="../assets/img/home/r_client1.png" alt="">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client1.png') }}" alt="">
                         <div class="item-author__text">
                             <h6 class="text-b3-semibold">Char and ems</h6>
                             <p class="text-b5-regular">18 days ago</p>
@@ -694,13 +668,13 @@
                     </div>
                     <div class="item-review">
                         <div class="review_ratting" data-rating="5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                     </div>
                 </div>
 
                 <div class="oy-testimonial-item marquee-item">
                     <div class="item-author">
-                        <img class="item-author__thumb" src="../assets/img/home/r_client2.png" alt="">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client2.png') }}" alt="">
                         <div class="item-author__text">
                             <h6 class="text-b3-semibold">Andrewemslie</h6>
                             <p class="text-b5-regular">1 month ago</p>
@@ -711,12 +685,12 @@
                     </div>
                     <div class="item-review">
                         <div class="review_ratting" data-rating="4.5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                     </div>
                 </div>
                 <div class="oy-testimonial-item marquee-item">
                     <div class="item-author">
-                        <img class="item-author__thumb" src="../assets/img/home/r_client3.png" alt="">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client3.png') }}" alt="">
                         <div class="item-author__text">
                             <h6 class="text-b3-semibold">Michael Moran</h6>
                             <p class="text-b5-regular">3 Months ago</p>
@@ -727,12 +701,12 @@
                     </div>
                     <div class="item-review">
                         <div class="review_ratting" data-rating="4.5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                     </div>
                 </div>
                 <div class="oy-testimonial-item marquee-item">
                     <div class="item-author">
-                        <img class="item-author__thumb" src="../assets/img/home/r_client4.png" alt="">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client4.png') }}" alt="">
                         <div class="item-author__text">
                             <h6 class="text-b3-semibold">Eileen Pillar</h6>
                             <p class="text-b5-regular">6 months ago</p>
@@ -743,12 +717,12 @@
                     </div>
                     <div class="item-review">
                         <div class="review_ratting" data-rating="4.5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                     </div>
                 </div>
                 <div class="oy-testimonial-item marquee-item">
                     <div class="item-author">
-                        <img class="item-author__thumb" src="../assets/img/home/r_client7.png" alt="">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client7.png') }}" alt="">
                         <div class="item-author__text">
                             <h6 class="text-b3-semibold">Char and ems</h6>
                             <p class="text-b5-regular">18 days ago</p>
@@ -759,12 +733,12 @@
                     </div>
                     <div class="item-review">
                         <div class="review_ratting" data-rating="4.5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                     </div>
                 </div>
                 <div class="oy-testimonial-item marquee-item">
                     <div class="item-author">
-                        <img class="item-author__thumb" src="../assets/img/home/r_client6.png" alt="">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client6.png') }}" alt="">
                         <div class="item-author__text">
                             <h6 class="text-b3-semibold">Char and ems</h6>
                             <p class="text-b5-regular">18 days ago</p>
@@ -775,7 +749,7 @@
                     </div>
                     <div class="item-review">
                         <div class="review_ratting" data-rating="4.5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -786,7 +760,7 @@
                 <div class="marquee-track">
                     <div class="oy-testimonial-item marquee-item">
                         <div class="item-author">
-                            <img class="item-author__thumb" src="../assets/img/home/r_client1.png" alt="">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client1.png') }}" alt="">
                             <div class="item-author__text">
                                 <h6 class="text-b3-semibold">Char and ems</h6>
                                 <p class="text-b5-regular">18 days ago</p>
@@ -797,12 +771,12 @@
                     </div>
                         <div class="item-review">
                             <div class="review_ratting" data-rating="4.5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                         </div>
                     </div>
                     <div class="oy-testimonial-item marquee-item">
                         <div class="item-author">
-                            <img class="item-author__thumb" src="../assets/img/home/r_client2.png" alt="">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client2.png') }}" alt="">
                             <div class="item-author__text">
                                 <h6 class="text-b3-semibold">Andrewemslie</h6>
                                 <p class="text-b5-regular">1 month ago</p>
@@ -813,12 +787,12 @@
                     </div>
                         <div class="item-review">
                             <div class="review_ratting" data-rating="4.5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                         </div>
                     </div>
                     <div class="oy-testimonial-item marquee-item">
                         <div class="item-author">
-                            <img class="item-author__thumb" src="../assets/img/home/r_client3.png" alt="">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client3.png') }}" alt="">
                             <div class="item-author__text">
                                 <h6 class="text-b3-semibold">Michael Moran</h6>
                                 <p class="text-b5-regular">3 Months ago</p>
@@ -829,12 +803,12 @@
                     </div>
                         <div class="item-review">
                             <div class="review_ratting" data-rating="4.5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                         </div>
                     </div>
                     <div class="oy-testimonial-item marquee-item">
                         <div class="item-author">
-                            <img class="item-author__thumb" src="../assets/img/home/r_client4.png" alt="">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client4.png') }}" alt="">
                             <div class="item-author__text">
                                 <h6 class="text-b3-semibold">Eileen Pillar</h6>
                                 <p class="text-b5-regular">6 months ago</p>
@@ -845,12 +819,12 @@
                     </div>
                         <div class="item-review">
                             <div class="review_ratting" data-rating="4.5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                         </div>
                     </div>
                     <div class="oy-testimonial-item marquee-item">
                         <div class="item-author">
-                            <img class="item-author__thumb" src="../assets/img/home/r_client7.png" alt="">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client7.png') }}" alt="">
                             <div class="item-author__text">
                                 <h6 class="text-b3-semibold">Char and ems</h6>
                                 <p class="text-b5-regular">18 days ago</p>
@@ -861,12 +835,12 @@
                     </div>
                         <div class="item-review">
                             <div class="review_ratting" data-rating="4.5"></div>
-                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
                         </div>
                     </div>
                     <div class="oy-testimonial-item marquee-item">
                         <div class="item-author">
-                            <img class="item-author__thumb" src="../assets/img/home/r_client6.png" alt="">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client6.png') }}" alt="">
                             <div class="item-author__text">
                                 <h6 class="text-b3-semibold">Char and ems</h6>
                                 <p class="text-b5-regular">18 days ago</p>
@@ -1132,7 +1106,6 @@
         </div>
      </section>
 
-    <script src="{{ asset('assets-v2/js/components/oy-swiper.js') }}" defer></script>
     <script src="{{ asset('assets-v2/js/components/marquee-slider.js') }}" defer></script> 
     <script src="{{ asset('assets-v2/js/components/oy-swiper.js') }}" defer></script>
 @endsection
