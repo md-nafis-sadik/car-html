@@ -335,13 +335,30 @@
                             </div>
                             <div class="col-sm-6 col-lg-6 col-xl-3">
                                 <div class="footer-widget footer-widget-subscribe">
-                                    <h4 class="text-h5 text-white mb-5">Don't miss out on our offers! Sign up for deals!
-                                    </h4>
-                                    <form action="#" class="oy-footer-newsletter rounded-5 p-5 bg-white bg-opacity-10">
+                                    <h4 class="text-h5 text-white mb-5">Don't miss out on our offers! Sign up for deals!</h4>
+                                    
+                                    <form id="mc-embedded-subscribe-form" 
+                                        name="mc-embedded-subscribe-form" 
+                                        target="_blank" 
+                                        action="https://autofusionrepairs.us20.list-manage.com/subscribe/post?u=982f966b7dead3ec25c25b4b9&id=43ee87d637" 
+                                        method="post" 
+                                        novalidate 
+                                        class="oy-footer-newsletter rounded-5 p-5 bg-white bg-opacity-10">
+                                        
                                         <div>
-                                            <input type="email" id="email" class="form-control"
-                                                placeholder="Email Address" required>
+                                            <input type="email" 
+                                                name="EMAIL" 
+                                                id="mce-EMAIL" 
+                                                class="form-control"
+                                                placeholder="Email Address" 
+                                                required>
                                         </div>
+                                        
+                                        <div id="mce-responses" class="clear" style="display: none;">
+                                            <div class="response" id="mce-error-response" style="display:none"></div>
+                                            <div class="response" id="mce-success-response" style="display:none"></div>
+                                        </div>
+                                        
                                         <button type="submit" class="btn btn--gradient-primary w-100">
                                             <span class="btn__text">Subscribe</span>
                                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -357,6 +374,7 @@
                                     </form>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>
