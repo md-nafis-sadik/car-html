@@ -1,0 +1,50 @@
+/**
+ * Main Stylesheet
+ * 
+ * This file imports Bootstrap SASS with custom variable overrides.
+ * Add your custom styles after Bootstrap import.
+ */
+
+/*----------------------------------------------------*/
+/* Bootstrap 5.3.8 SASS with Custom Variables */
+/*----------------------------------------------------*/
+// Import custom Bootstrap variable overrides first
+@import "bootstrap-custom";
+
+// Import Bootstrap SASS (will use the custom variables above)
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+/*----------------------------------------------------*/
+/* Custom Styles */
+/*----------------------------------------------------*/
+// Base styles (root variables, utilities, and predefined defaults)
+@import "base/root";
+@import "base/predefine";
+@import "base/common";
+
+// Layout styles
+@import "layout/header";
+@import "layout/footer";
+
+// components
+@import "components/button";
+@import "components/accordion";
+@import "components/sliders";
+@import "components/social";
+@import "components/marquee";
+@import "components/card";
+@import "components/tabs";
+@import "components/select";
+@import "components/list";
+@import "components/forms";
+@import "components/banner";
+
+// sections
+@import "sections/testimonial";
+@import "sections/faq";
+@import "sections/timeline";
+
+// pages
+@import "pages/dashboard";
+@import "pages/auth";
+@import "pages/blog";

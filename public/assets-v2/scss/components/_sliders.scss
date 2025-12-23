@@ -1,0 +1,130 @@
+/* Hide Swiper containers until initialized to prevent FOUC */
+oy-swiper:not(.swiper-initialized) {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Show after initialization */
+oy-swiper.swiper-initialized {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Ensure slides are properly sized before initialization */
+oy-swiper .swiper-wrapper {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+oy-swiper .swiper-slide {
+    flex-shrink: 0;
+}
+
+.oy-gallery-main{
+    position: relative;
+    overflow: hidden;
+}
+
+.oy-gallery-main oy-swiper{
+    width: 100%;
+}
+
+.oy-gallery-main__img{
+    display: block;
+    width: 100%;
+}
+
+.oy-gallery-nav{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 100%;    
+}
+
+.oy-gallery-thumbs{
+    margin-top: 18px;
+}
+
+.oy-gallery-thumbs oy-swiper{
+    width: 100%;
+}
+
+.oy-gallery-thumb{
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.oy-gallery-thumb__img{
+    display: block;
+    width: 100%;
+    height: min(150px, 12vh);
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+}
+
+.oy-gallery-thumbs .swiper-slide.is-active .oy-gallery-thumb{
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+}
+
+// PAGINATIONS
+.pagination-default{
+    --swiper-pagination-bullet-size: 12px;
+    --swiper-pagination-color: linear-gradient(90deg, #0072FF 0%, #00FFFF 100%);
+    --swiper-pagination-bullet-inactive-color: #969FB7;
+    --swiper-pagination-bullet-inactive-opacity: 1.0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20px;
+
+    .swiper-pagination-bullet{
+        transition: all 0.3s ease;
+
+        &-active{
+            --swiper-pagination-bullet-size: 18px;
+        }
+    }
+
+    a.btn--circle:not(.outlined){
+        color: #969FB7;
+        &:hover{
+            color: $primary;
+            border-color: $primary;
+        }
+    }
+    span.btn--circle.is-active{
+        color: $primary;
+    }
+}
+
+.pagination-primary{
+    .btn--circle{
+        --btn-circle-size: 45px;    
+        background: rgb(1 129 255 / 15%);
+        border: 0px;
+        font-size: var(--font-b5-size);
+        font-weight: 500;
+        color: $dark;
+        
+        &.is-active,
+        &:hover{
+            background: $primary;
+            color: $white;
+        }
+    }
+}
+
+#filter-container{
+    z-index: 2;
+}

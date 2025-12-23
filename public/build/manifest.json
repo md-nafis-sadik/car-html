@@ -1,0 +1,28 @@
+{
+  "public/assets/images/auth-background.png": {
+    "file": "assets/auth-background-7mV-pLTn.png",
+    "src": "public/assets/images/auth-background.png"
+  },
+  "public/assets/images/garage-booking-background-1.png": {
+    "file": "assets/garage-booking-background-1-2LxaBD3O.png",
+    "src": "public/assets/images/garage-booking-background-1.png"
+  },
+  "public/assets/images/garage-booking-background-2.png": {
+    "file": "assets/garage-booking-background-2-pmZADLQD.png",
+    "src": "public/assets/images/garage-booking-background-2.png"
+  },
+  "public/assets/svgs/sharp-chevron-down.svg": {
+    "file": "assets/sharp-chevron-down-tIt6T6Gg.svg",
+    "src": "public/assets/svgs/sharp-chevron-down.svg"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-0Lrvb5X5.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-8a-rKTS0.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}

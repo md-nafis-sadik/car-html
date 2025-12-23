@@ -1,0 +1,342 @@
+openapi: 3.0.1
+info:
+  title: "Autofusion: Garage Services API (Deprecated)"
+  description: 'This is the garage services API for Autofusion. This API is deprecated and will be removed in future versions as Autofusion transitions to a car hire-only business.'
+  contact:
+    name: "LA5 Digital LTD"
+  version: 1.0.0
+externalDocs:
+  description: Visit Jira
+  url: https://track.la5digital.com
+servers:
+  - url: https://autofusion-staging.la5digital.com/api/v1
+  - url: https://autofusioncars.co.uk/api/v1
+tags:
+  - name: book
+    description: Garage Booking Services (Deprecated)
+
+paths:
+
+  ##########Garage Services Routes (Deprecated)#######
+
+  /book/garage/services:
+    get:
+      summary: Get list of services provided (Deprecated)
+      operationId: getGarageServices
+      tags:
+        - book
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /book/garage/{serviceType}/vrm:
+    get:
+      summary: Get Vehicle details using VRM (Deprecated)
+      operationId: getGarageVRM
+      tags:
+        - book
+      parameters:
+        - name: serviceType
+          in: path
+          schema:
+            type: string
+            enum: ['mot', 'trackers', 'wheel-alignment', 'diagnostic-repair']
+          required: true
+        - name: reg
+          in: query
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /book/garage/{serviceType}/products:
+    get:
+      summary: Get products for service type (Deprecated)
+      operationId: getGarageProducts
+      tags:
+        - book
+      parameters:
+        - name: serviceType
+          in: path
+          schema:
+            type: string
+            enum: ['mot', 'trackers', 'wheel-alignment', 'diagnostic-repair']
+          required: true
+        - name: product_type
+          in: query
+          schema:
+            type: string
+            enum: ['mot', 'service', 'trackers', 'wheel-alignment']
+          required: true
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /book/garage/{serviceType}/branch:
+    get:
+      summary: Get branch (Deprecated)
+      operationId: getGarageBranch
+      tags:
+        - book
+      parameters:
+        - name: serviceType
+          in: path
+          schema:
+            type: string
+            enum: ['mot', 'trackers', 'wheel-alignment', 'diagnostic-repair']
+          required: true
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /book/garage/{serviceType}/availability:
+    get:
+      summary: Get availability (Deprecated)
+      operationId: getGarageAvailability
+      tags:
+        - book
+      parameters:
+        - name: serviceType
+          in: path
+          schema:
+            type: string
+            enum: ['mot', 'trackers', 'wheel-alignment', 'diagnostic-repair']
+          required: true
+        - name: handler
+          in: query
+          schema:
+            type: string
+            enum: [ availability, dropoff_times]
+          required: true
+          description: Handler to search with (availability = dates available, dropoff_times=search times available for specific date)
+          example: availability
+        - name: date
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Date (for availability, provide today's date)
+          example: "2024-07-01"
+        - name: product
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Array of products (IDs)
+          example: "[1,2]"
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /book/garage/{serviceType}/submit:
+    post:
+      summary: Submit Order (Deprecated)
+      operationId: submitGarageOrder
+      tags:
+        - book
+      parameters:
+        - name: serviceType
+          in: path
+          schema:
+            type: string
+            enum: ['mot', 'trackers', 'wheel-alignment', 'diagnostic-repair']
+          required: true
+        - name: charge_token
+          in: query
+          schema:
+            type: string
+        - name: payment_method
+          in: query
+          schema:
+            enum:
+              - in_store
+              - stripe
+        - name: diagnostic_description
+          in: query
+          schema:
+            type: string
+            description: Provide if serviceType is diagnostic-repair
+        - name: new_user
+          in: query
+          description: New user details (required if user not logged in) [JSON OBJECT]
+          required: false
+          schema:
+            $ref: "#/components/schemas/User"
+        - name: device_name
+          in: query
+          description: Name of the device used for login (required if new user)
+          required: false
+          schema:
+            type: string
+            format: string
+        - name: vehicle
+          in: query
+          description: Vehicle details [pass json object - returned from /vrm]
+          required: true
+          schema:
+            type: object
+        - name: vehicle_mileage
+          in: query
+          description: Vehicle mileage
+          required: true
+          schema:
+            type: string
+        - name: location_id
+          in: query
+          description: Location ID (branch ID)
+          required: true
+          schema:
+            type: integer
+        - name: product_ids
+          in: query
+          description: Product IDs of each product in the cart (JSON encoded array)
+          required: true
+          schema:
+            type: string
+            maxLength: 254
+        - name: dropoff_date
+          in: query
+          schema:
+            type: string
+          description: Drop Off Date
+          required: true
+        - name: dropoff_time
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Pickup Time
+          example: "10:00"
+        - name: cart_subtotal
+          in: query
+          description: Subtotal value of the cart
+          required: true
+          schema:
+            type: integer
+            format: float
+        - name: cart_total
+          in: query
+          description: Total value of the cart (subtotal  - discount)
+          required: true
+          schema:
+            type: integer
+            format: float
+        - name: coupon_code
+          in: query
+          description: Coupon code
+          required: false
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Returns success message
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Success:
+      type: object
+      properties:
+        error:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: "Success"
+        data:
+          type: object
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Error message"
+
+    User:
+      type: object
+      properties:
+        title:
+          type: string
+          enum: [Mr, Mrs, Ms, Miss, Mx, Dr, Prof]
+        first_name:
+          type: string
+        last_name:
+          type: string
+        dob:
+          type: string
+          format: date
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        password:
+          type: string
+        password_confirmation:
+          type: string

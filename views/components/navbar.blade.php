@@ -1,0 +1,293 @@
+@php
+    // Get active locations for the dropdown
+    $activeLocations = \App\Location::where('is_active', true)
+        ->orderBy('name')
+        ->limit(5) // Limit to 5 locations to keep dropdown manageable
+        ->get();
+    
+    $links = [
+        (object)[
+            'name' => 'home',
+            'route' => route('home'),
+            'dropdown' => [],
+        ],
+        (object)[
+            'name' => 'about',
+            'route' => route('about'),
+            'dropdown' => [],
+        ],
+        // (object)[
+        //     'name' => 'repair centre',
+        //     'route' => route('vehicle-repairs'),
+        //     'dropdown' => [
+        //         (object) [
+        //             'name' => 'MOT',
+        //             'route' => route('mot'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Servicing',
+        //             'route' => route('servicing'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Wheel Alignment',
+        //             'route' => route('wheel-alignment'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Alloy Refurbishment',
+        //             'route' => route('alloy-refurbishment'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Vehicle Repairs',
+        //             'route' => route('vehicle-repairs'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Book Now',
+        //             'route' => route('book'),
+        //         ],
+        //     ],
+        // ],
+        // (object)[
+        //     'name' => 'trackers',
+        //     'route' => '',
+        //     'dropdown' => [
+        //         (object) [
+        //             'name' => 'Vehicle Tracking Platform',
+        //             'route' => route('trackers.vehicle-tracking-platform'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Personal Vehicle Tracking',
+        //             'route' => route('trackers.personal-vehicle-tracking'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Fleet Trackers',
+        //             'route' => route('trackers.fleet-trackers'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Vehicle Immobilisers',
+        //             'route' => route('trackers.vehicle-immobilisers'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Book Now',
+        //             'route' => route('book'),
+        //         ],
+        //     ],
+        // ],
+        // (object)[
+        //     'name' => 'tyres',
+        //     'route' => '',
+        //     'dropdown' => [
+        //         (object) [
+        //             'name' => 'Tyre Prices',
+        //             'route' => route('tyres.tyre-prices'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Tyre Safety',
+        //             'route' => route('tyres.tyre-safety'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Budget Tyres',
+        //             'route' => route('tyres.budget-tyres'),
+        //         ],
+        //         (object) [
+        //             'name' => 'Winter Tyres',
+        //             'route' => route('tyres.winter-tyres'),
+        //         ],
+        //     ]
+        // ],
+        (object)[
+            'name' => 'locations',
+            'route' => route('locations.index'),
+            'dropdown' => array_merge(
+                [
+                    (object) [
+                        'name' => 'All Locations',
+                        'route' => route('locations.index'),
+                    ],
+                ],
+                $activeLocations->map(function($location) {
+                    return (object) [
+                        'name' => $location->name,
+                        'route' => route('locations.show', $location->slug),
+                    ];
+                })->toArray()
+            ),
+        ],
+        (object)[
+            'name' => 'Our Cars',
+            'route' => route('hire.cars'),
+            'dropdown' => [],
+        ],
+        (object)[
+            'name' => 'learn',
+            'route' => route('blog'),
+            'dropdown' => [],
+        ],
+        (object)[
+            'name' => 'contact',
+            'route' => route('contact'),
+            'dropdown' => [],
+        ],
+    ];
+@endphp
+<section class="md:block bg-gray-900 text-white py-3">
+    <div class="max-w-[920px] mx-auto px-4">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+
+            <!-- Item 1 -->
+            <div class="flex items-center gap-3">
+                <img src="../assets/img/header/satisfied-icon.svg" alt="icon" class="h-auto w-auto">
+                <span class="font-medium">1000+ Satisfied Customers</span>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex items-center gap-3">
+                <img src="../assets/img/header/vehicles.svg" alt="icon" class="h-auto w-auto">
+                <span class="font-medium">Over 200 Vehicles</span>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex items-center gap-3">
+                <img src="../assets/img/header/rent.svg" alt="icon" class="h-auto w-auto">
+                <span class="font-medium">Rent with Confidence</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+{{-- <nav class="block w-full px-4 pt-4 pb-3 mx-auto bg-opacity-100 border-b-2 bg-dark border-b-white border-opacity-10 xl:px-10 2xl:px-16 lg:bg-opacity-0" data-aos="fade-down">
+    <div class="flex flex-col justify-between w-full gap-4 lg:flex-row lg:items-center">
+        <!-- Logo & Toggler Button here -->
+        <div class="flex items-center justify-between">
+            <!-- LOGO -->
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('assets/img/header/logo.svg') }}" class="w-8/12 h-auto sm:w-full" alt="af-assets" />
+            </a>
+            <!-- RESPONSIVE NAVBAR BUTTON TOGGLER -->
+            <div class="block lg:hidden">
+                <button class="p-2 rounded-lg outline-none bg-slate-100" id="navbarToggler" data-target="#navigation">
+                    <svg class="text-dark w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Nav Menu -->
+        <div class="hidden w-full lg:block" id="navigation">
+            <div class="flex flex-col items-baseline gap-4 mt-6 lg:justify-between lg:flex-row lg:items-center lg:mt-0">
+                <div class="flex flex-col w-full gap-4 ml-auto lg:w-auto lg:gap-9 lg:items-center lg:flex-row ">
+                    @foreach ($links as $link)
+                        @if (sizeof($link->dropdown))
+                            <div class="relative flex flex-col gap-2">
+                                <button type="button" class="nav-link-item text-[#000]" id="dropdownNavbarLink-{{ Str::slug($link->name) }}" data-dropdown-autofusion="{{ Str::slug($link->name) }}">
+                                    {{ $link->name }}
+                                    <img src="{{ asset('assets/svgs/chevron-right.svg') }}" class="w-[10px] h-[10px] rotate-90" alt="">
+                                </button>
+                                @include('components.dropdown-menu', [
+                                    'menus' => $link->dropdown,
+                                    'id' => Str::slug($link->name)
+                                ])
+                            </div>
+                        @else
+                            <a href="{{ $link->route }}"
+                               class="nav-link-item text-[#000] {{ $link->route == Request::url() ? 'active' : null }}">
+                                {{ $link->name }}
+                            </a>
+                        @endif
+                    @endforeach
+                </div>
+                <div class="flex flex-col w-full gap-3 ml-auto lg:w-auto lg:items-center lg:flex-row">
+                    <a href="{{ route('hire') }}" class="border-4 border-transparent btn btn-sm btn-primary">
+                        Car Hire
+                    </a>
+                    <a href="{{ route('account') }}" class="btn btn-sm btn-outline">
+                        Account
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav> --}}
+
+<nav class="w-full bg-white border-b border-gray-200 sticky top-0 z-50 px-4 pt-4 pb-3 xl:px-10 2xl:px-16" data-aos="fade-down">
+    <div class="flex flex-col lg:flex-row justify-between items-center gap-4 w-full">
+        <!-- Logo + Mobile Toggler -->
+        <div class="flex items-center justify-between w-full lg:w-auto">
+            <!-- Logo -->
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('assets/img/header/logo.svg') }}" alt="logo" class="w-[196px] sm:w-40 h-[53px]" />
+            </a>
+
+            <!-- Mobile Toggler -->
+            <div class="lg:hidden">
+                <button id="navbarToggler" class="p-2 rounded-lg bg-slate-100">
+                    <svg class="w-7 h-7 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <div id="navigation" class="hidden w-full lg:flex flex-col lg:flex-row lg:items-center gap-6 mt-6 lg:mt-0">
+            <!-- Links -->
+           <ul class="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-6 w-full">
+            @foreach ($links as $link)
+                @if (sizeof($link->dropdown))
+                    <li class="relative group">
+                        <button class="flex items-center gap-1 text-[#545A64] hover:text-black font-medium transition-colors duration-200" 
+                                id="dropdownNavbarLink-{{ Str::slug($link->name) }}" 
+                                data-dropdown-autofusion="{{ Str::slug($link->name) }}">
+                            {{ $link->name }}
+                            <img src="{{ asset('assets/svgs/chevron-right.svg') }}" class="w-3 h-3 rotate-90 " alt="">
+                        </button>
+                        @include('components.dropdown-menu', [
+                            'menus' => $link->dropdown,
+                            'id' => Str::slug($link->name)
+                        ])
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ $link->route }}" class="text-[#545A64] hover:text-black font-medium transition-colors duration-200 {{ $link->route == Request::url() ? 'font-semibold' : '' }}">
+                            {{ $link->name }}
+                        </a>
+                    </li>
+                @endif
+            @endforeach
+        </ul>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col lg:flex-row gap-3 mt-4 lg:mt-0">
+                <a href="{{ route('account') }}" class="btn btn-outline py-2 px-4 rounded-lg text-center">
+                    Account
+                </a>
+                <a href="{{ route('hire') }}" class="btn btn-primary py-2 px-4 rounded-lg text-white text-center bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 flex items-center gap-2">
+                    <span>Car Hire</span>
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.2266 5.43579L18.7907 11L13.2266 16.5641" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.20703 11H18.6345" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Mobile toggle
+    const toggler = document.getElementById('navbarToggler');
+    const navMenu = document.getElementById('navigation');
+
+    toggler.addEventListener('click', () => {
+        navMenu.classList.toggle('hidden');
+    });
+</script>
+
+
+
+
+@push('js')
+    <script src="{{ asset('scripts/NavbarToggler.js') }}"></script>
+@endpush

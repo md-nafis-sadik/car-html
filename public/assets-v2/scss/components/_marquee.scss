@@ -1,0 +1,77 @@
+/**
+ * Marquee Component Styles
+ * GSAP-powered marquee system with automatic content duplication
+ */
+
+// Marquee container
+[data-marquee] {
+    position: relative;
+    overflow: hidden;
+    
+    // Horizontal marquee container
+    &[data-marquee="horizontal"] {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    // Vertical marquee container
+    &[data-marquee="vertical"] {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}
+
+// Marquee track - the element that GSAP animates
+.marquee-track,
+[data-marquee-track] {
+    position: relative;
+    display: flex;
+    gap: calc(30px * var(--spacing-scale));;
+    will-change: transform;
+    
+    // Horizontal track
+    [data-marquee="horizontal"] & {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--marquee-track-gap-x, 20px);
+    }
+    
+    // Vertical track
+    [data-marquee="vertical"] & {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--marquee-track-gap-y, 20px);
+    }
+}
+
+// Horizontal marquee specific styles
+[data-marquee="horizontal"] {
+    .marquee-cover {
+        z-index: 10;
+        opacity: 1;
+        background-image: 
+            linear-gradient(rgba(255, 255, 255, 0) 75%, #fff),
+            linear-gradient(#fff, rgba(255, 255, 255, 0) 30%);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+    }
+}
+
+
+
+marquee-slider{
+    .oy-testimonial-item{
+        width: 420px;
+    }
+}

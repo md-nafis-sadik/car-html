@@ -1,0 +1,23 @@
+.social-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+
+    &__item{
+        width: var(--social-icon-size, 56px);
+        height: var(--social-icon-size, 56px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.10);
+        color: $white;
+
+        @include media-breakpoint-down(lg){
+            width: var(--social-icon-size, 40px);
+            height: var(--social-icon-size, 40px);
+        }
+    }
+}

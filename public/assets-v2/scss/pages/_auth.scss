@@ -1,0 +1,60 @@
+.oy-auth{
+    &__banner{
+        padding-bottom: calc(75px * var(--spacing-scale));
+        background-position: center;
+        background-size: cover;
+        margin-bottom: -20px;
+        background-color: #{$dark};
+
+        @include media-breakpoint-up(md) {
+            border-top-left-radius: calc(30px * var(--spacing-scale));
+            border-top-right-radius: calc(30px * var(--spacing-scale));
+            margin-bottom: -40px;
+            padding: calc(50px * var(--spacing-scale)) calc(15px * var(--spacing-scale));
+            padding-bottom: calc(100px * var(--spacing-scale));
+        }
+
+        @include media-breakpoint-down(md) {
+            border-top-left-radius: calc(12px * var(--spacing-scale));
+            border-top-right-radius: calc(12px * var(--spacing-scale));
+            background-image: unset !important;
+        }
+    }
+
+    &__row{
+
+        @include media-breakpoint-up(md) {
+            min-height: 75vh;
+        }
+
+        @include media-breakpoint-down(md) {
+            min-height: 50vh;
+        }
+    }
+
+    &__header{
+        @include media-breakpoint-up(md) {
+            background-image: unset !important;
+        }
+
+        @include media-breakpoint-down(md) {
+            min-height: 30vh;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            align-items: flex-end;            
+            border-top-left-radius: calc(12px * var(--spacing-scale));
+            border-top-right-radius: calc(12px * var(--spacing-scale));
+            padding: calc(50px * var(--spacing-scale)) calc(15px * var(--spacing-scale)) calc(20px * var(--spacing-scale));
+            justify-content: center;
+        }
+
+    }
+
+    &__form{
+        @include media-breakpoint-down(md) {
+            padding-left: calc(15px * var(--spacing-scale));
+            padding-right: calc(15px * var(--spacing-scale));
+        }
+    }
+}

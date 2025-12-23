@@ -1,0 +1,27 @@
+.nav-tabs{
+    --bs-nav-link-color: var(--bs-secondary);
+    background: $light;
+    padding: 4px;
+    border-radius: 50px;
+    display: inline-flex;
+
+    .nav-link{
+        padding: 10px 20px;
+        border-radius: 50px;
+        border: 0px;
+        font-size: var(--font-b4-size);
+        transition: all 0.3s ease-in-out;
+
+        @include media-breakpoint-down(md){
+            padding: 10px;
+            font-size: var(--font-b5-size);
+        }
+    }
+
+    .nav-link.active,
+    .nav-link:hover,
+    .nav-link:focus{
+        background: var(--color-gradient);
+        color: $white;
+    }
+}

@@ -1,0 +1,51 @@
+.list{
+    &__category-filter{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      list-style: none;
+      
+        .filter-item{
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid #CAD6EE;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--font-b4-size);
+
+            &.active{
+                background-color: $primary;
+                color: $white;
+            }
+        }
+    }
+}
+
+.mfd{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    background-color: #181818;
+    color: #00FFFF;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+
+    &__day{
+        font-size: var(--font-h3-size);
+        font-weight: 700;   
+        line-height: 1;
+    }
+
+    &__month{
+        font-size: var(--font-b5-size);
+        font-weight: 300;
+        text-transform: uppercase; 
+    }
+}

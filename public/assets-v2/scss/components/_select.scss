@@ -1,0 +1,237 @@
+.e-select{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    
+    .select-hidden {
+        display: none;
+        visibility: hidden;
+        padding-right: 10px;
+    }
+    
+    // Inherit form-select styles if present
+    &.form-select {
+        // Add any form-select specific styles here
+        .select-styled {
+            // Inherit form-select styling
+            padding: 12px 16px;
+            background-color: rgb(var(--color-background));
+            border: 1px solid rgb(var(--color-foreground), 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+    }
+}
+
+.select-styled {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    background-color: rgb(var(--color-background));
+    border: 1px solid rgb(var(--color-foreground), 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        border-color: rgb(var(--color-foreground), 0.4);
+        background-color: rgb(var(--color-background), 0.8);
+    }
+    
+    &.active {
+        border-color: rgb(var(--color-primary));
+        background-color: rgb(var(--color-primary), 0.1);
+        
+        .select-styled__arrow {
+            transform: rotate(180deg);
+        }
+    }
+    
+    &__text {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: rgb(var(--color-foreground));
+        font-weight: 500;
+    }
+    
+    &__arrow {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 6px solid rgb(var(--color-foreground));
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+        margin-left: 8px;
+    }
+}
+
+.select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin: 4px 0 0;
+    padding: 8px 0;
+    list-style: none;
+    background-color: rgb(var(--color-background));
+    border: 1px solid rgb(var(--color-foreground), 0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-height: 240px;
+    overflow-y: auto;
+    
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: rgb(var(--color-foreground), 0.3);
+        border-radius: 3px;
+        
+        &:hover {
+            background: rgb(var(--color-foreground), 0.5);
+        }
+    }
+    
+    &__search {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: inherit;
+        padding: 8px;
+        border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+        backdrop-filter: blur(8px);
+        
+        .select-search {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid rgba(var(--color-foreground), 0.2);
+            border-radius: 6px;
+            outline: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: rgba(var(--color-background), 0.9);
+            
+            &:focus {
+                border-color: rgba(var(--color-primary), 0.5);
+                box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.1);
+            }
+            
+            &::placeholder {
+                color: rgba(var(--color-foreground), 0.5);
+            }
+        }
+    }
+    
+    &__no-match {
+        padding: 12px 16px;
+        color: rgb(var(--color-foreground), 0.5);
+        font-size: 14px;
+        font-style: italic;
+        text-align: center;
+        pointer-events: none;
+    }
+    
+    &__item {
+        padding: 10px 16px;
+        color: rgb(var(--color-foreground));
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid transparent;
+        
+        &:hover {
+            background-color: rgb(var(--color-primary), 0.1);
+            color: rgb(var(--color-primary));
+        }
+        
+        &.is-selected {
+            background-color: rgb(var(--color-primary), 0.15);
+            color: rgb(var(--color-primary));
+            font-weight: 600;
+        }
+        
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
+
+// Size variants
+.e-select {
+    &--sm {
+        .select-styled {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+        
+        .select-options__item {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+    }
+    
+    &--lg {
+        .select-styled {
+            padding: 16px 20px;
+            font-size: 16px;
+        }
+        
+        .select-options__item {
+            padding: 12px 20px;
+            font-size: 16px;
+        }
+    }
+}
+
+// State variants
+.e-select {
+    &--disabled {
+        opacity: 0.6;
+        pointer-events: none;
+        
+        .select-styled {
+            cursor: not-allowed;
+            background-color: rgb(var(--color-foreground), 0.05);
+        }
+    }
+    
+    &--error {
+        .select-styled {
+            border-color: rgb(var(--color-error));
+            
+            &:hover {
+                border-color: rgb(var(--color-error));
+            }
+            
+            &.active {
+                border-color: rgb(var(--color-error));
+                background-color: rgb(var(--color-error), 0.1);
+            }
+        }
+    }
+}
+
+// Form-select specific styles
+.form-select.e-select {
+    // Any additional form-select specific overrides can be added here
+    // Currently inherits base styles from .e-select and .select-styled
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+    .select-options {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+}

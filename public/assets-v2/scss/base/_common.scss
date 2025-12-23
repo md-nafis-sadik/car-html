@@ -1,0 +1,62 @@
+/**
+ * Bootstrap Spacing Utilities
+ * Similar to Tailwind's space-y and space-x utilities
+ * Uses Bootstrap's spacing scale (1-5)
+ * 
+ * Usage:
+ *   <div class="space-y-3">
+ *     <div>Item 1</div>
+ *     <div>Item 2</div> <!-- Will have margin-top: 1rem -->
+ *   </div>
+ */
+
+// Bootstrap spacing values (default)
+// 1: 0.25rem, 2: 0.5rem, 3: 1rem, 4: 1.5rem, 5: 3rem
+$spacing-values: (
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 3rem
+);
+
+// Vertical spacing (space-y)
+// Adds margin-top to all children except the first one
+@each $size, $value in $spacing-values {
+  .space-y-#{$size}> :not([hidden])~ :not([hidden]) {
+    --space-y-reverse: 0;
+    margin-top: calc(#{$value} * calc(1 - var(--space-y-reverse)));
+    margin-bottom: calc(#{$value} * var(--space-y-reverse));
+  }
+}
+
+// Horizontal spacing (space-x)
+// Adds margin-left to all children except the first one
+@each $size, $value in $spacing-values {
+  .space-x-#{$size}> :not([hidden])~ :not([hidden]) {
+    --space-x-reverse: 0;
+    margin-left: calc(#{$value} * calc(1 - var(--space-x-reverse)));
+    margin-right: calc(#{$value} * var(--space-x-reverse));
+  }
+}
+
+
+
+.vr-dash {
+  border-right: 1px dashed rgba(255, 255, 255, 0.4);
+  width: 1px;
+  display: flex;
+  align-self: stretch;
+}
+
+.link-dark {
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    color: $primary !important;
+  }
+}
+
+.p-30{
+  padding: 30px !important;
+}

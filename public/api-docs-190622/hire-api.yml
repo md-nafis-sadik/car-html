@@ -1,0 +1,1296 @@
+openapi: 3.0.1
+info:
+  title: "Autofusion: Car Hire API"
+  description: 'This is the car hire API for Autofusion. This API focuses on car hire services and vehicle rental functionality.'
+  contact:
+    name: "LA5 Digital LTD"
+  version: 1.0.0
+externalDocs:
+  description: Visit Jira
+  url: https://track.la5digital.com
+servers:
+  - url: https://autofusion-staging.la5digital.com/api/v1
+  - url: https://autofusioncars.co.uk/api/v1
+tags:
+  - name: auth
+    description: User Authentication
+  - name: user
+    description: User
+  - name: push
+    description: Push Notifications
+  - name: book
+    description: Car Hire Booking
+
+paths:
+
+  ##########Authentication Routes#######
+
+  /auth/register:
+    post:
+      summary: Register a user
+      operationId: registerUser
+      tags:
+        - auth
+      parameters:
+        - name: title
+          in: query
+          description: Title [Mr, Mrs, Ms, Miss, Mx, Dr, Prof]
+          required: true
+        - name: first_name
+          in: query
+          description: First Name
+          required: true
+        - name: last_name
+          in: query
+          description: Last Name
+          required: true
+        - name: dob
+          in: query
+          description: Date Of Birth
+          required: true
+
+        - name: email
+          in: query
+          description: E-mail address
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: phone
+          in: query
+          description: Phone
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: password
+          in: query
+          description: Password
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: address_line_1
+          in: query
+          description: Address Line 1
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: address_line_2
+          in: query
+          description: Address Line 2
+          required: false
+          schema:
+            type: string
+            format: string
+        - name: address_town
+          in: query
+          description: City
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: address_county
+          in: query
+          description: Address State
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: address_country
+          in: query
+          description: Country
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: address_postcode
+          in: query
+          description: Postcode
+          required: true
+          schema:
+            type: string
+            format: string
+
+      responses:
+        '200':
+          description: Returns user object and bearer token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginSuccess"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+  /auth/login:
+    post:
+      summary: Authenticate a user
+      operationId: loginUser
+      tags:
+        - auth
+      parameters:
+        - name: email
+          in: query
+          description: E-mail address
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: password
+          in: query
+          description: Password
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: device_name
+          in: query
+          description: Name of the device used for login
+          required: true
+          schema:
+            type: string
+            format: string
+
+      responses:
+        '200':
+          description: Returns user object and bearer token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginSuccess"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /auth/logout:
+    post:
+      summary: Logout a user
+      operationId: logoutUser
+      tags:
+        - auth
+      security:
+        - bearerAuth: []
+      responses:
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /auth/validation/email:
+    post:
+      summary: Validate an email (to check if user exists with that email or not)
+      operationId: validateAuthEmail
+      tags:
+        - auth
+      parameters:
+        - name: email
+          in: query
+          description: E-mail address
+          required: true
+          schema:
+            type: string
+            format: string
+
+      responses:
+        '200':
+          description: Returns Validation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+#  ##########Push Notification Routes###
+  /push/test:
+    get:
+      summary: Test push notifications
+      operationId: testPushNotifications
+      tags:
+        - push
+      security:
+        - bearerAuth: []
+      parameters:
+
+        - name: type
+          in: query
+          description: Notification Type
+          required: true
+          schema:
+            type: string
+            enum: ["test", "test_2"]
+
+      responses:
+        '200':
+          description: Returns success message
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /push/register:
+    post:
+      summary: Register push notification token (FCM)
+      operationId: registerPushNotification
+      tags:
+        - push
+      security:
+        - bearerAuth: []
+
+      parameters:
+        - name: fcm_token
+          in: query
+          description: FCM Token
+          required: true
+          schema:
+            type: string
+            format: string
+
+
+      responses:
+        '200':
+          description: Returns success message
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+  ##########Profile Routes###
+
+  /user/profile:
+    get:
+      summary: Retreive profile
+      operationId: getProfile
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+
+      responses:
+        '200':
+          description: Return profile details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+    put:
+      summary: Update profile
+      operationId: putProfile
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+
+      parameters:
+        - name: title
+          in: query
+          description: Title
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: first_name
+          in: query
+          description: First Name
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: last_name
+          in: query
+          description: Last Name
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: dob
+          in: query
+          description: Date of Birth
+          required: true
+          schema:
+            type: date
+            format: string
+
+        - name: email
+          in: query
+          description: E-mail Address
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: address_line_1
+          in: query
+          description: Address Line 1
+          required: true
+          schema:
+            type: string
+            format: string
+        - name: address_line_2
+          in: query
+          description: Address Line 2
+          required: true
+          schema:
+            type: string
+            format: string
+        - name: address_town
+          in: query
+          description: City
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: address_county
+          in: query
+          description: Address State
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: address_country
+          in: query
+          description: Country
+          required: true
+          schema:
+            type: string
+            format: string
+
+        - name: address_postcode
+          in: query
+          description: Postcode
+          required: true
+          schema:
+            type: string
+            format: string
+
+      responses:
+        '200':
+          description: Return profile details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+  /user/bookings:
+    get:
+      summary: Retreive All Bookings
+      operationId: getAllBookings
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: type
+          in: query
+          description: Types of bookings (upcoming/past - defaults to all)
+          schema:
+            type: string
+          required: false
+
+      responses:
+        '200':
+          description: Return user bookings
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /user/bookings/{bookingReference}:
+    get:
+      summary: Retreive booking by reference
+      operationId: getOneBooking
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: bookingReference
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Return booking
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /user/subscriptions:
+    get:
+      summary: Retrieve Subscriptions
+      operationId: getSubscriptions
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      parameters:
+      responses:
+        '200':
+          description: Return Subscriptions
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /user/subscriptions/{subscription}:
+      get:
+        summary: Retrieve Subscription
+        operationId: getOneSubscription
+        tags:
+          - user
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: subscription
+            in: path
+            schema:
+              type: string
+            required: true
+        responses:
+          '200':
+            description: Return Subscription
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Success"
+          default:
+            description: Unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /user/subscriptions/{subscription}/renew:
+      post:
+        summary: Renew Subscription
+        operationId: renewSubscription
+        tags:
+          - user
+        security:
+          - bearerAuth: []
+        parameters:
+          - name: subscription
+            in: path
+            schema:
+              type: string
+            required: true
+          - name: product
+            in: query
+            schema:
+              type: integer
+            description: Product ID (chosen renewal)
+            required: true
+
+          - name: charge_amount
+            in: query
+            schema:
+              type: string
+            description: Amount charged to customer
+            required: true
+
+          - name: charge_token
+            in: query
+            schema:
+              type: string
+            description: Token of stripe charge
+            required: true
+        responses:
+          '200':
+            description: Return Subscription
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Success"
+          default:
+            description: Unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /user/documents:
+    get:
+      summary: Retreive ID Documents
+      operationId: getDocuments
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      parameters:
+      responses:
+        '200':
+          description: Return ID Documents
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /user/documents/upload:
+    post:
+      summary: Upload ID Document
+      operationId: postIDDocument
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: document
+          in: query
+          description: Document (JPG/PNG/PDF - max 3MB)
+          required: true
+          schema:
+            type: string
+            format: binary
+        - name: document_type
+          in: query
+          description: Document Type ["license", "utility", "other"]
+          required: true
+          schema:
+            type: string
+            enum: [ "license", "utility", "other" ]
+
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+
+  /user/password/change:
+    post:
+      summary: Change a password
+      operationId: passwordChange
+      deprecated: false
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: current_password
+          in: query
+          description: Current Password
+          required: true
+          schema:
+            type: string
+            format: string
+        - name: new_password
+          in: query
+          description: New password
+          required: true
+          schema:
+            type: string
+            format: string
+        - name: new_password_confirmation
+          in: query
+          description: New password (confirmation)
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Password change success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /user/password/set:
+    post:
+      summary: Set a first-time password
+      operationId: setFirstTimePassword
+      tags:
+        - user
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: password
+          in: query
+          description: New Password
+          required: true
+          schema:
+            type: string
+            format: string
+        - name: password_confirmation
+          in: query
+          description: Password Confirmation
+          required: true
+          schema:
+            type: string
+            format: string
+      responses:
+        '200':
+          description: Password change success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  ##########Car Hire Booking Routes#######
+
+  /book/hire/search:
+    post:
+      summary: Search for cars
+      operationId: postBookHireSearch
+      tags:
+        - book
+      parameters:
+        - name: pickup_date
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Drop Off Date (UK Format)
+          example: "04/07/2024"
+        - name: dropoff_date
+          in: query
+          schema:
+            type: string
+          description: Drop Off Date (UK Format)
+          example: "13/07/2024"
+          required: true
+        - name: pickup_time
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Pickup Time
+          example: "10:00"
+        - name: type
+          description: "Options: luxury, performance, supercar (defaults to any)"
+          example: luxury
+          in: query
+          schema:
+            type: string
+          required: false
+        - name: sort_by
+          description: "Options: price_low, price_high (defaults to price_low)"
+          example: price_low
+          in: query
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /book/hire/{carID}:
+    get:
+      summary: Get specific car
+      operationId: getSpecificCar
+      tags:
+        - book
+      parameters:
+        - name: carID
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: pickup_date
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Drop Off Date (UK Format)
+          example: "04/07/2024"
+        - name: dropoff_date
+          in: query
+          schema:
+            type: string
+          description: Drop Off Date (UK Format)
+          example: "13/07/2024"
+          required: true
+        - name: pickup_time
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Pickup Time
+          example: "10:00"
+        - name: include_chauffeur
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Include a chauffeur
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /book/hire/{carID}/images:
+    get:
+      summary: Get gallery images for specific car
+      operationId: getSpecificCarImages
+      tags:
+        - book
+      parameters:
+        - name: carID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /book/hire/locations:
+    get:
+      summary: Get Hire Locations
+      operationId: getHireLocations
+      tags:
+        - book
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /book/hire/verify-licence:
+    post:
+      summary: Verify Licence Information
+      description: Will return success or error based on licence information entered. If success, dvla_licence_information object will be returned, which must be sent with /book/hire/submit
+      operationId: postVerifyLicence
+      tags:
+        - book
+      parameters:
+        - name: licence_number
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Licence Number
+        - name: share_code
+          in: query
+          schema:
+            type: string
+          required: true
+          description: DVLA Share Code
+      responses:
+        '200':
+          description: Return Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /book/hire/submit:
+    post:
+      summary: Submit Order
+      operationId: submitHireOrder
+      tags:
+        - book
+      parameters:
+        - name: charge_token
+          in: query
+          description: Stripe charge token (payment intent - use "FREE" as value if order amount is 0 and no payment intent was captured)
+          required: true
+          schema:
+            type: string
+            format: string
+        - name: car_id
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Provide car ID
+        - name: location_id
+          in: query
+          description: Location ID (branch ID)
+          required: true
+          schema:
+            type: integer
+        - name: pickup_date
+          in: query
+          schema:
+            type: string
+          description: Pickup Date & Time
+          example: "2020-10-29 12:00:00"
+          required: true
+        - name: dropoff_date
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Drop Off Date & Time
+          example: "2020-10-29 12:00:00"
+        - name: chauffeur_included
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Chauffeur Included?
+
+        - name: dvla_licence_information
+          in: query
+          description: Licence Information (required if booking doesn't include chauffeur)
+          required: false
+          schema:
+            type: object
+            format: string
+
+        - name: cart_subtotal
+          in: query
+          description: Subtotal value of the cart
+          required: true
+          schema:
+            type: integer
+            format: float
+        - name: cart_deposit
+          in: query
+          description: Car deposit
+          required: true
+          schema:
+            type: integer
+            format: float
+        - name: cart_savings
+          in: query
+          description: Car Savings
+          required: true
+          schema:
+            type: integer
+            format: float
+        - name: cart_chauffeur
+          in: query
+          description: Car Chauffeur price (total)
+          required: true
+          schema:
+            type: integer
+            format: float
+        - name: cart_total
+          in: query
+          description: Total value of the cart (subtotal + shipping - discount)
+          required: true
+          schema:
+            type: integer
+            format: float
+        - name: coupon_code
+          in: query
+          description: Coupon code
+          required: false
+          schema:
+            type: string
+            format: string
+
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Returns success message
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /book/coupons/validate:
+    post:
+      summary: Validate Coupon against cart
+      operationId: validateCoupon
+      tags:
+        - book
+      parameters:
+        - name: code
+          in: query
+          description: Coupon Code
+          required: true
+          schema:
+            type: string
+            format: string
+        - name: type
+          in: query
+          description: Type
+          required: true
+          schema:
+            type: string
+            enum: [ 'hire_cars' ]
+        - name: car_id
+          in: query
+          schema:
+            type: string
+          required: false
+          description: Provide car ID if type = "hire_cars"
+
+      responses:
+        '200':
+          description: Returns success message
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /book/payments/stripe/intent:
+    post:
+      summary: Generate Stripe payment intent
+      operationId: getStripePaymentIntent
+      tags:
+        - book
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cart_total
+          in: query
+          description: Cart Total
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Type
+          required: true
+          schema:
+            type: string
+            enum: ['hire_cars', 'subscriptions']
+      responses:
+        '200':
+          description: Returns success message
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /platform/app/version:
+    get:
+      summary: Get latest version available of the app
+      operationId: getPlatformAppVersion
+      tags:
+        - platform
+      responses:
+        '200':
+          description: Return app version
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /platform/settings:
+    get:
+      summary: Get platform settings
+      operationId: getPlatformSettings
+      tags:
+        - platform
+      responses:
+        '200':
+          description: Return platform settings
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Success"
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+
+    User:
+      type: object
+      required:
+        - account_number
+        - account_type
+        - contact_position
+        - company_number
+        - vat_number
+        - email
+        - title
+        - first_name
+        - last_name
+        - company_name
+        - trading_name
+        - dob
+        - phone
+        - address_line_1
+        - address_line_2
+        - address_town
+        - address_county
+        - address_country
+        - address_postcode
+        - discount_type
+        - discount_amount
+        - age
+
+      properties:
+        account_number:
+          type: string
+        account_type:
+          type: string
+          example: personal
+        contact_position:
+          type: string
+        company_number:
+          type: string
+        vat_number:
+          type: string
+        title:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        company_name:
+          type: string
+        trading_name:
+          type: string
+        email:
+          type: string
+        dob:
+          type: string
+          format: date
+        address_line_1:
+          type: string
+        address_line_2:
+          type:  string
+        address_town:
+          type: string
+        address_county:
+          type: string
+        address_country:
+          type: string
+        address_postcode:
+          type: string
+        discount_type:
+          type: string
+        discount_amount:
+          type: integer
+          format: date
+        age:
+          type: integer
+          format: date
+
+    CartItem:
+      type: object
+      required:
+        - product_id
+        - price
+        - quantity
+      properties:
+        product_id:
+          type: integer
+          format: integer
+        price:
+          type: string
+        quantity:
+          type: integer
+          format: integer
+
+    LoginSuccess:
+      type: object
+      required:
+        - error
+        - user
+        - message
+      properties:
+        error:
+          type: boolean
+          format: string
+          default: false
+        token:
+          type: string
+          format: string
+          default: "]gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+        user:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+        message:
+          type: string
+
+    Success:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: boolean
+          format: string
+          default: false
+        message:
+          type: string
+
+
+    Error:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: boolean
+          format: boolean
+          default: true
+        message:
+          type: string
+
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

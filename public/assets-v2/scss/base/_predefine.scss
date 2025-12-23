@@ -1,0 +1,506 @@
+// Predefined Base Styles
+// These styles apply by default to HTML elements
+
+// HTML Base Font Size - 10px = 1rem system
+// When --font-body-scale = 1.0: 1rem = 10px
+// When --font-body-scale = 1.2: 1rem = 12px
+html {
+  box-sizing: border-box;
+  font-size: calc(var(--font-body-scale) * 62.5%);
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+// Override Bootstrap's body font-size at xl breakpoint
+// Bootstrap sets --bs-body-font-size: 1.8rem at 1200px, we override it
+@media (min-width: 1200px) {
+
+  :root,
+  [data-bs-theme=light] {
+    --bs-body-font-size: calc(var(--font-b4-size) * var(--spacing-scale));
+  }
+}
+
+// Base Body Styles - Use B3 Regular as default
+body {
+  font-family: var(--font-family-body);
+  font-size: calc(var(--font-b4-size) * var(--spacing-scale));
+  line-height: var(--font-b4-line-height);
+  font-weight: 400; // Regular
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b4-size) * 0.85); // 18px
+  }
+}
+
+// Default Heading Styles - Use heading styles
+// These override Bootstrap defaults
+h1,
+.h1 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h1-size);
+  line-height: var(--font-h1-line-height);
+  font-weight: 600; // Semi Bold for headings
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-h1-size) * 0.75); // 48px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h1-size) * 0.45); // 40px
+  }
+}
+
+h2,
+.h2 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h2-size);
+  line-height: var(--font-h2-line-height);
+  font-weight: 600;
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-h2-size) * 0.833); // 40px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h2-size) * 0.5625);
+  }
+}
+
+h3,
+.h3 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h3-size);
+  line-height: var(--font-h3-line-height);
+  font-weight: 600;
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-h3-size) * 0.889); // 32px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h3-size) * 0.778); // 28px
+  }
+}
+
+h4,
+.h4 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h4-size);
+  line-height: var(--font-h4-line-height);
+  font-weight: 600;
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-h4-size) * 0.857); // 24px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h4-size) * 0.786); // 22px
+  }
+}
+
+h5,
+.h5 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h5-size);
+  line-height: var(--font-h5-line-height);
+  font-weight: 600;
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h5-size) * 0.923); // 24px
+  }
+}
+
+h6,
+.h6 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h6-size);
+  line-height: var(--font-h6-line-height);
+  font-weight: 600;
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h6-size) * 0.75); // 18px
+  }
+}
+
+
+// Font Utility Classes
+.font-heading {
+  font-family: var(--font-family-heading) !important;
+}
+
+.font-body {
+  font-family: var(--font-family-body) !important;
+}
+
+// Heading Utility Classes (text-h1 to text-h6)
+.text-h1 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h1-size);
+  line-height: var(--font-h1-line-height);
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-h1-size) * 0.75); // 48px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h1-size) * 0.45); // 40px
+  }
+}
+
+.text-h2 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h2-size);
+  line-height: var(--font-h2-line-height);
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-h2-size) * 0.833); // 40px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h2-size) * 0.5625);
+  }
+}
+
+.text-h3 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h3-size);
+  line-height: var(--font-h3-line-height);
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-h3-size) * 0.889); // 32px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h3-size) * 0.778); // 28px
+  }
+}
+
+.text-h4 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h4-size);
+  line-height: var(--font-h4-line-height);
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-h4-size) * 0.857); // 24px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h4-size) * 0.786); // 22px
+  }
+}
+
+.text-h5 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h5-size);
+  line-height: var(--font-h5-line-height);
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h5-size) * 0.923); // 24px
+  }
+}
+
+.text-h6 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-h6-size);
+  line-height: var(--font-h6-line-height);
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-h6-size) * 0.75); // 18px
+  }
+}
+
+// Body Text Utility Classes (text-b1 to text-b6)
+// B1 Styles
+.text-b1-semibold {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b1-size);
+  line-height: var(--font-b1-line-height);
+  font-weight: 600; // Semi Bold
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-b1-size) * 0.909); // 20px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b1-size) * 0.818); // 18px
+  }
+}
+
+.text-b1-medium {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b1-size);
+  line-height: var(--font-b1-line-height);
+  font-weight: 500; // Medium
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-b1-size) * 0.909); // 20px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b1-size) * 0.818); // 18px
+  }
+}
+
+.text-b1-regular {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b1-size);
+  line-height: var(--font-b1-line-height);
+  font-weight: 400; // Regular
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-b1-size) * 0.909); // 20px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b1-size) * 0.818); // 18px
+  }
+}
+
+// B2 Styles
+.text-b2-semibold {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b2-size);
+  line-height: var(--font-b2-line-height);
+  font-weight: 600; // Semi Bold
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-b2-size) * 0.9); // 18px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b2-size) * 0.85); // 17px
+  }
+}
+
+.text-b2-medium {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b2-size);
+  line-height: var(--font-b2-line-height);
+  font-weight: 500; // Medium
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-b2-size) * 0.9); // 18px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b2-size) * 0.85); // 17px
+  }
+}
+
+.text-b2-regular {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b2-size);
+  line-height: var(--font-b2-line-height);
+  font-weight: 400; // Regular
+
+  // Responsive
+  @media (max-width: 991.98px) {
+    font-size: calc(var(--font-b2-size) * 0.9); // 18px
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b2-size) * 0.85); // 17px
+  }
+}
+
+// B3 Styles (Default - less responsive scaling)
+.text-b3-semibold {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b3-size);
+  line-height: var(--font-b3-line-height);
+  font-weight: 600; // Semi Bold
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b3-size) * 0.889); // 16px
+  }
+}
+
+.text-b3-medium {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b3-size);
+  line-height: var(--font-b3-line-height);
+  font-weight: 500; // Medium
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b3-size) * 0.889); // 16px
+  }
+}
+
+.text-b3-regular {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b3-size);
+  line-height: var(--font-b3-line-height);
+  font-weight: 400; // Regular
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b3-size) * 0.889); // 16px
+  }
+}
+
+// B4 Styles
+.text-b4-semibold {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b4-size);
+  line-height: var(--font-b4-line-height);
+  font-weight: 600; // Semi Bold
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b4-size) * 0.875); // 14px
+  }
+}
+
+.text-b4-medium {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b4-size);
+  line-height: var(--font-b4-line-height);
+  font-weight: 500; // Medium
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b4-size) * 0.875); // 14px
+  }
+}
+
+.text-b4-regular {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b4-size);
+  line-height: var(--font-b4-line-height);
+  font-weight: 400; // Regular
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b4-size) * 0.875); // 14px
+  }
+}
+
+// B5 Styles
+.text-b5-semibold {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b5-size);
+  line-height: var(--font-b5-line-height);
+  font-weight: 600; // Medium
+
+  // Responsive - B5 and B6 are already small, minimal scaling
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b5-size) * 0.929); // 13px
+  }
+}
+
+.text-b5-medium {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b5-size);
+  line-height: var(--font-b5-line-height);
+  font-weight: 500; // Medium
+
+  // Responsive - B5 and B6 are already small, minimal scaling
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b5-size) * 0.929); // 13px
+  }
+}
+
+.text-b5-regular {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b5-size);
+  line-height: var(--font-b5-line-height);
+  font-weight: 400; // Regular
+
+  // Responsive
+  @media (max-width: 575.98px) {
+    font-size: calc(var(--font-b5-size) * 0.929); // 13px
+  }
+}
+
+// B6 Styles
+.text-b6-medium {
+  font-family: var(--font-family-body);
+  font-size: var(--font-b6-size);
+  line-height: var(--font-b6-line-height);
+  font-weight: 500; // Medium
+
+  // B6 is already very small, no responsive scaling needed
+}
+
+
+// IMAGE
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.rounded-5 {
+  @include media-breakpoint-up(lg) {
+    border-radius: calc(24px * var(--spacing-scale)) !important;
+  }
+
+  @include media-breakpoint-down(lg) {
+    border-radius: calc(12px * var(--spacing-scale)) !important;
+  }
+}
+
+.rounded-6 {
+  @include media-breakpoint-up(lg) {
+    border-radius: calc(30px * var(--spacing-scale));
+  }
+
+  @include media-breakpoint-down(lg) {
+    border-radius: calc(12px * var(--spacing-scale));
+  }
+}
+
+// SECTIONS
+.section-padding {
+
+  &-y,
+  &-t {
+    padding-top: calc(50px * var(--spacing-scale));
+
+    @include media-breakpoint-up(xl) {
+      padding-top: calc(100px * var(--spacing-scale));
+    }
+  }
+
+  &-y,
+  &-b {
+    padding-bottom: calc(50px * var(--spacing-scale));
+
+    @include media-breakpoint-up(xl) {
+      padding-bottom: calc(100px * var(--spacing-scale));
+    }
+  }
+}
+
+.oy-section-title {
+  margin-bottom: calc(30px * var(--spacing-scale));
+
+  @include media-breakpoint-up(xl) {
+    margin-bottom: calc(70px * var(--spacing-scale));
+  }
+}

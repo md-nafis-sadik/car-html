@@ -1,0 +1,116 @@
+.oy-content{
+    color: var(--bs-secondary);
+    font-size: var(--font-b4-size);
+    font-weight: 400;
+
+    h5{
+        color: $dark;
+        font-weight: 600;
+        font-size: var(--font-h6-size);
+    }
+
+    h6{
+        color: $dark;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .list{
+
+        &-disc{
+            list-style: disc;
+            margin-bottom: 2rem;
+            color: $dark;
+            font-weight: 600;
+
+            p{
+                color: var(--bs-secondary);
+                font-size: var(--font-b4-size);
+                font-weight: 400;
+            }
+
+            li::marker {
+                font-size: 2.5rem;
+                font-weight: bolder;
+                color: #{$primary};
+            }
+
+        }
+    }
+}
+
+.list__related-post{
+    list-style: none;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px;
+    margin: 0px;
+
+    .post__item{
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: 14px;
+        text-decoration: none;
+        color: inherit;
+
+        &-thumbnail{
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+        }
+
+        &-title{
+            font-size: 18px;
+            line-height: 1.5;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            
+        }
+    }
+}
+
+
+.oy-opportunity{
+    background-color: $dark;
+    color: $white;
+
+    &__banner{
+        min-height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 50px 40px 30px;
+
+        @media (max-width: 991.98px) {
+            min-height: 80vh;
+            padding: 50px 20px 30px;
+        }
+    }
+
+    &__form{
+        display: grid;
+        grid-template-columns: minmax(260px, 3fr) repeat(auto-fit, minmax(170px, 2fr));
+        align-items: flex-end;
+        gap: 15px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.16);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        border: 1px solid #ffffff29;
+
+        @media (max-width: 991.98px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 575.98px) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+

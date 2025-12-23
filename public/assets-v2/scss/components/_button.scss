@@ -1,0 +1,275 @@
+// buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.btn--gradient-primary {
+  background: linear-gradient(90deg, $primary 0%, $info 137.64%);
+  color: $white;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    width: 0px;
+    height: 0px;
+    background: $primary;
+    z-index: -1;
+    border-radius: 100px;
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  &[data-pulse-direction="left"]:hover svg {
+    animation: jello-vertical 0.9s both;
+    transform-origin: left;
+  }
+
+  &[data-pulse-direction="right"]:hover svg {
+    animation: jello-vertical 0.9s both;
+    transform-origin: right;
+  }
+
+  &:hover {
+    color: $white;
+
+    &::before {
+      width: var(--btn-before-size, 220px);
+      height: var(--btn-before-size, 220px);
+      transform: translate(0%, -50%);
+    }
+  }
+}
+
+.btn--outline-primary {
+  background: $white;
+  border: 2px solid transparent;
+  color: $primary;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    background: linear-gradient(90deg, $primary 0%, $info 137.64%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+
+  span.btn__text:before {
+    content: "";
+    background: $white;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    z-index: -1;
+    border-radius: 100px;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    width: 0px;
+    height: 0px;
+    background: linear-gradient(90deg, $primary 0%, $info 137.64%);
+    z-index: -1;
+    border-radius: 100px;
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+
+  &[data-pulse-direction="left"]:hover svg {
+    animation: jello-vertical 0.9s both;
+    transform-origin: left;
+  }
+
+  &[data-pulse-direction="right"]:hover svg {
+    animation: jello-vertical 0.9s both;
+    transform-origin: right;
+  }
+
+  &:hover {
+    color: $white;
+    border-color: transparent;
+
+    &::after {
+      width: var(--btn-after-size, 220px);
+      height: var(--btn-after-size, 220px);
+      transform: translate(0%, -50%);
+    }
+  }
+}
+
+.btn--outline-light {
+  background: transparent;
+  border: 1px solid $white;
+  color: $white;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    width: 0px;
+    height: 0px;
+    background: $white;
+    z-index: -1;
+    border-radius: 100px;
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  &:hover {
+    color: $dark;
+
+    &[data-pulse-direction="left"]:hover svg {
+      animation: jello-vertical 0.9s both;
+      transform-origin: left;
+    }
+
+    &[data-pulse-direction="right"]:hover svg {
+      animation: jello-vertical 0.9s both;
+      transform-origin: right;
+    }
+
+    &::before {
+      width: var(--btn-before-size, 220px);
+      height: var(--btn-before-size, 220px);
+      transform: translate(0%, -50%);
+    }
+  }
+}
+
+.btn--circle {
+  --btn-circle-size: 60px;
+  --btn-circle-border-width: 1px;
+  --btn-circle-border-color: #EDF4FF;
+  --btn-circle-background-color: transparent;
+  --btn-circle-text-color: #{$secondary};
+  width: calc(var(--btn-circle-size) * var(--spacing-scale));
+  min-width: calc(var(--btn-circle-size) * var(--spacing-scale));
+  height: calc(var(--btn-circle-size) * var(--spacing-scale));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border: var(--btn-circle-border-width) solid var(--btn-circle-border-color);
+  border-radius: 100px;
+  background: var(--btn-circle-background-color);
+  color: var(--btn-circle-text-color);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  
+  @include media-breakpoint-down(md){
+    --btn-circle-size: 45px;
+  }
+
+  &.outlined {
+    --btn-circle-border-color: #{$primary};
+    --btn-circle-background-color: transparent;
+    --btn-circle-text-color: #{$primary};
+
+    &:hover,
+    &:focus {
+      --btn-circle-border-color: #{$primary};
+      --btn-circle-background-color: #{$primary};
+      --btn-circle-text-color: #{$white};
+    }
+
+    &:hover svg {
+      animation: jello-vertical 0.9s both;
+      transform-origin: center;
+    }
+
+    &[data-pulse-direction="left"]:hover svg {
+      transform-origin: left;
+    }
+
+    &[data-pulse-direction="right"]:hover svg {
+      transform-origin: right;
+    }
+  }
+
+  &.disabled,
+  &:disabled,
+  &[disabled] {
+    cursor: pointer;
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
+  &.secondary {
+    --btn-circle-border-color: rgba(255, 255, 255, 0.2);
+    --btn-circle-background-color: rgba(255, 255, 255, 0.2);
+    --btn-circle-text-color: #{$white};
+    backdrop-filter: blur(5px);
+
+    &:hover,
+    &:focus {
+      --btn-circle-border-color: #{$primary};
+      --btn-circle-background-color: linear-gradient(90deg, #0072FF 0%, #00FFFF 118.33%);
+      --btn-circle-text-color: #{$white};
+    }
+
+    &:hover svg {
+      animation: jello-vertical 0.9s both;
+      transform-origin: center;
+    }
+
+  }
+}
+
+
+
+@keyframes jello-vertical {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  40% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  50% {
+    transform: scale3d(0.85, 1.15, 1);
+  }
+
+  65% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  75% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}

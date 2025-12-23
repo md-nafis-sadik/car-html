@@ -1,0 +1,348 @@
+﻿* {
+    font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif;
+    font-size: 10pt;
+    line-height: 1.2;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.bodybox{
+    margin: 0 auto;
+}
+
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #202020;
+    color: white;
+    text-align: center;
+}
+
+.footer a {
+    color: white;
+}
+
+
+/*Custom Checkbox*/
+INPUT.fancy[type=checkbox] {
+    display: none;
+}
+
+INPUT.fancy[type="checkbox"] + LABEL.fancy {
+    position: relative;
+    display: block;
+}
+
+LABEL.fancy:before, LABEL.fancy:after {
+    font-family: FontAwesome;
+    font-size: 1.5em;
+    /*absolutely positioned*/
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+LABEL.fancy:before {
+    content: "\f096"; /*unchecked*/
+}
+
+LABEL.fancy:after {
+    content: "\f046"; /*checked*/
+    /*checked icon will be hidden by default by using 0 max-width and overflow hidden*/
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0.1;
+    /*CSS3 transitions for animated effect */
+    transition: all 0.3s;
+}
+
+/*when the user checks the checkbox the checked icon will animate in*/
+INPUT.fancy[type="checkbox"]:checked + LABEL.fancy:after {
+    max-width: 25px; /*an arbitratry number more than the icon's width*/
+    opacity: 1; /*for fade in effect*/
+}
+/*Custom Checkbox*/
+
+
+/* Panels */
+.panel-danger .panel-heading {
+    background: linear-gradient(180deg, #c23131, #b22d2d);
+    color: white;
+}
+
+.panel-danger {
+    /* border-color: #CC0B02; */
+    border-color: #912525;
+}
+
+.panel-warning .panel-heading {
+    background: linear-gradient(180deg, #E69416, #ce7d05);
+    color: white;
+}
+
+.panel-warning {
+    /* border-color: #E69416; */
+    border-color: rgba(230,148,22,0.8);
+}
+
+.panel-info .panel-heading {
+    background: linear-gradient(180deg,#607882,#576d76);
+    color: white;
+}
+
+.panel-info {
+    /* border-color: #000000; */
+    /*border-color: rgba(0,0,0,0.5); black*/
+    /*border-color: rgba(0,0,0,0.2); grey*/
+    border-color: #46585f;
+}
+
+.panel, .panel-heading {
+    border-radius: 0;
+}
+
+/* Panels */
+
+.blog-masthead {
+    background-color: #E2E1DF;
+}
+
+.well {
+    background-color: #33414e;
+    color: white;
+}
+
+.well a {
+    color: white;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 0px;
+}
+
+.btn-green {
+    background: linear-gradient(180deg,#12b447,#10a140);
+    border-color: #0c7c31;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-black {
+    background: linear-gradient(180deg, #525252, #000000);
+    border-color: #000;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-success {
+    background: linear-gradient(180deg,#12b447,#10a140);
+    border-color: #0c7c31;
+}
+.btn-danger {
+    background: linear-gradient(180deg,#c23131,#b22d2d);
+    border-color: #912525;
+}
+.btn-primary {
+    background: linear-gradient(180deg,#00a1e0,#0092cc);
+    border-color: #0075a3;
+}
+
+/* Buttons */
+
+.graybox {
+    border: 1px solid #ccc;
+    background-color: #ddd;
+    padding-top: 10pt;
+    padding-bottom: 10pt;
+    text-align: center;
+}
+
+.carousel .item IMG, .carousel .item VIDEO {
+    margin: 0 auto;
+}
+
+.table-noborder > thead > tr > th, .table-noborder > tbody > tr > th, .table-noborder > tfoot > tr > th, .table-noborder > thead > tr > td, .table-noborder > tbody > tr > td, .table-noborder > tfoot > tr > td {
+    border-top: none;
+    border-bottom: none;
+}
+
+.table-hypercondensed > thead > tr > th, .table-hypercondensed > tbody > tr > th, .table-hypercondensed > tfoot > tr > th, .table-hypercondensed > thead > tr > td, .table-hypercondensed > tbody > tr > td, .table-hypercondensed > tfoot > tr > td {
+    padding: 1px;
+}
+
+@media (min-width: 768px) {
+    .table-noborder > tbody > tr:hover > td.hoverable, .table-noborder > tbody > tr:hover > th {
+        background-color: #ddd;
+    }
+
+    .table-noborder > tbody > tr:hover > td.nohover {
+        background-color: none;
+    }
+}
+
+.circle {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 5px;
+}
+
+.square {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    margin-top: 2px;
+}
+
+.color-red {
+    background-color: red;
+}
+
+.color-amber {
+    background-color: #E69416;
+}
+
+.color-green {
+    background-color: green;
+}
+
+.color-black {
+    background-color: black;
+}
+
+.color-gray {
+    background-color: lightgray;
+    color: black;
+}
+
+.btn-green:hover {
+    color: white;
+    background-color: green;
+}
+
+@media (max-width: 768px) {
+    SECTION.col-md-8, SECTION.col-sm-7 {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+.regplate {
+    border-radius: 10px;
+    border: solid 1px #697FB1;
+    /*box-shadow: 3px 3px 3px rgba(0,0,0,0.5);*/
+    display: inline-block;
+    font-size: 3.1em;
+    font-family: Helvetica, Verdana, Ariel;
+    font-weight: bold;
+    height: 65px;
+    line-height: 60px;
+    margin-bottom: -0px;
+    min-width: 275px;
+    margin-bottom: 10px;
+    padding-left: 27px;
+    text-align: center;
+    vertical-align: baseline;
+}
+
+.regplate-en-GB {
+}
+
+.regplate-en-AU {
+    background: #EEE;
+}
+
+.adminLink {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    border: dashed 1px #ddd;
+}
+
+    .adminLink:hover {
+        border: dashed 1px #999;
+        text-shadow: 1px 1px #666;
+        text-decoration: none;
+    }
+
+TR.rowLink {
+    cursor: pointer;
+}
+
+.customer-loan-circle {
+    border: 1px solid #3ab6e1;
+    color: #3ab6e1;
+    font-size: 15px;
+    border-radius: 42px;
+    width: 7rem;
+    height: 7rem;
+    text-align: center;
+    line-height: 35px;
+    margin: 3px 5px 0 14px;
+}
+
+.customer-circle-amount {
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.navbar {
+    color: white;
+    border-radius: 0px !important;
+}
+
+/** AF **/
+img {
+    pointer-events: none
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.avatar {
+    vertical-align: middle;
+    width: 80px;
+    height: 80px;
+    border-radius: 10%;
+}
+
+.display-flex {
+    display: flex;
+    align-items: center;
+}
+
+.text-red {
+    color: #ee2f37;
+}
+
+.text-black {
+    color: #000000;
+}
+
+.well-white {
+    background-color: white !important;
+    border: none !important;
+}
