@@ -26,7 +26,7 @@
                             <span class="badge rounded-pill text-bg-primary bg-opacity-10 text-primary text-b4-regular text-uppercase">Learn</span>
                             <h2 class="text-light text-h1 mb-5">Learning Hub & Repair Guidance</h2>
                             <p class="text-light text-opacity-50 text-b2-regular mb-3">Our team is dedicated to keeping you informed on all aspects of cars, whether it's the latest news in the automotive industry, tips for maintaining your vehicle or just general advice on how to save money on future bills. At Autofusion, we’ve got you covered.</p>
-                            <a class="btn d-none d-lg-inline-flex btn--gradient-primary" href="#" data-pulse-direction="left">
+                            <a class="btn d-none d-lg-inline-flex btn--gradient-primary" href="{{ route('hire') }}" data-pulse-direction="left">
                                 <span class="btn__text">View Models</span>
                                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.2266 5.43579L18.7907 11L13.2266 16.5641" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -127,43 +127,90 @@
                         </div>
                      </div>
 
-                     <div class="row g-4 g-lg-5">
-            @foreach ($posts as $post)
-                @include('components.blog-card', [
-                    'title' => $post->title,
-                    'thumbnail' => $post->image->getUrl('thumb'),
-                    'date' => Carbon\Carbon::parse($post->created_at)->format('D, d M Y'),
-                    'body' => substr(wordwrap(strip_tags($post->excerpt), 145, "...\n", true), 0, strpos(wordwrap(strip_tags($post->excerpt), 145, "...\n", true), "\n")),
-                    'index' => $loop->index + 1,
-                    'route' => $post->link(),
-                ])
-            @endforeach
-        </div>
+                    <div class="row g-4 g-lg-5">
+                        @foreach ($posts->skip(1) as $post)
+                            @include('components.blog-card', [
+                                'title' => $post->title,
+                                'thumbnail' => $post->image->getUrl('thumb'),
+                                'date' => Carbon\Carbon::parse($post->created_at)->format('D, d M Y'),
+                                'body' => substr(wordwrap(strip_tags($post->excerpt), 145, "...\n", true), 0, strpos(wordwrap(strip_tags($post->excerpt), 145, "...\n", true), "\n")),
+                                'index' => $loop->iteration,  // This starts from 1
+                                'route' => $post->link(),
+                            ])
+                        @endforeach
+                    </div>
 
-                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="pagination-primary mt-5 d-flex flex-wrap justify-content-center align-items-center gap-4">
-                                <a href="#" class="btn--circle outlined" data-pulse-direction="right">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M15.0496 19.92L8.52965 13.4C7.75965 12.63 7.75965 11.37 8.52965 10.6L15.0496 4.08" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> </svg>
-                                </a>
-                                <!-- Active -->
-                                <span class="btn--circle text-b1-medium is-active">01</span>
+                     @if ($posts->hasPages())
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pagination-primary mt-5 d-flex flex-wrap justify-content-center align-items-center gap-4">
+                                    {{-- Previous Page Link --}}
+                                    @if ($posts->onFirstPage())
+                                        <span class="btn--circle outlined disabled" data-pulse-direction="right">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15.0496 19.92L8.52965 13.4C7.75965 12.63 7.75965 11.37 8.52965 10.6L15.0496 4.08" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </span>
+                                    @else
+                                        <a href="{{ $posts->previousPageUrl() }}" class="btn--circle outlined" data-pulse-direction="right">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15.0496 19.92L8.52965 13.4C7.75965 12.63 7.75965 11.37 8.52965 10.6L15.0496 4.08" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    @endif
 
-                                <a href="#" class="btn--circle text-b1-medium">02</a>
-                                <a href="#" class="btn--circle text-b1-medium">03</a>
-                                <a href="#" class="btn--circle text-b1-medium outlined" data-pulse-direction="left">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M8.95035 19.92L15.4704 13.4C16.2404 12.63 16.2404 11.37 15.4704 10.6L8.95035 4.08" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> </svg>
-                                </a>
+                                    {{-- Pagination Elements --}}
+                                    @php
+                                        $elements = $posts->links()->elements;
+                                    @endphp
+                                    
+                                    @foreach ($elements as $element)
+                                        {{-- "Three Dots" Separator --}}
+                                        @if (is_string($element))
+                                            <span class="btn--circle text-b1-medium disabled">{{ $element }}</span>
+                                        @endif
+
+                                        {{-- Array Of Links --}}
+                                        @if (is_array($element))
+                                            @foreach ($element as $page => $url)
+                                                @if ($page == $posts->currentPage())
+                                                    <span class="btn--circle text-b1-medium is-active">
+                                                        {{ str_pad($page, 2, '0', STR_PAD_LEFT) }}
+                                                    </span>
+                                                @else
+                                                    <a href="{{ $url }}" class="btn--circle text-b1-medium">
+                                                        {{ str_pad($page, 2, '0', STR_PAD_LEFT) }}
+                                                    </a>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+
+                                    {{-- Next Page Link --}}
+                                    @if ($posts->hasMorePages())
+                                        <a href="{{ $posts->nextPageUrl() }}" class="btn--circle outlined" data-pulse-direction="left">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.95035 19.92L15.4704 13.4C16.2404 12.63 16.2404 11.37 15.4704 10.6L8.95035 4.08" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    @else
+                                        <span class="btn--circle outlined disabled" data-pulse-direction="left">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.95035 19.92L15.4704 13.4C16.2404 12.63 16.2404 11.37 15.4704 10.6L8.95035 4.08" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                     </div>
+                    @endif
                 </div>
             </div>
         </div>
     </section>
 
         {{-- Pagination --}}
-        {{ $posts->links() }}
+        {{-- {{ $posts->links() }} --}}
         {{--        @include('components.pagination.underlined', ['paginator' => $posts])--}}
     </section>
 @endsection
