@@ -49,8 +49,8 @@
     <!-- Stylesheet -->
     <link href="{{ asset('assets-v2/css/style.css') }}" rel="stylesheet">
     @yield('head-info')
-    @include('utils.app-styles')
-    @stack('css')
+    <!-- @include('utils.app-styles')
+    @stack('css') -->
 </head>
 
 @props([
