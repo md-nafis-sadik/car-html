@@ -15,7 +15,7 @@
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 @endsection
 @section('main')
-    <div class="flex flex-col items-center justify-center mb-20">
+    {{-- <div class="flex flex-col items-center justify-center mb-20">
         <h1 class="text-white text-center text-4xl sm:text-[72px] font-black font-epilogue -tracking-[1.5px] mb-[50px]">
             Register
         </h1>
@@ -178,7 +178,157 @@
                 @endif
             </form>
         @endcomponent
-    </div>
+    </div> --}}
+    <section class="pt-5 oy-auth">
+        <div class="container-fluid px-3 px-lg-4">
+            <div class="oy-auth__banner" style="background-image: url('{{ asset('assets/img/banners/dashboard-banner.jpg') }}');">
+                <div class="row oy-auth__row align-items-center justify-content-center">
+                    <div class="col-md-6 col-xl-4">
+                        <div class="oy-auth__header" style="background-image: url('{{ asset('assets/img/banners/auth-banner-mobile.png') }}');">
+                            <h2 class="text-h4 text-center mb-5 text-white">Register</h2>                                
+                        </div>                        
+                        <div class="oy-auth__form">
+                                <form action="#" class="card p-4 p-lg-5">
+                                    <div class="row g-4">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="form-field__title" class="form-label text-b5-semibold text-secondary text-opacity-50 text-uppercase">Title (Required)</label>
+                                                {{-- <input type="text" name="title" class="form-control"  placeholder="Mr." required> --}}
+                                                <select name="title" id="title" class="form-control" id="form-field__title" required>
+                                                    <option value="Mr" @if(old('title') == "Mr") selected @endif>Mr</option>
+                                                    <option value="Mrs" @if(old('title') == "Mrs") selected @endif>Mrs</option>
+                                                    <option value="Ms" @if(old('title') == "Ms") selected @endif>Ms</option>
+                                                    <option value="Miss" @if(old('title') == "Miss") selected @endif>Miss</option>
+                                                    <option value="Mx" @if(old('title') == "Mx") selected @endif>Mx</option>
+                                                    <option value="Dr" @if(old('title') == "Dr") selected @endif>Dr</option>
+                                                    <option value="Prof" @if(old('title') == "Prof") selected @endif>Prof</option>
+                                                </select>
+                                                @error('title')
+                                                <small class="text-danger fw-medium">
+                                                    {{ $message }}
+                                                </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="form-field__first_name" class="form-label text-b5-semibold text-secondary text-opacity-50 text-uppercase">First Name (Required)</label>
+                                                <input type="text" name="first_name" class="form-control" placeholder="First Name" id="first_name" value="{{ old('first_name') }}" required style="text-transform: capitalize"/>
+                                                @error('first_name')
+                                                    <small class="text-danger fw-medium">
+                                                        {{ $message }}
+                                                    </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="form-field__last_name" class="form-label text-b5-semibold text-secondary text-opacity-50 text-uppercase">Last Name (Required)</label>
+                                                <input type="text" name="last_name" class="form-control" placeholder="Last Name" id="last_name" value="{{ old('last_name') }}" required style="text-transform: capitalize"/>
+                                                @error('last_name')
+                                                    <small class="text-danger fw-medium">
+                                                        {{ $message }}
+                                                    </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="form-field__email" class="form-label text-b5-semibold text-secondary text-opacity-50 text-uppercase">Email Address (Required)</label>
+                                                <input type="email" name="email" class="form-control" value="{{ old('email') }}" id="email" placeholder="john@example.com" required/>
+                                                @error('email')
+                                                    <small class="text-danger fw-medium">
+                                                        {{ $message }}
+                                                    </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="form-field__dob" class="form-label text-b5-semibold text-secondary text-opacity-50 text-uppercase">Date of Birth (DD/MM/YYYY) (Required)</label>
+                                                <input type="date" name="dob" id="dob" class="form-control" value="{{ old('dob') }}" placeholder="(DD/MM/YYYY)" autocomplete="dob" required/>
+                                                @error('dob')
+                                                    <small class="text-danger fw-medium">
+                                                        {{ $message }}
+                                                    </small>
+                                                @enderror
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="form-field__postcode" class="form-label text-b5-semibold text-secondary text-opacity-50 text-uppercase">Postcode (Required)</label>
+                                                <div class="position-relative">
+                                                    <input type="text" name="address_postcode" class="form-control" placeholder="Postcode" id="address_postcode" value="{{ old('address_postcode') }}" required oninput="this.value = this.value.toUpperCase()"/>
+                                                    <button type="button" id="findAddressBtn" class="form-group__lookup" onclick="lookupAddress()">Lookup</button>
+                                                </div>
+                                                @error('address_postcode')
+                                                    <small class="text-danger fw-medium">
+                                                        {{ $message }}
+                                                    </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="form-field__password" class="form-label text-b5-semibold text-secondary text-opacity-50 text-uppercase">Password (Required)</label>
+                                                <input type="password" name="password" class="form-control" placeholder="Enter password" id="password" required/>
+                                                @error('password')
+                                                    <small class="text-danger fw-medium">
+                                                        {{ $message }}
+                                                    </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label for="form-field__password-confirm" class="form-label text-b5-semibold text-secondary text-opacity-50 text-uppercase">Confirm Password (Required)</label>
+                                                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password" id="password_confirmation" required/>
+                                                @error('password_confirmation')
+                                                    <small class="text-danger fw-medium">
+                                                        {{ $message }}
+                                                    </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group form-check">
+                                                <input class="form-check-input" type="checkbox" name="agreement" id="agreement" required>
+                                                <label class="form-check-label text-b4-regular" for="agreement"> By signing up, I agree to the Terms & Conditions.</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <button type="submit" class="btn w-100 btn--gradient-primary" style="--btn-before-size: 550px;">
+                                                <span class="btn__text">Register</span>
+                                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13.2266 5.43579L18.7907 11L13.2266 16.5641" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M3.20703 11H18.6345" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                            @if (Route::has('login'))
+                                            <div class="mt-3 text-secondary text-opacity-75 text-center">
+                                                Already have an account? <a href="{{ route('login') }}" class="link-primary">Sign in</a>
+                                            </div>
+                                            @endif
+                                        </div>
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger border-start border-4 rounded my-5 mx-auto" style="max-width: 780px;">
+                                                <ul class="mb-0">
+                                                    @foreach ($errors->all() as $error)
+                                                        <li class="fw-bold">{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </section>
 @endsection
 
 @push('js')
