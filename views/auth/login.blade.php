@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.auth-v2')
 @section('head-info')
     <title>Log In - {{ config('app.name') }} Glasgow</title>
     <meta name="description" content="Login at {{ config('app.name') }} website." />
@@ -69,12 +69,12 @@
 
                         
                         <div class="oy-auth__form">
-                                <form action="#" class="card p-4 p-lg-5 space-y-4">
+                                <form method="POST" action="{{ route('login') }}{{ '?'.http_build_query(request()->all()) }}" class="card p-4 p-lg-5 space-y-4">
                                     @csrf
                                 <div class="form-group">
                                     <label for="form-field__email" class="form-label text-b5-semibold text-secondary text-opacity-50 text-uppercase">Email Address</label>
                                     {{-- <input type="text" name="email" class="form-control" id="form-field__email" placeholder="Email Address"> --}}
-                                    <input type="email" name="email_address" class="form-control" id="form-field__email" placeholder="Email Address" data-val-email="A valid email address must be provided" data-val-maxlength="The field Email must be a string or array type with a maximum length of '100'." data-val-maxlength-max="100" data-val-required="A valid email address must be provided" id="email" maxlength="100" name="email" required autocomplete="email" value="{{ old('email') }}" />
+                                    <input type="email" name="email" class="form-control" id="form-field__email" placeholder="Email Address" data-val-email="A valid email address must be provided" data-val-maxlength="The field Email must be a string or array type with a maximum length of '100'." data-val-maxlength-max="100" data-val-required="A valid email address must be provided" id="email" maxlength="100" required autocomplete="email" value="{{ old('email') }}" />
                                     @error('email')<small class="text-xs font-medium sm:text-sm text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="form-group">
