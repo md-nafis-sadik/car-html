@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-v2')
 
 @section('head-info')
     <title>{{ $post->seo_title }} - {{ config('app.name') }}</title>

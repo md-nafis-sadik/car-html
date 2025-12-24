@@ -129,32 +129,32 @@
         ],
     ];
 @endphp
-<section class="md:block bg-gray-900 text-white py-3">
-    <div class="max-w-[920px] mx-auto px-4">
-        <div class="flex flex-wrap items-center justify-between gap-4">
-
-            <!-- Item 1 -->
-            <div class="flex items-center gap-3">
-                <img src="../assets/img/header/satisfied-icon.svg" alt="icon" class="h-auto w-auto">
-                <span class="font-medium">1000+ Satisfied Customers</span>
+<section class="oy-header-top d-none d-md-block bg-dark text-light py-3">
+        <div class="container" style="max-width: 920px;">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-auto">
+                    <div class="d-flex align-items-center gap-3 fw-medium">
+                        <img src="../assets/img/header/satisfied-icon.svg" alt="icon">
+                        <span>1000+ Satisfied Customers</span>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex align-items-center gap-3 fw-medium">
+                        <img src="../assets/img/header/vehicles.svg" alt="icon">
+                        <span>Over 200 Vehicles</span>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex align-items-center gap-3 fw-medium">
+                        <img src="../assets/img/header/rent.svg" alt="icon">
+                        <span>Rent with Confidence</span>
+                    </div>
+                </div>
             </div>
-
-            <!-- Item 2 -->
-            <div class="flex items-center gap-3">
-                <img src="../assets/img/header/vehicles.svg" alt="icon" class="h-auto w-auto">
-                <span class="font-medium">Over 200 Vehicles</span>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="flex items-center gap-3">
-                <img src="../assets/img/header/rent.svg" alt="icon" class="h-auto w-auto">
-                <span class="font-medium">Rent with Confidence</span>
-            </div>
-
         </div>
-    </div>
-</section>
-<nav class="block w-full px-4 pt-4 pb-3 mx-auto bg-opacity-100 border-b-2 bg-dark border-b-white border-opacity-10 xl:px-10 2xl:px-16 lg:bg-opacity-0" data-aos="fade-down">
+        </div>
+    </section>
+{{-- <nav class="block w-full px-4 pt-4 pb-3 mx-auto bg-opacity-100 border-b-2 bg-dark border-b-white border-opacity-10 xl:px-10 2xl:px-16 lg:bg-opacity-0" data-aos="fade-down">
     <div class="flex flex-col justify-between w-full gap-4 lg:flex-row lg:items-center">
         <!-- Logo & Toggler Button here -->
         <div class="flex items-center justify-between">
@@ -209,8 +209,8 @@
             </div>
         </div>
     </div>
-</nav>
-{{-- <script src="{{asset('assets-v2/js/components/header-sticky.js')}}"></script>
+</nav> --}}
+<script src="{{asset('assets-v2/js/components/header-sticky.js')}}"></script>
 <header class="oy-header">
     <header-sticky data-sticky-start="350" data-sticky-offset="0">
         <nav class="navbar bg-white navbar-expand-lg py-3 py-lg-4">
@@ -277,7 +277,7 @@
             </div>
         </nav>
     </header-sticky>
-</header> --}}
+</header>
 
 <script>
     // Mobile toggle

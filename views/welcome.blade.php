@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-v2')
 
 @section('head-info')
     <title>{{ config('app.name') }} | Luxury & Supercar Hire</title>
