@@ -43,10 +43,16 @@
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="preload" href="{{ asset('assets-v2/css/style.css') }}" as="style">
+    <link rel="preload" href="{{ asset('assets-v2/js/app.js') }}" as="script">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Stylesheet -->
+    <link href="{{ asset('assets-v2/css/style.css') }}" rel="stylesheet">
     @yield('head-info')
 
-    @include('utils.app-styles')
-    @stack('css')
+    {{-- @include('utils.app-styles')
+    @stack('css') --}}
 </head>
 
 <body>
