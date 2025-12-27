@@ -412,7 +412,7 @@
         </div>
     </section> --}}
 
-    <section class="base-container">
+    {{-- <section class="base-container">
         <div class="flex flex-row flex-wrap md:justify-between items-center gap-[50px] xl:gap-[100px]">
             <div class="flex flex-col gap-10">
                 @include('components.section-summary', [
@@ -470,7 +470,7 @@
                 @endforeach
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section class="section-padding-y">
         <div class="container oy-section-title">
@@ -808,276 +808,900 @@
             </div>
         </div>
      </section>
-     <section class="section-padding-t">
-        <div class="container oy-section-title">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="text-center text-lg-start">
-                        <h3 class="text-h2">Our Rental Car Collection</h3>
-                        <p class="text-secondary">Explore our wide range of rental cars designed to suit every need and budget. From compact city cars to comfortable sedans.</p>
+
+
+
+<section class="section-padding-t">
+    <div class="container oy-section-title">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="text-center text-lg-start">
+                    <h3 class="text-h2">Our Rental Car Collection</h3>
+                    <p class="text-secondary">Explore our wide range of rental cars designed to suit every need and budget. From compact city cars to comfortable sedans.</p>
+                </div>
+            </div>
+            <div class="d-none d-lg-block col-lg-6">
+                <div class="d-flex align-items-center justify-content-lg-end gap-4">
+                    <span class="btn--circle outlined" id="oy-slider-journey-arrow--prev" data-pulse-direction="right">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.77344 5.43582L3.20927 11L8.77344 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.791 11H3.36352" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <span class="btn--circle outlined" id="oy-slider-journey-arrow--next" data-pulse-direction="left">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.2266 5.43582L18.7907 11L13.2266 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.20898 11H18.6365" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    @php
+    $cars = [
+        (object) [
+            'name' => 'Compact City Cruiser',
+            'photo' => asset('assets/images/car-1.png'),
+            'route' => "/hire/cars?brand=compact-cruiser",
+            'price' => '$150',
+            'seats' => '4',
+            'gearbox' => 'Manual',
+            'luggage' => '2'
+        ],
+        (object) [
+            'name' => 'Executive Sedan',
+            'photo' => asset('assets/images/car-2.png'),
+            'route' => "/hire/cars?brand=executive-sedan",
+            'price' => '$220',
+            'seats' => '5',
+            'gearbox' => 'Automatic',
+            'luggage' => '3'
+        ],
+        (object) [
+            'name' => 'Luxury SUV',
+            'photo' => asset('assets/images/car-3.png'),
+            'route' => "/hire/cars?brand=luxury-suv",
+            'price' => '$350',
+            'seats' => '7',
+            'gearbox' => 'Automatic',
+            'luggage' => '5'
+        ],
+        (object) [
+            'name' => 'Sports Coupe',
+            'photo' => asset('assets/images/car-4.png'),
+            'route' => "/hire/cars?brand=sports-coupe",
+            'price' => '$450',
+            'seats' => '2',
+            'gearbox' => 'Automatic',
+            'luggage' => '1'
+        ],
+        (object) [
+            'name' => 'Family Minivan',
+            'photo' => asset('assets/images/car-5.png'),
+            'route' => "/hire/cars?brand=family-minivan",
+            'price' => '$180',
+            'seats' => '8',
+            'gearbox' => 'Automatic',
+            'luggage' => '4'
+        ],
+        (object) [
+            'name' => 'Economy Hatchback',
+            'photo' => asset('assets/images/car-6.png'),
+            'route' => "/hire/cars?brand=economy-hatchback",
+            'price' => '$120',
+            'seats' => '5',
+            'gearbox' => 'Manual',
+            'luggage' => '2'
+        ],
+    ];
+    @endphp
+    
+    <div class="container">
+        <oy-swiper data-items="1" data-sm-items="1" data-md-items="2" data-lg-items="2" data-xl-items="2" data-loop="true" data-speed="600" data-lazy="true" data-space="30" data-autoplay="false" data-autoplay-delay="3000" data-pagination="#oy-slider-journey--pagination" data-prev="#oy-slider-journey-arrow--prev" data-next="#oy-slider-journey-arrow--next">
+            <div class="swiper-wrapper">
+                @foreach($cars as $car)
+                <!-- Slider Item -->
+                <div class="swiper-slide mb-5">
+                    <div class="card card--product card--product-2 h-100">
+                        <div class="card--product__thumb mb-3">
+                            <img class="img-fluid w-100 rounded-3" style="height: 315px; object-fit: cover;" src="{{ $car->photo }}" alt="{{ $car->name }}">
+                        </div>
+                        <div class="card--product__content px-0 px-lg-4 space-y-3 flex-fill d-flex flex-column align-items-start">
+                            <div class="mb-5 d-flex flex-wrap flex-fill w-100 justify-content-between align-items-center">
+                                <h5 class="card--product__title text-h5 mb-4">{{ $car->name }}</h5>
+                                <div class="text-b1-semibold">
+                                    <span class="text-primary">{{ $car->price }}</span>
+                                    /<span class="text-secondary text-opacity-50 fw-normal text-b6-regular">per day</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex w-100 align-items-center card--product__features">
+                                        <!-- Seat Icon -->
+                                        <div class="list-item flex-fill gap-2">
+                                            <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M34.9943 48.6487H15.0078V37.0743H34.9943V48.6487ZM16.3592 47.2973H33.6429V38.4257H16.3592V47.2973Z" fill="#0072FF"/>
+                                                    <path d="M34.8068 48.6486H34.2933L34.3473 47.2973C40.5703 47.5473 41.469 42.3986 41.5027 42.1824V42.1081C42.773 37.3784 39.5568 36.4189 39.4217 36.3851C37.3136 35.7095 34.8136 38.2027 34.7933 38.2297L33.8203 37.2838C33.9487 37.1554 36.9014 34.1622 39.8 35.0878C40.9114 35.4428 41.8523 36.196 42.4419 37.2027C43.246 38.5541 43.3744 40.3311 42.8203 42.4324C42.7257 43 41.4757 48.6486 34.8068 48.6486Z" fill="#0072FF"/>
+                                                    <path d="M15.1969 48.6487C8.52796 48.6487 7.27796 43 7.16985 42.4257C6.6158 40.3243 6.74418 38.5676 7.54823 37.196C8.15004 36.1724 9.11481 35.4126 10.2509 35.0676C13.1158 34.1487 16.0617 37.1487 16.1901 37.277L15.2172 38.223C15.2172 38.223 12.7239 35.696 10.6226 36.3649C10.4536 36.4122 7.24418 37.3446 8.50769 42.1014V42.1757C8.54148 42.3919 9.43337 47.5405 15.6631 47.2905L15.7172 48.6419L15.1969 48.6487Z" fill="#0072FF"/>
+                                                    <path d="M38.7494 35.8108C38.6615 35.473 36.621 27.4595 37.1683 20.5V20.4189C37.2829 19.7471 37.2637 19.0592 37.1118 18.3948C36.96 17.7304 36.6783 17.1026 36.2831 16.5473C35.3913 15.4865 33.8642 14.9324 31.7561 14.9324H18.2426C16.121 14.9324 14.594 15.4865 13.6953 16.5743C13.3048 17.1316 13.028 17.7603 12.8808 18.4247C12.7335 19.089 12.7187 19.7759 12.8372 20.4459V20.527C13.3845 27.4865 11.344 35.5 11.2561 35.8378L9.94531 35.5C9.94531 35.4189 12.0061 27.3919 11.4926 20.6351C11.345 19.7756 11.3725 18.895 11.5733 18.0463C11.7742 17.1976 12.1443 16.3982 12.6615 15.6959C13.8304 14.277 15.7156 13.554 18.2629 13.554H31.7561C34.3034 13.554 36.1886 14.277 37.3575 15.6959C37.8759 16.4026 38.2456 17.207 38.4442 18.0606C38.6428 18.9142 38.6662 19.7993 38.5129 20.6622C37.9994 27.4189 40.0332 35.4189 40.0602 35.527L38.7494 35.8108Z" fill="#0072FF"/>
+                                                    <path d="M32.479 38.4257H17.5195V14.2567H18.8709V37.0743H31.1276V14.2567H32.479V38.4257Z" fill="#0072FF"/>
+                                                    <path d="M18.1953 23.5946H31.8034V24.946H18.1953V23.5946Z" fill="#0072FF"/>
+                                                    <path d="M28.8301 14.9324H21.168V10.7027H28.8301V14.9324ZM22.5193 13.5811H27.4788V12.054H22.5193V13.5811Z" fill="#0072FF"/>
+                                                    <path d="M30.1741 12.0541H19.8228C19.4802 12.0542 19.1414 11.9821 18.8285 11.8425C18.5156 11.703 18.2356 11.4991 18.0067 11.2441C17.7779 10.9891 17.6053 10.6888 17.5003 10.3627C17.3952 10.0365 17.3601 9.69196 17.3971 9.35135L17.9782 3.53379C18.0402 2.93292 18.3237 2.37665 18.7733 1.97324C19.2229 1.56983 19.8065 1.34815 20.4106 1.35135H29.5863C30.1935 1.34864 30.7798 1.57314 31.2299 1.98074C31.68 2.38833 31.9614 2.94954 32.0187 3.55406L32.5998 9.36487C32.6368 9.70547 32.6017 10.0501 32.4966 10.3762C32.3916 10.7023 32.219 11.0026 31.9902 11.2576C31.7613 11.5126 31.4813 11.7165 31.1684 11.856C30.8555 11.9956 30.5167 12.0677 30.1741 12.0676V12.0541ZM20.4106 2.7027C20.1399 2.70136 19.8784 2.80102 19.6772 2.98219C19.476 3.16337 19.3497 3.41305 19.3228 3.68243L18.7417 9.5C18.7245 9.65189 18.7396 9.8057 18.7862 9.95129C18.8328 10.0969 18.9098 10.2309 19.012 10.3446C19.1144 10.4579 19.2395 10.5483 19.3792 10.61C19.5189 10.6717 19.6701 10.7033 19.8228 10.7027H30.1741C30.3268 10.7033 30.478 10.6717 30.6177 10.61C30.7573 10.5483 30.8825 10.4579 30.9849 10.3446C31.0871 10.2309 31.1641 10.0969 31.2106 9.95129C31.2572 9.8057 31.2724 9.65189 31.2552 9.5L30.6741 3.68919C30.6488 3.41859 30.5231 3.16726 30.3218 2.98469C30.1204 2.80212 29.8581 2.70152 29.5863 2.7027H20.4106Z" fill="#0072FF"/>
+                                                </svg>
+                                            <div>
+                                                <p class="fw-normal text-secondary text-b6-regular mb-0">Seat</p>
+                                                <h3 class="text-dark text-h6 fw-medium">{{ $car->seats }}</h3>
+                                            </div>
+                                        </div>
+                                        <!-- Gearbox Icon -->
+                                        <div class="list-item flex-fill gap-2">
+                                            <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M44.0477 0C40.7667 0 38.0953 2.67143 38.0953 5.95234C38.0953 8.82612 40.143 11.2309 42.8573 11.7833V23.8095H26.1905V11.7834C28.9048 11.231 30.9525 8.82623 30.9525 5.95246C30.9523 2.67143 28.2809 0 25 0C21.7191 0 19.0477 2.67143 19.0477 5.95234C19.0477 8.82612 21.0953 11.2309 23.8096 11.7833V23.8095H7.14286V11.7834C9.85714 11.231 11.9048 8.82623 11.9048 5.95246C11.9048 2.67143 9.23337 0 5.95234 0C2.67132 0 0 2.67143 0 5.95234C0 8.82612 2.04766 11.2309 4.76194 11.7833V38.2166C2.04766 38.7691 0 41.1738 0 44.0477C0 47.3286 2.67143 50 5.95234 50C9.23326 50 11.9047 47.3286 11.9047 44.0477C11.9047 41.1739 9.85703 38.7691 7.14275 38.2167V26.1905H23.8094V38.2167C21.0951 38.7691 19.0474 41.1739 19.0474 44.0477C19.0477 47.3286 21.7191 50 25 50C28.2809 50 30.9523 47.3286 30.9523 44.0477C30.9523 41.1739 28.9047 38.7691 26.1904 38.2167V26.1905H44.0475C44.7047 26.1905 45.2381 25.6571 45.2381 25V11.7834C47.9523 11.2309 50 8.82623 50 5.95234C50 2.67143 47.3286 0 44.0477 0ZM9.52377 44.0477C9.52377 46.0167 7.92143 47.6191 5.95234 47.6191C3.98326 47.6191 2.38092 46.0167 2.38092 44.0477C2.38092 42.0786 3.98326 40.4762 5.95234 40.4762C7.92143 40.4762 9.52377 42.0786 9.52377 44.0477ZM5.95234 9.52377C3.98326 9.52377 2.38092 7.92143 2.38092 5.95234C2.38092 3.98326 3.98326 2.38092 5.95234 2.38092C7.92143 2.38092 9.52377 3.98326 9.52377 5.95234C9.52377 7.92143 7.92143 9.52377 5.95234 9.52377ZM28.5714 44.0477C28.5714 46.0167 26.9691 47.6191 25 47.6191C23.0309 47.6191 21.4286 46.0167 21.4286 44.0477C21.4286 42.0786 23.0309 40.4762 25 40.4762C26.9691 40.4762 28.5714 42.0786 28.5714 44.0477ZM25 9.52377C23.0309 9.52377 21.4286 7.92143 21.4286 5.95234C21.4286 3.98326 23.0309 2.38092 25 2.38092C26.9691 2.38092 28.5714 3.98326 28.5714 5.95234C28.5714 7.92143 26.9691 9.52377 25 9.52377ZM44.0477 9.52377C42.0786 9.52377 40.4762 7.92143 40.4762 5.95234C40.4762 3.98326 42.0786 2.38092 44.0477 2.38092C46.0167 2.38092 47.6191 3.98326 47.6191 5.95234C47.6191 7.92143 46.0166 9.52377 44.0477 9.52377Z" fill="#0072FF"/>
+                                                </svg>
+                                            <div>
+                                                <p class="fw-normal text-secondary text-b6-regular mb-0">Gearbox</p>
+                                                <h3 class="text-dark text-h6 fw-medium">{{ $car->gearbox }}</h3>
+                                            </div>
+                                        </div>
+                                        <!-- Luggage Icon -->
+                                        <div class="list-item flex-fill gap-2">
+                                            <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M44.707 9.87041H40.1624V3.68242C40.1624 2.13652 38.9048 0.878906 37.359 0.878906H33.0436C31.4977 0.878906 30.24 2.13652 30.24 3.68242V9.87051H25.6954C24.1496 9.87051 22.892 11.1281 22.892 12.6739V18.3503H19.7588V12.1622C19.7588 10.6163 18.5012 9.35869 16.9554 9.35869H12.6399C11.094 9.35869 9.83643 10.6163 9.83643 12.1622V18.3503H5.2917C3.7459 18.3503 2.48828 19.6079 2.48828 21.1538V42.7402C2.48828 44.286 3.7459 45.5437 5.2917 45.5437H5.65654C5.48955 45.8765 5.39482 46.2517 5.39482 46.6487C5.39482 48.012 6.50381 49.1211 7.86709 49.1211C9.23037 49.1211 10.3395 48.012 10.3395 46.6487C10.3395 46.2517 10.2448 45.8765 10.0777 45.5437H19.5172C19.3502 45.8765 19.2555 46.2517 19.2555 46.6487C19.2555 48.012 20.3645 49.1211 21.7277 49.1211C23.091 49.1211 24.2 48.012 24.2 46.6487C24.2 46.2517 24.1054 45.8765 23.9383 45.5437H24.3031C24.5435 45.5437 24.7769 45.5132 24.9996 45.4561C25.2262 45.5143 25.4592 45.5437 25.6951 45.5437H26.06C25.893 45.8765 25.7982 46.2517 25.7982 46.6487C25.7982 48.012 26.9072 49.1211 28.2705 49.1211C29.6338 49.1211 30.7429 48.012 30.7429 46.6487C30.7429 46.2517 30.6482 45.8765 30.4812 45.5437H39.9206C39.7536 45.8765 39.6589 46.2517 39.6589 46.6487C39.6589 48.012 40.7679 49.1211 42.1312 49.1211C43.4944 49.1211 44.6034 48.012 44.6034 46.6487C44.6034 46.2517 44.5088 45.8765 44.3417 45.5437H44.7065C46.2524 45.5437 47.5101 44.286 47.5101 42.7402V12.6738C47.5105 11.128 46.2529 9.87041 44.707 9.87041ZM31.6072 3.68242C31.6072 2.89043 32.2516 2.24609 33.0436 2.24609H37.359C38.1509 2.24609 38.7952 2.89043 38.7952 3.68242V9.87051H31.6072V3.68242ZM11.2035 12.1622C11.2035 11.3702 11.8479 10.7259 12.6398 10.7259H16.9553C17.7472 10.7259 18.3915 11.3702 18.3915 12.1622V18.3503H11.2035V12.1622ZM8.97236 46.6487C8.97236 47.2581 8.47656 47.7539 7.86719 47.7539C7.25781 47.7539 6.76211 47.2581 6.76211 46.6487C6.76211 46.0394 7.25781 45.5437 7.86719 45.5437C8.47656 45.5437 8.97236 46.0393 8.97236 46.6487ZM22.833 46.6487C22.833 47.2581 22.3373 47.7539 21.7279 47.7539C21.1186 47.7539 20.6229 47.2581 20.6229 46.6487C20.6229 46.0394 21.1186 45.5437 21.7279 45.5437C22.3373 45.5437 22.833 46.0393 22.833 46.6487ZM5.2917 44.1764C4.4998 44.1764 3.85547 43.532 3.85547 42.7401V21.1537C3.85547 20.3617 4.4998 19.7174 5.2917 19.7174H24.3034C25.0954 19.7174 25.7397 20.3617 25.7397 21.1537V42.7401C25.7397 43.532 25.0954 44.1764 24.3034 44.1764H5.2917ZM29.3761 46.6487C29.3761 47.2581 28.8803 47.7539 28.2709 47.7539C27.6615 47.7539 27.1658 47.2581 27.1658 46.6487C27.1658 46.0394 27.6615 45.5437 28.2709 45.5437C28.8803 45.5437 29.3761 46.0393 29.3761 46.6487ZM43.2367 46.6487C43.2367 47.2581 42.741 47.7539 42.1316 47.7539C41.5223 47.7539 41.0266 47.2581 41.0266 46.6487C41.0266 46.0394 41.5223 45.5437 42.1316 45.5437C42.741 45.5437 43.2367 46.0393 43.2367 46.6487ZM46.1434 42.7401C46.1434 43.532 45.499 44.1764 44.707 44.1764H26.7099C26.9617 43.7561 27.1068 43.2647 27.1068 42.7401V21.1537C27.1068 19.6078 25.8492 18.3502 24.3033 18.3502H24.2591V12.6738C24.2591 11.8819 24.9034 11.2376 25.6953 11.2376H44.707C45.499 11.2376 46.1434 11.8819 46.1434 12.6738V42.7401ZM41.6976 15.7549V39.6591C41.6976 40.0366 41.3915 40.3427 41.014 40.3427C40.6364 40.3427 40.3304 40.0366 40.3304 39.6591V15.7549C40.3304 15.3773 40.6364 15.0713 41.014 15.0713C41.3915 15.0713 41.6976 15.3773 41.6976 15.7549ZM35.8848 15.7549V39.6591C35.8848 40.0366 35.5787 40.3427 35.2012 40.3427C34.8236 40.3427 34.5176 40.0366 34.5176 39.6591V15.7549C34.5176 15.3773 34.8236 15.0713 35.2012 15.0713C35.5787 15.0713 35.8848 15.3773 35.8848 15.7549ZM30.072 15.7549V39.6591C30.072 40.0366 29.7659 40.3427 29.3884 40.3427C29.0108 40.3427 28.7048 40.0366 28.7048 39.6591V15.7549C28.7048 15.3773 29.0108 15.0713 29.3884 15.0713C29.7659 15.0713 30.072 15.3773 30.072 15.7549ZM21.2939 24.2348V39.6592C21.2939 40.0367 20.9879 40.3428 20.6104 40.3428C20.2328 40.3428 19.9268 40.0367 19.9268 39.6592V24.2348C19.9268 23.8572 20.2328 23.5512 20.6104 23.5512C20.9879 23.5512 21.2939 23.8571 21.2939 24.2348ZM9.66826 24.2348V39.6592C9.66826 40.0367 9.36221 40.3428 8.98467 40.3428C8.60713 40.3428 8.30107 40.0367 8.30107 39.6592V24.2348C8.30107 23.8572 8.60713 23.5512 8.98467 23.5512C9.36221 23.5512 9.66826 23.8571 9.66826 24.2348ZM15.4812 24.2348V39.6592C15.4812 40.0367 15.1751 40.3428 14.7976 40.3428C14.42 40.3428 14.114 40.0367 14.114 39.6592V24.2348C14.114 23.8572 14.42 23.5512 14.7976 23.5512C15.1751 23.5512 15.4812 23.8571 15.4812 24.2348Z" fill="#0072FF"/>
+                                            </svg>
+                                            <div>
+                                                <p class="fw-normal text-secondary text-b6-regular mb-0">Luggage</p>
+                                                <h3 class="text-dark text-h6 fw-medium">{{ $car->luggage }}</h3>
+                                            </div>
+                                        </div>
+                                </div>
+                        </div>
                     </div>
                 </div>
-                <div class="d-none d-lg-block col-lg-6">
-                    <div class="d-flex align-items-center justify-content-lg-end gap-4">
-                        <span class="btn--circle outlined" id="oy-slider-journey-arrow--prev" data-pulse-direction="right">
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.77344 5.43582L3.20927 11L8.77344 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M18.791 11H3.36352" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                        <span class="btn--circle outlined" id="oy-slider-journey-arrow--next" data-pulse-direction="left">
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.2266 5.43582L18.7907 11L13.2266 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M3.20898 11H18.6365" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
+                @endforeach
+            </div>
+        </oy-swiper>
+        <div class="mt-5 d-lg-none">
+            <div class="pagination-default" id="oy-slider-journey--pagination"></div>
+        </div>
+    </div>
+</section>
+
+
+     <section class="section-padding-y">
+        <div class="container-fluid px-3 px-lg-5">
+            <div class="bg-dark rounded-6 section-padding-y overflow-hidden">
+                <div class="container oy-section-title">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="text-center text-lg-start">
+                                <h3 class="text-h2 text-light">Our Locations</h3>
+                                <p class="text-b2-regular text-light">Find your nearest branch for convenient car hire services</p>
+                            </div>
+                        </div>
+                        <div class="d-none d-lg-block col-lg-6">
+                            <div class="d-flex align-items-center justify-content-lg-end gap-4">
+                                <span class="btn--circle outlined" id="oy-slider-cars-arrow--prev" data-pulse-direction="right">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.77344 5.43582L3.20927 11L8.77344 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M18.791 11H3.36352" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                <span class="btn--circle outlined" id="oy-slider-cars-arrow--next" data-pulse-direction="left">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.2266 5.43582L18.7907 11L13.2266 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3.20898 11H18.6365" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <oy-swiper data-items="1" data-sm-items="1" data-md-items="2" data-lg-items="3" data-xl-items="3" data-loop="true" data-speed="600" data-lazy="true" data-space="30" data-autoplay="false" data-autoplay-delay="3000" data-pagination="#oy-slider-cars--pagination" data-prev="#oy-slider-cars-arrow--prev" data-next="#oy-slider-cars-arrow--next">
+                        <div class="swiper-wrapper">
+                            <!-- Slider Item -->
+                            <div class="swiper-slide mb-5">
+                                <div class="card card--branch bg-dark-light border-dark h-100">
+                                    <div class="card--branch__thumb position-relative">
+                                        <img src="../assets/img/products/product-1.png" alt="">
+                                        <span class="badge badge--top-right rounded-pill text-bg-dark text-b5-regular">Available: <strong>10 Cars</strong></span>
+                                    </div>
+                                    <div class="card--branch__content px-3 pt-4 pb-4 space-y-3 flex-fill d-flex flex-column align-items-start">
+                                        <div class="mb-5">
+                                            <h5 class="card--branch__title text-white text-h5 fw-semibold mb-3">Edinburgh</h5>
+                                            <p class="text-white text-opacity-75 text-b4-regular mb-0">Edinburgh Airport, Turnhouse Road, <br>Edinburgh, EH12 9DN</p>
+                                        </div>
+
+                                        <!-- Action -->
+                                        <div class="card--branch__action d-flex justify-content-between align-items-center w-100 mt-auto">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="24" cy="24" r="24" fill="#0072FF" fill-opacity="0.14"/>
+                                                <path d="M30.875 17.125V20.875M30.875 17.125H27.125M30.875 17.125L25.875 22.125M28.375 32.125C21.4717 32.125 15.875 26.5283 15.875 19.625V17.75C15.875 17.2527 16.0725 16.7758 16.4242 16.4242C16.7758 16.0725 17.2527 15.875 17.75 15.875H18.8933C19.3233 15.875 19.6983 16.1675 19.8025 16.585L20.7242 20.2708C20.8158 20.6375 20.6792 21.0225 20.3767 21.2483L19.2992 22.0567C19.1449 22.1683 19.0308 22.3267 18.9738 22.5084C18.9167 22.69 18.9198 22.8852 18.9825 23.065C19.4841 24.4293 20.2762 25.6682 21.304 26.696C22.3318 27.7238 23.5707 28.5159 24.935 29.0175C25.3025 29.1525 25.7083 29.0142 25.9433 28.7008L26.7517 27.6233C26.8623 27.4756 27.0141 27.3639 27.188 27.3021C27.3619 27.2402 27.5501 27.2311 27.7292 27.2758L31.415 28.1975C31.8317 28.3017 32.125 28.6767 32.125 29.1067V30.25C32.125 30.7473 31.9275 31.2242 31.5758 31.5758C31.2242 31.9275 30.7473 32.125 30.25 32.125H28.375Z" stroke="#0072FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <div class="text-b3-semibold text-light">+441312033817</div>
+                                            </div>
+                                            <div>
+                                                <a class="link-primary fw-semibold" href="#">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slider Item -->
+                            <div class="swiper-slide mb-5">
+                                <div class="card card--branch bg-dark-light border-dark h-100">
+                                    <div class="card--branch__thumb position-relative">
+                                        <img src="../assets/img/products/product-1.png" alt="">
+                                        <span class="badge badge--top-right rounded-pill text-bg-dark text-b5-regular">Available: <strong>10 Cars</strong></span>
+                                    </div>
+                                    <div class="card--branch__content px-3 pt-4 pb-4 space-y-3 flex-fill d-flex flex-column align-items-start">
+                                        <div class="mb-5">
+                                            <h5 class="card--branch__title text-white text-h5 fw-semibold mb-3">Edinburgh</h5>
+                                            <p class="text-white text-opacity-75 text-b4-regular mb-0">Edinburgh Airport, Turnhouse Road, <br>Edinburgh, EH12 9DN</p>
+                                        </div>
+
+                                        <!-- Action -->
+                                        <div class="card--branch__action d-flex justify-content-between align-items-center w-100 mt-auto">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="24" cy="24" r="24" fill="#0072FF" fill-opacity="0.14"/>
+                                                <path d="M30.875 17.125V20.875M30.875 17.125H27.125M30.875 17.125L25.875 22.125M28.375 32.125C21.4717 32.125 15.875 26.5283 15.875 19.625V17.75C15.875 17.2527 16.0725 16.7758 16.4242 16.4242C16.7758 16.0725 17.2527 15.875 17.75 15.875H18.8933C19.3233 15.875 19.6983 16.1675 19.8025 16.585L20.7242 20.2708C20.8158 20.6375 20.6792 21.0225 20.3767 21.2483L19.2992 22.0567C19.1449 22.1683 19.0308 22.3267 18.9738 22.5084C18.9167 22.69 18.9198 22.8852 18.9825 23.065C19.4841 24.4293 20.2762 25.6682 21.304 26.696C22.3318 27.7238 23.5707 28.5159 24.935 29.0175C25.3025 29.1525 25.7083 29.0142 25.9433 28.7008L26.7517 27.6233C26.8623 27.4756 27.0141 27.3639 27.188 27.3021C27.3619 27.2402 27.5501 27.2311 27.7292 27.2758L31.415 28.1975C31.8317 28.3017 32.125 28.6767 32.125 29.1067V30.25C32.125 30.7473 31.9275 31.2242 31.5758 31.5758C31.2242 31.9275 30.7473 32.125 30.25 32.125H28.375Z" stroke="#0072FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <div class="text-b3-semibold text-light">+441312033817</div>
+                                            </div>
+                                            <div>
+                                                <a class="link-primary fw-semibold" href="#">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slider Item -->
+                            <div class="swiper-slide mb-5">
+                                <div class="card card--branch bg-dark-light border-dark h-100">
+                                    <div class="card--branch__thumb position-relative">
+                                        <img src="{{ asset('assets/img/products/product-1.png') }}" alt="">
+                                        <span class="badge badge--top-right rounded-pill text-bg-dark text-b5-regular">Available: <strong>10 Cars</strong></span>
+                                    </div>
+                                    <div class="card--branch__content px-3 pt-4 pb-4 space-y-3 flex-fill d-flex flex-column align-items-start">
+                                        <div class="mb-5">
+                                            <h5 class="card--branch__title text-white text-h5 fw-semibold mb-3">Edinburgh</h5>
+                                            <p class="text-white text-opacity-75 text-b4-regular mb-0">Edinburgh Airport, Turnhouse Road, <br>Edinburgh, EH12 9DN</p>
+                                        </div>
+
+                                        <!-- Action -->
+                                        <div class="card--branch__action d-flex justify-content-between align-items-center w-100 mt-auto">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="24" cy="24" r="24" fill="#0072FF" fill-opacity="0.14"/>
+                                                <path d="M30.875 17.125V20.875M30.875 17.125H27.125M30.875 17.125L25.875 22.125M28.375 32.125C21.4717 32.125 15.875 26.5283 15.875 19.625V17.75C15.875 17.2527 16.0725 16.7758 16.4242 16.4242C16.7758 16.0725 17.2527 15.875 17.75 15.875H18.8933C19.3233 15.875 19.6983 16.1675 19.8025 16.585L20.7242 20.2708C20.8158 20.6375 20.6792 21.0225 20.3767 21.2483L19.2992 22.0567C19.1449 22.1683 19.0308 22.3267 18.9738 22.5084C18.9167 22.69 18.9198 22.8852 18.9825 23.065C19.4841 24.4293 20.2762 25.6682 21.304 26.696C22.3318 27.7238 23.5707 28.5159 24.935 29.0175C25.3025 29.1525 25.7083 29.0142 25.9433 28.7008L26.7517 27.6233C26.8623 27.4756 27.0141 27.3639 27.188 27.3021C27.3619 27.2402 27.5501 27.2311 27.7292 27.2758L31.415 28.1975C31.8317 28.3017 32.125 28.6767 32.125 29.1067V30.25C32.125 30.7473 31.9275 31.2242 31.5758 31.5758C31.2242 31.9275 30.7473 32.125 30.25 32.125H28.375Z" stroke="#0072FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <div class="text-b3-semibold text-light">+441312033817</div>
+                                            </div>
+                                            <div>
+                                                <a class="link-primary fw-semibold" href="#">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slider Item -->
+                            <div class="swiper-slide mb-5">
+                                <div class="card card--branch bg-dark-light border-dark h-100">
+                                    <div class="card--branch__thumb position-relative">
+                                        <img src="{{ asset('assets/img/products/product-1.png') }}" alt="">
+                                        <span class="badge badge--top-right rounded-pill text-bg-dark text-b5-regular">Available: <strong>10 Cars</strong></span>
+                                    </div>
+                                    <div class="card--branch__content px-3 pt-4 pb-4 space-y-3 flex-fill d-flex flex-column align-items-start">
+                                        <div class="mb-5">
+                                            <h5 class="card--branch__title text-white text-h5 fw-semibold mb-3">Edinburgh</h5>
+                                            <p class="text-white text-opacity-75 text-b4-regular mb-0">Edinburgh Airport, Turnhouse Road, <br>Edinburgh, EH12 9DN</p>
+                                        </div>
+
+                                        <!-- Action -->
+                                        <div class="card--branch__action d-flex justify-content-between align-items-center w-100 mt-auto">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="24" cy="24" r="24" fill="#0072FF" fill-opacity="0.14"/>
+                                                <path d="M30.875 17.125V20.875M30.875 17.125H27.125M30.875 17.125L25.875 22.125M28.375 32.125C21.4717 32.125 15.875 26.5283 15.875 19.625V17.75C15.875 17.2527 16.0725 16.7758 16.4242 16.4242C16.7758 16.0725 17.2527 15.875 17.75 15.875H18.8933C19.3233 15.875 19.6983 16.1675 19.8025 16.585L20.7242 20.2708C20.8158 20.6375 20.6792 21.0225 20.3767 21.2483L19.2992 22.0567C19.1449 22.1683 19.0308 22.3267 18.9738 22.5084C18.9167 22.69 18.9198 22.8852 18.9825 23.065C19.4841 24.4293 20.2762 25.6682 21.304 26.696C22.3318 27.7238 23.5707 28.5159 24.935 29.0175C25.3025 29.1525 25.7083 29.0142 25.9433 28.7008L26.7517 27.6233C26.8623 27.4756 27.0141 27.3639 27.188 27.3021C27.3619 27.2402 27.5501 27.2311 27.7292 27.2758L31.415 28.1975C31.8317 28.3017 32.125 28.6767 32.125 29.1067V30.25C32.125 30.7473 31.9275 31.2242 31.5758 31.5758C31.2242 31.9275 30.7473 32.125 30.25 32.125H28.375Z" stroke="#0072FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <div class="text-b3-semibold text-light">+441312033817</div>
+                                            </div>
+                                            <div>
+                                                <a class="link-primary fw-semibold" href="#">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slider Item -->
+                            <div class="swiper-slide mb-5">
+                                <div class="card card--branch bg-dark-light border-dark h-100">
+                                    <div class="card--branch__thumb position-relative">
+                                        <img src="{{ asset('assets/img/products/product-1.png') }}" alt="">
+                                        <span class="badge badge--top-right rounded-pill text-bg-dark text-b5-regular">Available: <strong>10 Cars</strong></span>
+                                    </div>
+                                    <div class="card--branch__content px-3 pt-4 pb-4 space-y-3 flex-fill d-flex flex-column align-items-start">
+                                        <div class="mb-5">
+                                            <h5 class="card--branch__title text-white text-h5 fw-semibold mb-3">Edinburgh</h5>
+                                            <p class="text-white text-opacity-75 text-b4-regular mb-0">Edinburgh Airport, Turnhouse Road, <br>Edinburgh, EH12 9DN</p>
+                                        </div>
+
+                                        <!-- Action -->
+                                        <div class="card--branch__action d-flex justify-content-between align-items-center w-100 mt-auto">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="24" cy="24" r="24" fill="#0072FF" fill-opacity="0.14"/>
+                                                <path d="M30.875 17.125V20.875M30.875 17.125H27.125M30.875 17.125L25.875 22.125M28.375 32.125C21.4717 32.125 15.875 26.5283 15.875 19.625V17.75C15.875 17.2527 16.0725 16.7758 16.4242 16.4242C16.7758 16.0725 17.2527 15.875 17.75 15.875H18.8933C19.3233 15.875 19.6983 16.1675 19.8025 16.585L20.7242 20.2708C20.8158 20.6375 20.6792 21.0225 20.3767 21.2483L19.2992 22.0567C19.1449 22.1683 19.0308 22.3267 18.9738 22.5084C18.9167 22.69 18.9198 22.8852 18.9825 23.065C19.4841 24.4293 20.2762 25.6682 21.304 26.696C22.3318 27.7238 23.5707 28.5159 24.935 29.0175C25.3025 29.1525 25.7083 29.0142 25.9433 28.7008L26.7517 27.6233C26.8623 27.4756 27.0141 27.3639 27.188 27.3021C27.3619 27.2402 27.5501 27.2311 27.7292 27.2758L31.415 28.1975C31.8317 28.3017 32.125 28.6767 32.125 29.1067V30.25C32.125 30.7473 31.9275 31.2242 31.5758 31.5758C31.2242 31.9275 30.7473 32.125 30.25 32.125H28.375Z" stroke="#0072FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <div class="text-b3-semibold text-light">+441312033817</div>
+                                            </div>
+                                            <div>
+                                                <a class="link-primary fw-semibold" href="#">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slider Item -->
+                            <div class="swiper-slide mb-5">
+                                <div class="card card--branch bg-dark-light border-dark h-100">
+                                    <div class="card--branch__thumb position-relative">
+                                        <img src="{{ asset('assets/img/products/product-1.png') }}" alt="">
+                                        <span class="badge badge--top-right rounded-pill text-bg-dark text-b5-regular">Available: <strong>10 Cars</strong></span>
+                                    </div>
+                                    <div class="card--branch__content px-3 pt-4 pb-4 space-y-3 flex-fill d-flex flex-column align-items-start">
+                                        <div class="mb-5">
+                                            <h5 class="card--branch__title text-white text-h5 fw-semibold mb-3">Edinburgh</h5>
+                                            <p class="text-white text-opacity-75 text-b4-regular mb-0">Edinburgh Airport, Turnhouse Road, <br>Edinburgh, EH12 9DN</p>
+                                        </div>
+
+                                        <!-- Action -->
+                                        <div class="card--branch__action d-flex justify-content-between align-items-center w-100 mt-auto">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="24" cy="24" r="24" fill="#0072FF" fill-opacity="0.14"/>
+                                                <path d="M30.875 17.125V20.875M30.875 17.125H27.125M30.875 17.125L25.875 22.125M28.375 32.125C21.4717 32.125 15.875 26.5283 15.875 19.625V17.75C15.875 17.2527 16.0725 16.7758 16.4242 16.4242C16.7758 16.0725 17.2527 15.875 17.75 15.875H18.8933C19.3233 15.875 19.6983 16.1675 19.8025 16.585L20.7242 20.2708C20.8158 20.6375 20.6792 21.0225 20.3767 21.2483L19.2992 22.0567C19.1449 22.1683 19.0308 22.3267 18.9738 22.5084C18.9167 22.69 18.9198 22.8852 18.9825 23.065C19.4841 24.4293 20.2762 25.6682 21.304 26.696C22.3318 27.7238 23.5707 28.5159 24.935 29.0175C25.3025 29.1525 25.7083 29.0142 25.9433 28.7008L26.7517 27.6233C26.8623 27.4756 27.0141 27.3639 27.188 27.3021C27.3619 27.2402 27.5501 27.2311 27.7292 27.2758L31.415 28.1975C31.8317 28.3017 32.125 28.6767 32.125 29.1067V30.25C32.125 30.7473 31.9275 31.2242 31.5758 31.5758C31.2242 31.9275 30.7473 32.125 30.25 32.125H28.375Z" stroke="#0072FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <div class="text-b3-semibold text-light">+441312033817</div>
+                                            </div>
+                                            <div>
+                                                <a class="link-primary fw-semibold" href="#">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slider Item -->
+                            <div class="swiper-slide mb-5">
+                                <div class="card card--branch bg-dark-light border-dark h-100">
+                                    <div class="card--branch__thumb position-relative">
+                                        <img src="{{ asset('assets/img/products/product-1.png') }}" alt="">
+                                        <span class="badge badge--top-right rounded-pill text-bg-dark text-b5-regular">Available: <strong>10 Cars</strong></span>
+                                    </div>
+                                    <div class="card--branch__content px-3 pt-4 pb-4 space-y-3 flex-fill d-flex flex-column align-items-start">
+                                        <div class="mb-5">
+                                            <h5 class="card--branch__title text-white text-h5 fw-semibold mb-3">Edinburgh</h5>
+                                            <p class="text-white text-opacity-75 text-b4-regular mb-0">Edinburgh Airport, Turnhouse Road, <br>Edinburgh, EH12 9DN</p>
+                                        </div>
+
+                                        <!-- Action -->
+                                        <div class="card--branch__action d-flex justify-content-between align-items-center w-100 mt-auto">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="24" cy="24" r="24" fill="#0072FF" fill-opacity="0.14"/>
+                                                <path d="M30.875 17.125V20.875M30.875 17.125H27.125M30.875 17.125L25.875 22.125M28.375 32.125C21.4717 32.125 15.875 26.5283 15.875 19.625V17.75C15.875 17.2527 16.0725 16.7758 16.4242 16.4242C16.7758 16.0725 17.2527 15.875 17.75 15.875H18.8933C19.3233 15.875 19.6983 16.1675 19.8025 16.585L20.7242 20.2708C20.8158 20.6375 20.6792 21.0225 20.3767 21.2483L19.2992 22.0567C19.1449 22.1683 19.0308 22.3267 18.9738 22.5084C18.9167 22.69 18.9198 22.8852 18.9825 23.065C19.4841 24.4293 20.2762 25.6682 21.304 26.696C22.3318 27.7238 23.5707 28.5159 24.935 29.0175C25.3025 29.1525 25.7083 29.0142 25.9433 28.7008L26.7517 27.6233C26.8623 27.4756 27.0141 27.3639 27.188 27.3021C27.3619 27.2402 27.5501 27.2311 27.7292 27.2758L31.415 28.1975C31.8317 28.3017 32.125 28.6767 32.125 29.1067V30.25C32.125 30.7473 31.9275 31.2242 31.5758 31.5758C31.2242 31.9275 30.7473 32.125 30.25 32.125H28.375Z" stroke="#0072FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <div class="text-b3-semibold text-light">+441312033817</div>
+                                            </div>
+                                            <div>
+                                                <a class="link-primary fw-semibold" href="#">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slider Item -->
+                            <div class="swiper-slide mb-5">
+                                <div class="card card--branch bg-dark-light border-dark h-100">
+                                    <div class="card--branch__thumb position-relative">
+                                        <img src="{{ asset('assets/img/products/product-1.png') }}" alt="">
+                                        <span class="badge badge--top-right rounded-pill text-bg-dark text-b5-regular">Available: <strong>10 Cars</strong></span>
+                                    </div>
+                                    <div class="card--branch__content px-3 pt-4 pb-4 space-y-3 flex-fill d-flex flex-column align-items-start">
+                                        <div class="mb-5">
+                                            <h5 class="card--branch__title text-white text-h5 fw-semibold mb-3">Edinburgh</h5>
+                                            <p class="text-white text-opacity-75 text-b4-regular mb-0">Edinburgh Airport, Turnhouse Road, <br>Edinburgh, EH12 9DN</p>
+                                        </div>
+
+                                        <!-- Action -->
+                                        <div class="card--branch__action d-flex justify-content-between align-items-center w-100 mt-auto">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="24" cy="24" r="24" fill="#0072FF" fill-opacity="0.14"/>
+                                                <path d="M30.875 17.125V20.875M30.875 17.125H27.125M30.875 17.125L25.875 22.125M28.375 32.125C21.4717 32.125 15.875 26.5283 15.875 19.625V17.75C15.875 17.2527 16.0725 16.7758 16.4242 16.4242C16.7758 16.0725 17.2527 15.875 17.75 15.875H18.8933C19.3233 15.875 19.6983 16.1675 19.8025 16.585L20.7242 20.2708C20.8158 20.6375 20.6792 21.0225 20.3767 21.2483L19.2992 22.0567C19.1449 22.1683 19.0308 22.3267 18.9738 22.5084C18.9167 22.69 18.9198 22.8852 18.9825 23.065C19.4841 24.4293 20.2762 25.6682 21.304 26.696C22.3318 27.7238 23.5707 28.5159 24.935 29.0175C25.3025 29.1525 25.7083 29.0142 25.9433 28.7008L26.7517 27.6233C26.8623 27.4756 27.0141 27.3639 27.188 27.3021C27.3619 27.2402 27.5501 27.2311 27.7292 27.2758L31.415 28.1975C31.8317 28.3017 32.125 28.6767 32.125 29.1067V30.25C32.125 30.7473 31.9275 31.2242 31.5758 31.5758C31.2242 31.9275 30.7473 32.125 30.25 32.125H28.375Z" stroke="#0072FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <div class="text-b3-semibold text-light">+441312033817</div>
+                                            </div>
+                                            <div>
+                                                <a class="link-primary fw-semibold" href="#">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </oy-swiper>
+                    <div class="mt-5 d-lg-none">
+                        <div class="pagination-default" id="oy-slider-cars--pagination"></div>
+                    </div>
+                </div>
+
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center">
+                                <a class="btn d-inline-flex btn--gradient-primary" style="--btn-before-size: 350px;" href="#">
+                                    <span class="btn__text">View All Locations</span>
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.2266 5.43579L18.7907 11L13.2266 16.5641" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M3.20703 11H18.6345" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+        <!-- /Section: Header TOP BAR (Mobile Only) -->
+    </section>
+
+         <section class="section-padding-t">
+    <div class="container oy-section-title">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="text-center text-lg-start">
+                    <h3 class="text-h2">Our Service Categories</h3>
+                </div>
+            </div>
+            <div class="d-none d-lg-block col-lg-6">
+                <div class="d-flex align-items-center justify-content-lg-end gap-4">
+                    <span class="btn--circle outlined" id="oy-slider-categories-arrow--next" data-pulse-direction="right">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.77344 5.43582L3.20927 11L8.77344 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M18.791 11H3.36352" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <span class="btn--circle outlined" id="oy-slider-categories-arrow--prev" data-pulse-direction="left">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.2266 5.43582L18.7907 11L13.2266 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.20898 11H18.6365" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    @php
+    $carTypes = [
+        (object) [
+            'name' => 'Luxury',
+            'photo' => asset('assets/images/car-type-1.png'),
+            'route' => "/hire/cars?type=luxury",
+            'description' => 'Indulge in the ultimate driving experience with our handpicked range of luxury vehicles.'
+        ],
+        (object) [
+            'name' => 'Performance',
+            'photo' => asset('assets/images/car-type-2.png'),
+            'route' => "/hire/cars?type=performance",
+            'description' => 'Experience raw power and precision with our selection of high-performance vehicles.'
+        ],
+        (object) [
+            'name' => 'Supercar',
+            'photo' => asset('assets/images/car-type-3.png'),
+            'route' => "/hire/cars?type=supercar",
+            'description' => 'Turn heads and feel the adrenaline with our exclusive supercar collection.'
+        ],
+        (object) [
+            'name' => 'Executive',
+            'photo' => asset('assets/images/car-type-1.png'),
+            'route' => "/hire/cars?type=executive",
+            'description' => 'Travel in style and comfort with our premium executive vehicle range.'
+        ],
+        (object) [
+            'name' => 'SUV',
+            'photo' => asset('assets/images/car-type-2.png'),
+            'route' => "/hire/cars?type=suv",
+            'description' => 'Spacious and powerful SUVs perfect for family trips and adventures.'
+        ],
+        (object) [
+            'name' => 'Sports',
+            'photo' => asset('assets/images/car-type-3.png'),
+            'route' => "/hire/cars?type=sports",
+            'description' => 'Feel the thrill of the road with our dynamic sports car collection.'
+        ],
+    ];
+    @endphp
+    
+    <div class="container">
+        <oy-swiper data-items="1" data-sm-items="1" data-md-items="2" data-lg-items="3" data-xl-items="3" data-loop="true" data-speed="600" data-lazy="true" data-space="30" data-autoplay="false" data-autoplay-delay="3000" data-pagination="#oy-slider-categories--pagination" data-prev="#oy-slider-categories-arrow--prev" data-next="#oy-slider-categories-arrow--next">
+            <div class="swiper-wrapper">
+                @foreach($carTypes as $type)
+                <!-- Slider Item -->
+                <div class="swiper-slide mb-5">
+                    <div class="card card--product h-100">
+                        <div class="card--product__thumb" style="height: 200px; object-fit: cover;">
+                            <img src="{{ $type->photo }}" alt="{{ $type->name }}">
+                        </div>
+                        <div class="card--product__content space-y-3 flex-fill d-flex flex-column align-items-start">
+                            <div class="mb-5">
+                                <h5 class="card--product__title text-b1-semibold mb-4">{{ $type->name }} Car hire</h5>
+                                <p class="text-secondary text-b4-regular" 
+                                style="
+                                    overflow: hidden;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                    line-height: 1.5;
+                                ">
+                                {{ $type->description }}
+                                </p>
+                            </div>
+                            <a class="btn w-100 btn--outline-primary mt-auto" style="--btn-after-size: 450px" href="{{ $type->route }}">
+                                <span class="btn__text">Book Now</span>
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.2266 5.43579L18.7907 11L13.2266 16.5641" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M3.20703 11H18.6345" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </oy-swiper>
+        <div class="mt-5 d-lg-none">
+            <div class="pagination-default" id="oy-slider-categories--pagination"></div>
+        </div>
+    </div>
+</section>
+    <!-- /Section: OUR Service Categories -->
+
+    
+    <!-- ==================== Section: Freequently Asked Questions ==================== -->
+    <section class="section-padding-t">
+        <div class="container-fluid px-3 px-lg-5">
+            <div class="bg-dark text-light rounded-6 section-padding-y overflow-hidden">
+                <div class="container">
+                    <div class="row g-4 g-lg-5">
+                        <div class="col-lg-6 col-xl-5">
+                            <h3 class="text-h2 mb-3 mb-lg-5">Freequently Asked Questions</h3>
+                            <img src="../assets/img/banners/home-faq.png" alt="" class="img-fluid w-100 rounded-4">
+                        </div>
+                        <div class="col-lg-6 col-xl-7">
+                            <div class="ps-lg-5">
+                                <div class="accordion accordion--style-4 space-y-4" id="accordion-faq--2">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="accordion-faq-2-heading--1">
+                                            <button class="accordion-button text-h6 fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                What types of cars do you offer?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="accordion-faq-2-heading--1" data-bs-parent="#accordion-faq--2">
+                                            <div class="accordion-body text-b2-regular text-light text-opacity-75">
+                                                We provide a wide range of high-end vehicles including luxury cars, performance models and supercars from brands such as Aston Martin, Bentley, Ferrari, McLaren, Rolls-Royce, Porsche and more.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingTwo">
+                                            <button class="accordion-button collapsed text-h6 fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                               Where are you based?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion-faq--2">
+                                            <div class="accordion-body text-b2-regular text-light text-opacity-75">
+                                                At Autofusion, Our mission is to redefine luxury travel by delivering exceptional car hire experiences that combine elegance, performance, and comfort.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingThree">
+                                            <button class="accordion-button collapsed text-h6 fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                Can I self-drive or hire a chauffeur?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordion-faq--2">
+                                            <div class="accordion-body text-b2-regular text-light text-opacity-75">
+                                                At Autofusion, Our mission is to redefine luxury travel by delivering exceptional car hire experiences that combine elegance, performance, and comfort.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingFour">
+                                            <button class="accordion-button collapsed text-h6 fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                How can I book a car?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordion-faq--2">
+                                            <div class="accordion-body text-b2-regular text-light text-opacity-75">
+                                                At Autofusion, Our mission is to redefine luxury travel by delivering exceptional car hire experiences that combine elegance, performance, and comfort.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingFive">
+                                            <button class="accordion-button collapsed text-h6 fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                What do I need to hire a car?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordion-faq--2">
+                                            <div class="accordion-body text-b2-regular text-light text-opacity-75">
+                                                At Autofusion, Our mission is to redefine luxury travel by delivering exceptional car hire experiences that combine elegance, performance, and comfort.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingSix">
+                                            <button class="accordion-button collapsed text-h6 fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                                Are there mileage limits?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordion-faq--2">
+                                            <div class="accordion-body text-b2-regular text-light text-opacity-75">
+                                                At Autofusion, Our mission is to redefine luxury travel by delivering exceptional car hire experiences that combine elegance, performance, and comfort.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingSeven">
+                                            <button class="accordion-button collapsed text-h6 fw-medium" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                                What if the car breaks down?
+                                            </button>
+                                        </h2>
+                                        <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordion-faq--2">
+                                            <div class="accordion-body text-b2-regular text-light text-opacity-75">
+                                                At Autofusion, Our mission is to redefine luxury travel by delivering exceptional car hire experiences that combine elegance, performance, and comfort.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="oy-testimonial overflow-hidden section-padding-y">
         <div class="container">
-            <oy-swiper data-items="1" data-sm-items="1" data-md-items="2" data-lg-items="2" data-xl-items="2" data-loop="true" data-speed="600" data-lazy="true" data-space="30" data-autoplay="false" data-autoplay-delay="3000" data-pagination="#oy-slider-journey--pagination" data-prev="#oy-slider-journey-arrow--prev" data-next="#oy-slider-journey-arrow--next">
-                <div class="swiper-wrapper">
-                    <!-- Slider Item -->
-                    <div class="swiper-slide mb-5">
-                        <div class="card card--product card--product-2 h-100">
-                            <div class="card--product__thumb mb-3">
-                                <img class="img-fluid w-100 rounded-3" src="{{asset('assets-v2/img/products/category-1.png')}}" alt="">
-                            </div>
-                            <div class="card--product__content px-0 px-lg-4 space-y-3 flex-fill d-flex flex-column align-items-start">
-                                <div class="mb-5 d-flex flex-wrap flex-fill w-100 justify-content-between align-items-center">
-                                    <h5 class="card--product__title text-h5 mb-4">Compact city cruiser</h5>
-                                    <div class="text-b1-semibold">
-                                        <span class="text-primary">$150</span>
-                                        /<span class="text-secondary text-opacity-50 fw-normal text-b6-regular">per day</span>
-                                    </div>
-                                </div>
+            <div class="oy-section-title text-center space-y-3">
+                <div class="badge rounded-pill text-bg-primary bg-opacity-10 text-primary text-uppercase">
+                    <span>Testimonial</span>
+                </div>
+                <h3 class="text-h2">Trusted by Thousands of Clients</h3>
+            </div>
+        </div>
 
-                                <div class="d-flex w-100 align-items-center card--product__features">
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M34.9943 48.6487H15.0078V37.0743H34.9943V48.6487ZM16.3592 47.2973H33.6429V38.4257H16.3592V47.2973Z" fill="#0072FF"/>
-                                            <path d="M34.8068 48.6486H34.2933L34.3473 47.2973C40.5703 47.5473 41.469 42.3986 41.5027 42.1824V42.1081C42.773 37.3784 39.5568 36.4189 39.4217 36.3851C37.3136 35.7095 34.8136 38.2027 34.7933 38.2297L33.8203 37.2838C33.9487 37.1554 36.9014 34.1622 39.8 35.0878C40.9114 35.4428 41.8523 36.196 42.4419 37.2027C43.246 38.5541 43.3744 40.3311 42.8203 42.4324C42.7257 43 41.4757 48.6486 34.8068 48.6486Z" fill="#0072FF"/>
-                                            <path d="M15.1969 48.6487C8.52796 48.6487 7.27796 43 7.16985 42.4257C6.6158 40.3243 6.74418 38.5676 7.54823 37.196C8.15004 36.1724 9.11481 35.4126 10.2509 35.0676C13.1158 34.1487 16.0617 37.1487 16.1901 37.277L15.2172 38.223C15.2172 38.223 12.7239 35.696 10.6226 36.3649C10.4536 36.4122 7.24418 37.3446 8.50769 42.1014V42.1757C8.54148 42.3919 9.43337 47.5405 15.6631 47.2905L15.7172 48.6419L15.1969 48.6487Z" fill="#0072FF"/>
-                                            <path d="M38.7494 35.8108C38.6615 35.473 36.621 27.4595 37.1683 20.5V20.4189C37.2829 19.7471 37.2637 19.0592 37.1118 18.3948C36.96 17.7304 36.6783 17.1026 36.2831 16.5473C35.3913 15.4865 33.8642 14.9324 31.7561 14.9324H18.2426C16.121 14.9324 14.594 15.4865 13.6953 16.5743C13.3048 17.1316 13.028 17.7603 12.8808 18.4247C12.7335 19.089 12.7187 19.7759 12.8372 20.4459V20.527C13.3845 27.4865 11.344 35.5 11.2561 35.8378L9.94531 35.5C9.94531 35.4189 12.0061 27.3919 11.4926 20.6351C11.345 19.7756 11.3725 18.895 11.5733 18.0463C11.7742 17.1976 12.1443 16.3982 12.6615 15.6959C13.8304 14.277 15.7156 13.554 18.2629 13.554H31.7561C34.3034 13.554 36.1886 14.277 37.3575 15.6959C37.8759 16.4026 38.2456 17.207 38.4442 18.0606C38.6428 18.9142 38.6662 19.7993 38.5129 20.6622C37.9994 27.4189 40.0332 35.4189 40.0602 35.527L38.7494 35.8108Z" fill="#0072FF"/>
-                                            <path d="M32.479 38.4257H17.5195V14.2567H18.8709V37.0743H31.1276V14.2567H32.479V38.4257Z" fill="#0072FF"/>
-                                            <path d="M18.1953 23.5946H31.8034V24.946H18.1953V23.5946Z" fill="#0072FF"/>
-                                            <path d="M28.8301 14.9324H21.168V10.7027H28.8301V14.9324ZM22.5193 13.5811H27.4788V12.054H22.5193V13.5811Z" fill="#0072FF"/>
-                                            <path d="M30.1741 12.0541H19.8228C19.4802 12.0542 19.1414 11.9821 18.8285 11.8425C18.5156 11.703 18.2356 11.4991 18.0067 11.2441C17.7779 10.9891 17.6053 10.6888 17.5003 10.3627C17.3952 10.0365 17.3601 9.69196 17.3971 9.35135L17.9782 3.53379C18.0402 2.93292 18.3237 2.37665 18.7733 1.97324C19.2229 1.56983 19.8065 1.34815 20.4106 1.35135H29.5863C30.1935 1.34864 30.7798 1.57314 31.2299 1.98074C31.68 2.38833 31.9614 2.94954 32.0187 3.55406L32.5998 9.36487C32.6368 9.70547 32.6017 10.0501 32.4966 10.3762C32.3916 10.7023 32.219 11.0026 31.9902 11.2576C31.7613 11.5126 31.4813 11.7165 31.1684 11.856C30.8555 11.9956 30.5167 12.0677 30.1741 12.0676V12.0541ZM20.4106 2.7027C20.1399 2.70136 19.8784 2.80102 19.6772 2.98219C19.476 3.16337 19.3497 3.41305 19.3228 3.68243L18.7417 9.5C18.7245 9.65189 18.7396 9.8057 18.7862 9.95129C18.8328 10.0969 18.9098 10.2309 19.012 10.3446C19.1144 10.4579 19.2395 10.5483 19.3792 10.61C19.5189 10.6717 19.6701 10.7033 19.8228 10.7027H30.1741C30.3268 10.7033 30.478 10.6717 30.6177 10.61C30.7573 10.5483 30.8825 10.4579 30.9849 10.3446C31.0871 10.2309 31.1641 10.0969 31.2106 9.95129C31.2572 9.8057 31.2724 9.65189 31.2552 9.5L30.6741 3.68919C30.6488 3.41859 30.5231 3.16726 30.3218 2.98469C30.1204 2.80212 29.8581 2.70152 29.5863 2.7027H20.4106Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Seat</p>
-                                            <h3 class="text-dark text-h6 fw-medium">4</h3>
-                                        </div>
-                                    </div>
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M44.0477 0C40.7667 0 38.0953 2.67143 38.0953 5.95234C38.0953 8.82612 40.143 11.2309 42.8573 11.7833V23.8095H26.1905V11.7834C28.9048 11.231 30.9525 8.82623 30.9525 5.95246C30.9523 2.67143 28.2809 0 25 0C21.7191 0 19.0477 2.67143 19.0477 5.95234C19.0477 8.82612 21.0953 11.2309 23.8096 11.7833V23.8095H7.14286V11.7834C9.85714 11.231 11.9048 8.82623 11.9048 5.95246C11.9048 2.67143 9.23337 0 5.95234 0C2.67132 0 0 2.67143 0 5.95234C0 8.82612 2.04766 11.2309 4.76194 11.7833V38.2166C2.04766 38.7691 0 41.1738 0 44.0477C0 47.3286 2.67143 50 5.95234 50C9.23326 50 11.9047 47.3286 11.9047 44.0477C11.9047 41.1739 9.85703 38.7691 7.14275 38.2167V26.1905H23.8094V38.2167C21.0951 38.7691 19.0474 41.1739 19.0474 44.0477C19.0477 47.3286 21.7191 50 25 50C28.2809 50 30.9523 47.3286 30.9523 44.0477C30.9523 41.1739 28.9047 38.7691 26.1904 38.2167V26.1905H44.0475C44.7047 26.1905 45.2381 25.6571 45.2381 25V11.7834C47.9523 11.2309 50 8.82623 50 5.95234C50 2.67143 47.3286 0 44.0477 0ZM9.52377 44.0477C9.52377 46.0167 7.92143 47.6191 5.95234 47.6191C3.98326 47.6191 2.38092 46.0167 2.38092 44.0477C2.38092 42.0786 3.98326 40.4762 5.95234 40.4762C7.92143 40.4762 9.52377 42.0786 9.52377 44.0477ZM5.95234 9.52377C3.98326 9.52377 2.38092 7.92143 2.38092 5.95234C2.38092 3.98326 3.98326 2.38092 5.95234 2.38092C7.92143 2.38092 9.52377 3.98326 9.52377 5.95234C9.52377 7.92143 7.92143 9.52377 5.95234 9.52377ZM28.5714 44.0477C28.5714 46.0167 26.9691 47.6191 25 47.6191C23.0309 47.6191 21.4286 46.0167 21.4286 44.0477C21.4286 42.0786 23.0309 40.4762 25 40.4762C26.9691 40.4762 28.5714 42.0786 28.5714 44.0477ZM25 9.52377C23.0309 9.52377 21.4286 7.92143 21.4286 5.95234C21.4286 3.98326 23.0309 2.38092 25 2.38092C26.9691 2.38092 28.5714 3.98326 28.5714 5.95234C28.5714 7.92143 26.9691 9.52377 25 9.52377ZM44.0477 9.52377C42.0786 9.52377 40.4762 7.92143 40.4762 5.95234C40.4762 3.98326 42.0786 2.38092 44.0477 2.38092C46.0167 2.38092 47.6191 3.98326 47.6191 5.95234C47.6191 7.92143 46.0166 9.52377 44.0477 9.52377Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Gearbox</p>
-                                            <h3 class="text-dark text-h6 fw-medium">Manual</h3>
-                                        </div>
-                                    </div>
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M44.707 9.87041H40.1624V3.68242C40.1624 2.13652 38.9048 0.878906 37.359 0.878906H33.0436C31.4977 0.878906 30.24 2.13652 30.24 3.68242V9.87051H25.6954C24.1496 9.87051 22.892 11.1281 22.892 12.6739V18.3503H19.7588V12.1622C19.7588 10.6163 18.5012 9.35869 16.9554 9.35869H12.6399C11.094 9.35869 9.83643 10.6163 9.83643 12.1622V18.3503H5.2917C3.7459 18.3503 2.48828 19.6079 2.48828 21.1538V42.7402C2.48828 44.286 3.7459 45.5437 5.2917 45.5437H5.65654C5.48955 45.8765 5.39482 46.2517 5.39482 46.6487C5.39482 48.012 6.50381 49.1211 7.86709 49.1211C9.23037 49.1211 10.3395 48.012 10.3395 46.6487C10.3395 46.2517 10.2448 45.8765 10.0777 45.5437H19.5172C19.3502 45.8765 19.2555 46.2517 19.2555 46.6487C19.2555 48.012 20.3645 49.1211 21.7277 49.1211C23.091 49.1211 24.2 48.012 24.2 46.6487C24.2 46.2517 24.1054 45.8765 23.9383 45.5437H24.3031C24.5435 45.5437 24.7769 45.5132 24.9996 45.4561C25.2262 45.5143 25.4592 45.5437 25.6951 45.5437H26.06C25.893 45.8765 25.7982 46.2517 25.7982 46.6487C25.7982 48.012 26.9072 49.1211 28.2705 49.1211C29.6338 49.1211 30.7429 48.012 30.7429 46.6487C30.7429 46.2517 30.6482 45.8765 30.4812 45.5437H39.9206C39.7536 45.8765 39.6589 46.2517 39.6589 46.6487C39.6589 48.012 40.7679 49.1211 42.1312 49.1211C43.4944 49.1211 44.6034 48.012 44.6034 46.6487C44.6034 46.2517 44.5088 45.8765 44.3417 45.5437H44.7065C46.2524 45.5437 47.5101 44.286 47.5101 42.7402V12.6738C47.5105 11.128 46.2529 9.87041 44.707 9.87041ZM31.6072 3.68242C31.6072 2.89043 32.2516 2.24609 33.0436 2.24609H37.359C38.1509 2.24609 38.7952 2.89043 38.7952 3.68242V9.87051H31.6072V3.68242ZM11.2035 12.1622C11.2035 11.3702 11.8479 10.7259 12.6398 10.7259H16.9553C17.7472 10.7259 18.3915 11.3702 18.3915 12.1622V18.3503H11.2035V12.1622ZM8.97236 46.6487C8.97236 47.2581 8.47656 47.7539 7.86719 47.7539C7.25781 47.7539 6.76211 47.2581 6.76211 46.6487C6.76211 46.0394 7.25781 45.5437 7.86719 45.5437C8.47656 45.5437 8.97236 46.0393 8.97236 46.6487ZM22.833 46.6487C22.833 47.2581 22.3373 47.7539 21.7279 47.7539C21.1186 47.7539 20.6229 47.2581 20.6229 46.6487C20.6229 46.0394 21.1186 45.5437 21.7279 45.5437C22.3373 45.5437 22.833 46.0393 22.833 46.6487ZM5.2917 44.1764C4.4998 44.1764 3.85547 43.532 3.85547 42.7401V21.1537C3.85547 20.3617 4.4998 19.7174 5.2917 19.7174H24.3034C25.0954 19.7174 25.7397 20.3617 25.7397 21.1537V42.7401C25.7397 43.532 25.0954 44.1764 24.3034 44.1764H5.2917ZM29.3761 46.6487C29.3761 47.2581 28.8803 47.7539 28.2709 47.7539C27.6615 47.7539 27.1658 47.2581 27.1658 46.6487C27.1658 46.0394 27.6615 45.5437 28.2709 45.5437C28.8803 45.5437 29.3761 46.0393 29.3761 46.6487ZM43.2367 46.6487C43.2367 47.2581 42.741 47.7539 42.1316 47.7539C41.5223 47.7539 41.0266 47.2581 41.0266 46.6487C41.0266 46.0394 41.5223 45.5437 42.1316 45.5437C42.741 45.5437 43.2367 46.0393 43.2367 46.6487ZM46.1434 42.7401C46.1434 43.532 45.499 44.1764 44.707 44.1764H26.7099C26.9617 43.7561 27.1068 43.2647 27.1068 42.7401V21.1537C27.1068 19.6078 25.8492 18.3502 24.3033 18.3502H24.2591V12.6738C24.2591 11.8819 24.9034 11.2376 25.6953 11.2376H44.707C45.499 11.2376 46.1434 11.8819 46.1434 12.6738V42.7401ZM41.6976 15.7549V39.6591C41.6976 40.0366 41.3915 40.3427 41.014 40.3427C40.6364 40.3427 40.3304 40.0366 40.3304 39.6591V15.7549C40.3304 15.3773 40.6364 15.0713 41.014 15.0713C41.3915 15.0713 41.6976 15.3773 41.6976 15.7549ZM35.8848 15.7549V39.6591C35.8848 40.0366 35.5787 40.3427 35.2012 40.3427C34.8236 40.3427 34.5176 40.0366 34.5176 39.6591V15.7549C34.5176 15.3773 34.8236 15.0713 35.2012 15.0713C35.5787 15.0713 35.8848 15.3773 35.8848 15.7549ZM30.072 15.7549V39.6591C30.072 40.0366 29.7659 40.3427 29.3884 40.3427C29.0108 40.3427 28.7048 40.0366 28.7048 39.6591V15.7549C28.7048 15.3773 29.0108 15.0713 29.3884 15.0713C29.7659 15.0713 30.072 15.3773 30.072 15.7549ZM21.2939 24.2348V39.6592C21.2939 40.0367 20.9879 40.3428 20.6104 40.3428C20.2328 40.3428 19.9268 40.0367 19.9268 39.6592V24.2348C19.9268 23.8572 20.2328 23.5512 20.6104 23.5512C20.9879 23.5512 21.2939 23.8571 21.2939 24.2348ZM9.66826 24.2348V39.6592C9.66826 40.0367 9.36221 40.3428 8.98467 40.3428C8.60713 40.3428 8.30107 40.0367 8.30107 39.6592V24.2348C8.30107 23.8572 8.60713 23.5512 8.98467 23.5512C9.36221 23.5512 9.66826 23.8571 9.66826 24.2348ZM15.4812 24.2348V39.6592C15.4812 40.0367 15.1751 40.3428 14.7976 40.3428C14.42 40.3428 14.114 40.0367 14.114 39.6592V24.2348C14.114 23.8572 14.42 23.5512 14.7976 23.5512C15.1751 23.5512 15.4812 23.8571 15.4812 24.2348Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Luggage</p>
-                                            <h3 class="text-dark text-h6 fw-medium">Luggage</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <!-- Desktop: Start Testimonial Slider -->
+        <marquee-slider class="marquee-slider oy-testimonial-slider" data-direction="left" data-marquee-speed="100" data-marquee-gap="20">
+            <div class="marquee-track">
+                <!-- Testimonial Item -->
+                <div class="oy-testimonial-item marquee-item">
+                    <div class="item-author">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client1.png') }}" alt="">
+                        <div class="item-author__text">
+                            <h6 class="text-b3-semibold">Char and ems</h6>
+                            <p class="text-b5-regular">18 days ago</p>
                         </div>
                     </div>
-                    <!-- Slider Item -->
-                    <div class="swiper-slide mb-5">
-                        <div class="card card--product card--product-2 h-100">
-                            <div class="card--product__thumb mb-3">
-                                <img class="img-fluid w-100 rounded-3" src="{{asset('assets-v2/img/products/category-1.png')}}" alt="">
-                            </div>
-                            <div class="card--product__content px-0 px-lg-4 space-y-3 flex-fill d-flex flex-column align-items-start">
-                                <div class="mb-5 d-flex flex-wrap flex-fill w-100 justify-content-between align-items-center">
-                                    <h5 class="card--product__title text-h5 mb-4">Compact city cruiser</h5>
-                                    <div class="text-b1-semibold">
-                                        <span class="text-primary">$150</span>
-                                        /<span class="text-secondary text-opacity-50 fw-normal text-b6-regular">per day</span>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex w-100 align-items-center card--product__features">
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M34.9943 48.6487H15.0078V37.0743H34.9943V48.6487ZM16.3592 47.2973H33.6429V38.4257H16.3592V47.2973Z" fill="#0072FF"/>
-                                            <path d="M34.8068 48.6486H34.2933L34.3473 47.2973C40.5703 47.5473 41.469 42.3986 41.5027 42.1824V42.1081C42.773 37.3784 39.5568 36.4189 39.4217 36.3851C37.3136 35.7095 34.8136 38.2027 34.7933 38.2297L33.8203 37.2838C33.9487 37.1554 36.9014 34.1622 39.8 35.0878C40.9114 35.4428 41.8523 36.196 42.4419 37.2027C43.246 38.5541 43.3744 40.3311 42.8203 42.4324C42.7257 43 41.4757 48.6486 34.8068 48.6486Z" fill="#0072FF"/>
-                                            <path d="M15.1969 48.6487C8.52796 48.6487 7.27796 43 7.16985 42.4257C6.6158 40.3243 6.74418 38.5676 7.54823 37.196C8.15004 36.1724 9.11481 35.4126 10.2509 35.0676C13.1158 34.1487 16.0617 37.1487 16.1901 37.277L15.2172 38.223C15.2172 38.223 12.7239 35.696 10.6226 36.3649C10.4536 36.4122 7.24418 37.3446 8.50769 42.1014V42.1757C8.54148 42.3919 9.43337 47.5405 15.6631 47.2905L15.7172 48.6419L15.1969 48.6487Z" fill="#0072FF"/>
-                                            <path d="M38.7494 35.8108C38.6615 35.473 36.621 27.4595 37.1683 20.5V20.4189C37.2829 19.7471 37.2637 19.0592 37.1118 18.3948C36.96 17.7304 36.6783 17.1026 36.2831 16.5473C35.3913 15.4865 33.8642 14.9324 31.7561 14.9324H18.2426C16.121 14.9324 14.594 15.4865 13.6953 16.5743C13.3048 17.1316 13.028 17.7603 12.8808 18.4247C12.7335 19.089 12.7187 19.7759 12.8372 20.4459V20.527C13.3845 27.4865 11.344 35.5 11.2561 35.8378L9.94531 35.5C9.94531 35.4189 12.0061 27.3919 11.4926 20.6351C11.345 19.7756 11.3725 18.895 11.5733 18.0463C11.7742 17.1976 12.1443 16.3982 12.6615 15.6959C13.8304 14.277 15.7156 13.554 18.2629 13.554H31.7561C34.3034 13.554 36.1886 14.277 37.3575 15.6959C37.8759 16.4026 38.2456 17.207 38.4442 18.0606C38.6428 18.9142 38.6662 19.7993 38.5129 20.6622C37.9994 27.4189 40.0332 35.4189 40.0602 35.527L38.7494 35.8108Z" fill="#0072FF"/>
-                                            <path d="M32.479 38.4257H17.5195V14.2567H18.8709V37.0743H31.1276V14.2567H32.479V38.4257Z" fill="#0072FF"/>
-                                            <path d="M18.1953 23.5946H31.8034V24.946H18.1953V23.5946Z" fill="#0072FF"/>
-                                            <path d="M28.8301 14.9324H21.168V10.7027H28.8301V14.9324ZM22.5193 13.5811H27.4788V12.054H22.5193V13.5811Z" fill="#0072FF"/>
-                                            <path d="M30.1741 12.0541H19.8228C19.4802 12.0542 19.1414 11.9821 18.8285 11.8425C18.5156 11.703 18.2356 11.4991 18.0067 11.2441C17.7779 10.9891 17.6053 10.6888 17.5003 10.3627C17.3952 10.0365 17.3601 9.69196 17.3971 9.35135L17.9782 3.53379C18.0402 2.93292 18.3237 2.37665 18.7733 1.97324C19.2229 1.56983 19.8065 1.34815 20.4106 1.35135H29.5863C30.1935 1.34864 30.7798 1.57314 31.2299 1.98074C31.68 2.38833 31.9614 2.94954 32.0187 3.55406L32.5998 9.36487C32.6368 9.70547 32.6017 10.0501 32.4966 10.3762C32.3916 10.7023 32.219 11.0026 31.9902 11.2576C31.7613 11.5126 31.4813 11.7165 31.1684 11.856C30.8555 11.9956 30.5167 12.0677 30.1741 12.0676V12.0541ZM20.4106 2.7027C20.1399 2.70136 19.8784 2.80102 19.6772 2.98219C19.476 3.16337 19.3497 3.41305 19.3228 3.68243L18.7417 9.5C18.7245 9.65189 18.7396 9.8057 18.7862 9.95129C18.8328 10.0969 18.9098 10.2309 19.012 10.3446C19.1144 10.4579 19.2395 10.5483 19.3792 10.61C19.5189 10.6717 19.6701 10.7033 19.8228 10.7027H30.1741C30.3268 10.7033 30.478 10.6717 30.6177 10.61C30.7573 10.5483 30.8825 10.4579 30.9849 10.3446C31.0871 10.2309 31.1641 10.0969 31.2106 9.95129C31.2572 9.8057 31.2724 9.65189 31.2552 9.5L30.6741 3.68919C30.6488 3.41859 30.5231 3.16726 30.3218 2.98469C30.1204 2.80212 29.8581 2.70152 29.5863 2.7027H20.4106Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Seat</p>
-                                            <h3 class="text-dark text-h6 fw-medium">4</h3>
-                                        </div>
-                                    </div>
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M44.0477 0C40.7667 0 38.0953 2.67143 38.0953 5.95234C38.0953 8.82612 40.143 11.2309 42.8573 11.7833V23.8095H26.1905V11.7834C28.9048 11.231 30.9525 8.82623 30.9525 5.95246C30.9523 2.67143 28.2809 0 25 0C21.7191 0 19.0477 2.67143 19.0477 5.95234C19.0477 8.82612 21.0953 11.2309 23.8096 11.7833V23.8095H7.14286V11.7834C9.85714 11.231 11.9048 8.82623 11.9048 5.95246C11.9048 2.67143 9.23337 0 5.95234 0C2.67132 0 0 2.67143 0 5.95234C0 8.82612 2.04766 11.2309 4.76194 11.7833V38.2166C2.04766 38.7691 0 41.1738 0 44.0477C0 47.3286 2.67143 50 5.95234 50C9.23326 50 11.9047 47.3286 11.9047 44.0477C11.9047 41.1739 9.85703 38.7691 7.14275 38.2167V26.1905H23.8094V38.2167C21.0951 38.7691 19.0474 41.1739 19.0474 44.0477C19.0477 47.3286 21.7191 50 25 50C28.2809 50 30.9523 47.3286 30.9523 44.0477C30.9523 41.1739 28.9047 38.7691 26.1904 38.2167V26.1905H44.0475C44.7047 26.1905 45.2381 25.6571 45.2381 25V11.7834C47.9523 11.2309 50 8.82623 50 5.95234C50 2.67143 47.3286 0 44.0477 0ZM9.52377 44.0477C9.52377 46.0167 7.92143 47.6191 5.95234 47.6191C3.98326 47.6191 2.38092 46.0167 2.38092 44.0477C2.38092 42.0786 3.98326 40.4762 5.95234 40.4762C7.92143 40.4762 9.52377 42.0786 9.52377 44.0477ZM5.95234 9.52377C3.98326 9.52377 2.38092 7.92143 2.38092 5.95234C2.38092 3.98326 3.98326 2.38092 5.95234 2.38092C7.92143 2.38092 9.52377 3.98326 9.52377 5.95234C9.52377 7.92143 7.92143 9.52377 5.95234 9.52377ZM28.5714 44.0477C28.5714 46.0167 26.9691 47.6191 25 47.6191C23.0309 47.6191 21.4286 46.0167 21.4286 44.0477C21.4286 42.0786 23.0309 40.4762 25 40.4762C26.9691 40.4762 28.5714 42.0786 28.5714 44.0477ZM25 9.52377C23.0309 9.52377 21.4286 7.92143 21.4286 5.95234C21.4286 3.98326 23.0309 2.38092 25 2.38092C26.9691 2.38092 28.5714 3.98326 28.5714 5.95234C28.5714 7.92143 26.9691 9.52377 25 9.52377ZM44.0477 9.52377C42.0786 9.52377 40.4762 7.92143 40.4762 5.95234C40.4762 3.98326 42.0786 2.38092 44.0477 2.38092C46.0167 2.38092 47.6191 3.98326 47.6191 5.95234C47.6191 7.92143 46.0166 9.52377 44.0477 9.52377Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Gearbox</p>
-                                            <h3 class="text-dark text-h6 fw-medium">Manual</h3>
-                                        </div>
-                                    </div>
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M44.707 9.87041H40.1624V3.68242C40.1624 2.13652 38.9048 0.878906 37.359 0.878906H33.0436C31.4977 0.878906 30.24 2.13652 30.24 3.68242V9.87051H25.6954C24.1496 9.87051 22.892 11.1281 22.892 12.6739V18.3503H19.7588V12.1622C19.7588 10.6163 18.5012 9.35869 16.9554 9.35869H12.6399C11.094 9.35869 9.83643 10.6163 9.83643 12.1622V18.3503H5.2917C3.7459 18.3503 2.48828 19.6079 2.48828 21.1538V42.7402C2.48828 44.286 3.7459 45.5437 5.2917 45.5437H5.65654C5.48955 45.8765 5.39482 46.2517 5.39482 46.6487C5.39482 48.012 6.50381 49.1211 7.86709 49.1211C9.23037 49.1211 10.3395 48.012 10.3395 46.6487C10.3395 46.2517 10.2448 45.8765 10.0777 45.5437H19.5172C19.3502 45.8765 19.2555 46.2517 19.2555 46.6487C19.2555 48.012 20.3645 49.1211 21.7277 49.1211C23.091 49.1211 24.2 48.012 24.2 46.6487C24.2 46.2517 24.1054 45.8765 23.9383 45.5437H24.3031C24.5435 45.5437 24.7769 45.5132 24.9996 45.4561C25.2262 45.5143 25.4592 45.5437 25.6951 45.5437H26.06C25.893 45.8765 25.7982 46.2517 25.7982 46.6487C25.7982 48.012 26.9072 49.1211 28.2705 49.1211C29.6338 49.1211 30.7429 48.012 30.7429 46.6487C30.7429 46.2517 30.6482 45.8765 30.4812 45.5437H39.9206C39.7536 45.8765 39.6589 46.2517 39.6589 46.6487C39.6589 48.012 40.7679 49.1211 42.1312 49.1211C43.4944 49.1211 44.6034 48.012 44.6034 46.6487C44.6034 46.2517 44.5088 45.8765 44.3417 45.5437H44.7065C46.2524 45.5437 47.5101 44.286 47.5101 42.7402V12.6738C47.5105 11.128 46.2529 9.87041 44.707 9.87041ZM31.6072 3.68242C31.6072 2.89043 32.2516 2.24609 33.0436 2.24609H37.359C38.1509 2.24609 38.7952 2.89043 38.7952 3.68242V9.87051H31.6072V3.68242ZM11.2035 12.1622C11.2035 11.3702 11.8479 10.7259 12.6398 10.7259H16.9553C17.7472 10.7259 18.3915 11.3702 18.3915 12.1622V18.3503H11.2035V12.1622ZM8.97236 46.6487C8.97236 47.2581 8.47656 47.7539 7.86719 47.7539C7.25781 47.7539 6.76211 47.2581 6.76211 46.6487C6.76211 46.0394 7.25781 45.5437 7.86719 45.5437C8.47656 45.5437 8.97236 46.0393 8.97236 46.6487ZM22.833 46.6487C22.833 47.2581 22.3373 47.7539 21.7279 47.7539C21.1186 47.7539 20.6229 47.2581 20.6229 46.6487C20.6229 46.0394 21.1186 45.5437 21.7279 45.5437C22.3373 45.5437 22.833 46.0393 22.833 46.6487ZM5.2917 44.1764C4.4998 44.1764 3.85547 43.532 3.85547 42.7401V21.1537C3.85547 20.3617 4.4998 19.7174 5.2917 19.7174H24.3034C25.0954 19.7174 25.7397 20.3617 25.7397 21.1537V42.7401C25.7397 43.532 25.0954 44.1764 24.3034 44.1764H5.2917ZM29.3761 46.6487C29.3761 47.2581 28.8803 47.7539 28.2709 47.7539C27.6615 47.7539 27.1658 47.2581 27.1658 46.6487C27.1658 46.0394 27.6615 45.5437 28.2709 45.5437C28.8803 45.5437 29.3761 46.0393 29.3761 46.6487ZM43.2367 46.6487C43.2367 47.2581 42.741 47.7539 42.1316 47.7539C41.5223 47.7539 41.0266 47.2581 41.0266 46.6487C41.0266 46.0394 41.5223 45.5437 42.1316 45.5437C42.741 45.5437 43.2367 46.0393 43.2367 46.6487ZM46.1434 42.7401C46.1434 43.532 45.499 44.1764 44.707 44.1764H26.7099C26.9617 43.7561 27.1068 43.2647 27.1068 42.7401V21.1537C27.1068 19.6078 25.8492 18.3502 24.3033 18.3502H24.2591V12.6738C24.2591 11.8819 24.9034 11.2376 25.6953 11.2376H44.707C45.499 11.2376 46.1434 11.8819 46.1434 12.6738V42.7401ZM41.6976 15.7549V39.6591C41.6976 40.0366 41.3915 40.3427 41.014 40.3427C40.6364 40.3427 40.3304 40.0366 40.3304 39.6591V15.7549C40.3304 15.3773 40.6364 15.0713 41.014 15.0713C41.3915 15.0713 41.6976 15.3773 41.6976 15.7549ZM35.8848 15.7549V39.6591C35.8848 40.0366 35.5787 40.3427 35.2012 40.3427C34.8236 40.3427 34.5176 40.0366 34.5176 39.6591V15.7549C34.5176 15.3773 34.8236 15.0713 35.2012 15.0713C35.5787 15.0713 35.8848 15.3773 35.8848 15.7549ZM30.072 15.7549V39.6591C30.072 40.0366 29.7659 40.3427 29.3884 40.3427C29.0108 40.3427 28.7048 40.0366 28.7048 39.6591V15.7549C28.7048 15.3773 29.0108 15.0713 29.3884 15.0713C29.7659 15.0713 30.072 15.3773 30.072 15.7549ZM21.2939 24.2348V39.6592C21.2939 40.0367 20.9879 40.3428 20.6104 40.3428C20.2328 40.3428 19.9268 40.0367 19.9268 39.6592V24.2348C19.9268 23.8572 20.2328 23.5512 20.6104 23.5512C20.9879 23.5512 21.2939 23.8571 21.2939 24.2348ZM9.66826 24.2348V39.6592C9.66826 40.0367 9.36221 40.3428 8.98467 40.3428C8.60713 40.3428 8.30107 40.0367 8.30107 39.6592V24.2348C8.30107 23.8572 8.60713 23.5512 8.98467 23.5512C9.36221 23.5512 9.66826 23.8571 9.66826 24.2348ZM15.4812 24.2348V39.6592C15.4812 40.0367 15.1751 40.3428 14.7976 40.3428C14.42 40.3428 14.114 40.0367 14.114 39.6592V24.2348C14.114 23.8572 14.42 23.5512 14.7976 23.5512C15.1751 23.5512 15.4812 23.8571 15.4812 24.2348Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Luggage</p>
-                                            <h3 class="text-dark text-h6 fw-medium">Luggage</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="item-content text-b5-medium" data-testimonial-content>
+                        <div class="testimonial-text">
+                            <p>Been to Autofusion for a couple of jobs so far. Both times they were quick and efficient. The staff are friendly and informative, which helps if your hopeless with cars like I am. They took the time to explain what needed to be done and gave me a fair price. The service was excellent and I would definitely recommend them to anyone looking for a reliable mechanic. I was particularly impressed with how they handled my car with care and attention to detail. The whole experience was stress-free and professional. I'll certainly be coming back for any future work on my vehicle.<button class="read-more-btn text-b5-medium" data-read-more><span class="read-more-text">Read more</span><span class="read-less-text">Read less</span></button></p>
                         </div>
                     </div>
-                    <!-- Slider Item -->
-                    <div class="swiper-slide mb-5">
-                        <div class="card card--product card--product-2 h-100">
-                            <div class="card--product__thumb mb-3">
-                                <img class="img-fluid w-100 rounded-3" src="{{asset('assets-v2/img/products/category-1.png')}}" alt="">
-                            </div>
-                            <div class="card--product__content px-0 px-lg-4 space-y-3 flex-fill d-flex flex-column align-items-start">
-                                <div class="mb-5 d-flex flex-wrap flex-fill w-100 justify-content-between align-items-center">
-                                    <h5 class="card--product__title text-h5 mb-4">Compact city cruiser</h5>
-                                    <div class="text-b1-semibold">
-                                        <span class="text-primary">$150</span>
-                                        /<span class="text-secondary text-opacity-50 fw-normal text-b6-regular">per day</span>
-                                    </div>
-                                </div>
+                    <div class="item-review">
+                        <div class="review_ratting" data-rating="5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                    </div>
+                </div>
 
-                                <div class="d-flex w-100 align-items-center card--product__features">
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M34.9943 48.6487H15.0078V37.0743H34.9943V48.6487ZM16.3592 47.2973H33.6429V38.4257H16.3592V47.2973Z" fill="#0072FF"/>
-                                            <path d="M34.8068 48.6486H34.2933L34.3473 47.2973C40.5703 47.5473 41.469 42.3986 41.5027 42.1824V42.1081C42.773 37.3784 39.5568 36.4189 39.4217 36.3851C37.3136 35.7095 34.8136 38.2027 34.7933 38.2297L33.8203 37.2838C33.9487 37.1554 36.9014 34.1622 39.8 35.0878C40.9114 35.4428 41.8523 36.196 42.4419 37.2027C43.246 38.5541 43.3744 40.3311 42.8203 42.4324C42.7257 43 41.4757 48.6486 34.8068 48.6486Z" fill="#0072FF"/>
-                                            <path d="M15.1969 48.6487C8.52796 48.6487 7.27796 43 7.16985 42.4257C6.6158 40.3243 6.74418 38.5676 7.54823 37.196C8.15004 36.1724 9.11481 35.4126 10.2509 35.0676C13.1158 34.1487 16.0617 37.1487 16.1901 37.277L15.2172 38.223C15.2172 38.223 12.7239 35.696 10.6226 36.3649C10.4536 36.4122 7.24418 37.3446 8.50769 42.1014V42.1757C8.54148 42.3919 9.43337 47.5405 15.6631 47.2905L15.7172 48.6419L15.1969 48.6487Z" fill="#0072FF"/>
-                                            <path d="M38.7494 35.8108C38.6615 35.473 36.621 27.4595 37.1683 20.5V20.4189C37.2829 19.7471 37.2637 19.0592 37.1118 18.3948C36.96 17.7304 36.6783 17.1026 36.2831 16.5473C35.3913 15.4865 33.8642 14.9324 31.7561 14.9324H18.2426C16.121 14.9324 14.594 15.4865 13.6953 16.5743C13.3048 17.1316 13.028 17.7603 12.8808 18.4247C12.7335 19.089 12.7187 19.7759 12.8372 20.4459V20.527C13.3845 27.4865 11.344 35.5 11.2561 35.8378L9.94531 35.5C9.94531 35.4189 12.0061 27.3919 11.4926 20.6351C11.345 19.7756 11.3725 18.895 11.5733 18.0463C11.7742 17.1976 12.1443 16.3982 12.6615 15.6959C13.8304 14.277 15.7156 13.554 18.2629 13.554H31.7561C34.3034 13.554 36.1886 14.277 37.3575 15.6959C37.8759 16.4026 38.2456 17.207 38.4442 18.0606C38.6428 18.9142 38.6662 19.7993 38.5129 20.6622C37.9994 27.4189 40.0332 35.4189 40.0602 35.527L38.7494 35.8108Z" fill="#0072FF"/>
-                                            <path d="M32.479 38.4257H17.5195V14.2567H18.8709V37.0743H31.1276V14.2567H32.479V38.4257Z" fill="#0072FF"/>
-                                            <path d="M18.1953 23.5946H31.8034V24.946H18.1953V23.5946Z" fill="#0072FF"/>
-                                            <path d="M28.8301 14.9324H21.168V10.7027H28.8301V14.9324ZM22.5193 13.5811H27.4788V12.054H22.5193V13.5811Z" fill="#0072FF"/>
-                                            <path d="M30.1741 12.0541H19.8228C19.4802 12.0542 19.1414 11.9821 18.8285 11.8425C18.5156 11.703 18.2356 11.4991 18.0067 11.2441C17.7779 10.9891 17.6053 10.6888 17.5003 10.3627C17.3952 10.0365 17.3601 9.69196 17.3971 9.35135L17.9782 3.53379C18.0402 2.93292 18.3237 2.37665 18.7733 1.97324C19.2229 1.56983 19.8065 1.34815 20.4106 1.35135H29.5863C30.1935 1.34864 30.7798 1.57314 31.2299 1.98074C31.68 2.38833 31.9614 2.94954 32.0187 3.55406L32.5998 9.36487C32.6368 9.70547 32.6017 10.0501 32.4966 10.3762C32.3916 10.7023 32.219 11.0026 31.9902 11.2576C31.7613 11.5126 31.4813 11.7165 31.1684 11.856C30.8555 11.9956 30.5167 12.0677 30.1741 12.0676V12.0541ZM20.4106 2.7027C20.1399 2.70136 19.8784 2.80102 19.6772 2.98219C19.476 3.16337 19.3497 3.41305 19.3228 3.68243L18.7417 9.5C18.7245 9.65189 18.7396 9.8057 18.7862 9.95129C18.8328 10.0969 18.9098 10.2309 19.012 10.3446C19.1144 10.4579 19.2395 10.5483 19.3792 10.61C19.5189 10.6717 19.6701 10.7033 19.8228 10.7027H30.1741C30.3268 10.7033 30.478 10.6717 30.6177 10.61C30.7573 10.5483 30.8825 10.4579 30.9849 10.3446C31.0871 10.2309 31.1641 10.0969 31.2106 9.95129C31.2572 9.8057 31.2724 9.65189 31.2552 9.5L30.6741 3.68919C30.6488 3.41859 30.5231 3.16726 30.3218 2.98469C30.1204 2.80212 29.8581 2.70152 29.5863 2.7027H20.4106Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Seat</p>
-                                            <h3 class="text-dark text-h6 fw-medium">4</h3>
-                                        </div>
-                                    </div>
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M44.0477 0C40.7667 0 38.0953 2.67143 38.0953 5.95234C38.0953 8.82612 40.143 11.2309 42.8573 11.7833V23.8095H26.1905V11.7834C28.9048 11.231 30.9525 8.82623 30.9525 5.95246C30.9523 2.67143 28.2809 0 25 0C21.7191 0 19.0477 2.67143 19.0477 5.95234C19.0477 8.82612 21.0953 11.2309 23.8096 11.7833V23.8095H7.14286V11.7834C9.85714 11.231 11.9048 8.82623 11.9048 5.95246C11.9048 2.67143 9.23337 0 5.95234 0C2.67132 0 0 2.67143 0 5.95234C0 8.82612 2.04766 11.2309 4.76194 11.7833V38.2166C2.04766 38.7691 0 41.1738 0 44.0477C0 47.3286 2.67143 50 5.95234 50C9.23326 50 11.9047 47.3286 11.9047 44.0477C11.9047 41.1739 9.85703 38.7691 7.14275 38.2167V26.1905H23.8094V38.2167C21.0951 38.7691 19.0474 41.1739 19.0474 44.0477C19.0477 47.3286 21.7191 50 25 50C28.2809 50 30.9523 47.3286 30.9523 44.0477C30.9523 41.1739 28.9047 38.7691 26.1904 38.2167V26.1905H44.0475C44.7047 26.1905 45.2381 25.6571 45.2381 25V11.7834C47.9523 11.2309 50 8.82623 50 5.95234C50 2.67143 47.3286 0 44.0477 0ZM9.52377 44.0477C9.52377 46.0167 7.92143 47.6191 5.95234 47.6191C3.98326 47.6191 2.38092 46.0167 2.38092 44.0477C2.38092 42.0786 3.98326 40.4762 5.95234 40.4762C7.92143 40.4762 9.52377 42.0786 9.52377 44.0477ZM5.95234 9.52377C3.98326 9.52377 2.38092 7.92143 2.38092 5.95234C2.38092 3.98326 3.98326 2.38092 5.95234 2.38092C7.92143 2.38092 9.52377 3.98326 9.52377 5.95234C9.52377 7.92143 7.92143 9.52377 5.95234 9.52377ZM28.5714 44.0477C28.5714 46.0167 26.9691 47.6191 25 47.6191C23.0309 47.6191 21.4286 46.0167 21.4286 44.0477C21.4286 42.0786 23.0309 40.4762 25 40.4762C26.9691 40.4762 28.5714 42.0786 28.5714 44.0477ZM25 9.52377C23.0309 9.52377 21.4286 7.92143 21.4286 5.95234C21.4286 3.98326 23.0309 2.38092 25 2.38092C26.9691 2.38092 28.5714 3.98326 28.5714 5.95234C28.5714 7.92143 26.9691 9.52377 25 9.52377ZM44.0477 9.52377C42.0786 9.52377 40.4762 7.92143 40.4762 5.95234C40.4762 3.98326 42.0786 2.38092 44.0477 2.38092C46.0167 2.38092 47.6191 3.98326 47.6191 5.95234C47.6191 7.92143 46.0166 9.52377 44.0477 9.52377Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Gearbox</p>
-                                            <h3 class="text-dark text-h6 fw-medium">Manual</h3>
-                                        </div>
-                                    </div>
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M44.707 9.87041H40.1624V3.68242C40.1624 2.13652 38.9048 0.878906 37.359 0.878906H33.0436C31.4977 0.878906 30.24 2.13652 30.24 3.68242V9.87051H25.6954C24.1496 9.87051 22.892 11.1281 22.892 12.6739V18.3503H19.7588V12.1622C19.7588 10.6163 18.5012 9.35869 16.9554 9.35869H12.6399C11.094 9.35869 9.83643 10.6163 9.83643 12.1622V18.3503H5.2917C3.7459 18.3503 2.48828 19.6079 2.48828 21.1538V42.7402C2.48828 44.286 3.7459 45.5437 5.2917 45.5437H5.65654C5.48955 45.8765 5.39482 46.2517 5.39482 46.6487C5.39482 48.012 6.50381 49.1211 7.86709 49.1211C9.23037 49.1211 10.3395 48.012 10.3395 46.6487C10.3395 46.2517 10.2448 45.8765 10.0777 45.5437H19.5172C19.3502 45.8765 19.2555 46.2517 19.2555 46.6487C19.2555 48.012 20.3645 49.1211 21.7277 49.1211C23.091 49.1211 24.2 48.012 24.2 46.6487C24.2 46.2517 24.1054 45.8765 23.9383 45.5437H24.3031C24.5435 45.5437 24.7769 45.5132 24.9996 45.4561C25.2262 45.5143 25.4592 45.5437 25.6951 45.5437H26.06C25.893 45.8765 25.7982 46.2517 25.7982 46.6487C25.7982 48.012 26.9072 49.1211 28.2705 49.1211C29.6338 49.1211 30.7429 48.012 30.7429 46.6487C30.7429 46.2517 30.6482 45.8765 30.4812 45.5437H39.9206C39.7536 45.8765 39.6589 46.2517 39.6589 46.6487C39.6589 48.012 40.7679 49.1211 42.1312 49.1211C43.4944 49.1211 44.6034 48.012 44.6034 46.6487C44.6034 46.2517 44.5088 45.8765 44.3417 45.5437H44.7065C46.2524 45.5437 47.5101 44.286 47.5101 42.7402V12.6738C47.5105 11.128 46.2529 9.87041 44.707 9.87041ZM31.6072 3.68242C31.6072 2.89043 32.2516 2.24609 33.0436 2.24609H37.359C38.1509 2.24609 38.7952 2.89043 38.7952 3.68242V9.87051H31.6072V3.68242ZM11.2035 12.1622C11.2035 11.3702 11.8479 10.7259 12.6398 10.7259H16.9553C17.7472 10.7259 18.3915 11.3702 18.3915 12.1622V18.3503H11.2035V12.1622ZM8.97236 46.6487C8.97236 47.2581 8.47656 47.7539 7.86719 47.7539C7.25781 47.7539 6.76211 47.2581 6.76211 46.6487C6.76211 46.0394 7.25781 45.5437 7.86719 45.5437C8.47656 45.5437 8.97236 46.0393 8.97236 46.6487ZM22.833 46.6487C22.833 47.2581 22.3373 47.7539 21.7279 47.7539C21.1186 47.7539 20.6229 47.2581 20.6229 46.6487C20.6229 46.0394 21.1186 45.5437 21.7279 45.5437C22.3373 45.5437 22.833 46.0393 22.833 46.6487ZM5.2917 44.1764C4.4998 44.1764 3.85547 43.532 3.85547 42.7401V21.1537C3.85547 20.3617 4.4998 19.7174 5.2917 19.7174H24.3034C25.0954 19.7174 25.7397 20.3617 25.7397 21.1537V42.7401C25.7397 43.532 25.0954 44.1764 24.3034 44.1764H5.2917ZM29.3761 46.6487C29.3761 47.2581 28.8803 47.7539 28.2709 47.7539C27.6615 47.7539 27.1658 47.2581 27.1658 46.6487C27.1658 46.0394 27.6615 45.5437 28.2709 45.5437C28.8803 45.5437 29.3761 46.0393 29.3761 46.6487ZM43.2367 46.6487C43.2367 47.2581 42.741 47.7539 42.1316 47.7539C41.5223 47.7539 41.0266 47.2581 41.0266 46.6487C41.0266 46.0394 41.5223 45.5437 42.1316 45.5437C42.741 45.5437 43.2367 46.0393 43.2367 46.6487ZM46.1434 42.7401C46.1434 43.532 45.499 44.1764 44.707 44.1764H26.7099C26.9617 43.7561 27.1068 43.2647 27.1068 42.7401V21.1537C27.1068 19.6078 25.8492 18.3502 24.3033 18.3502H24.2591V12.6738C24.2591 11.8819 24.9034 11.2376 25.6953 11.2376H44.707C45.499 11.2376 46.1434 11.8819 46.1434 12.6738V42.7401ZM41.6976 15.7549V39.6591C41.6976 40.0366 41.3915 40.3427 41.014 40.3427C40.6364 40.3427 40.3304 40.0366 40.3304 39.6591V15.7549C40.3304 15.3773 40.6364 15.0713 41.014 15.0713C41.3915 15.0713 41.6976 15.3773 41.6976 15.7549ZM35.8848 15.7549V39.6591C35.8848 40.0366 35.5787 40.3427 35.2012 40.3427C34.8236 40.3427 34.5176 40.0366 34.5176 39.6591V15.7549C34.5176 15.3773 34.8236 15.0713 35.2012 15.0713C35.5787 15.0713 35.8848 15.3773 35.8848 15.7549ZM30.072 15.7549V39.6591C30.072 40.0366 29.7659 40.3427 29.3884 40.3427C29.0108 40.3427 28.7048 40.0366 28.7048 39.6591V15.7549C28.7048 15.3773 29.0108 15.0713 29.3884 15.0713C29.7659 15.0713 30.072 15.3773 30.072 15.7549ZM21.2939 24.2348V39.6592C21.2939 40.0367 20.9879 40.3428 20.6104 40.3428C20.2328 40.3428 19.9268 40.0367 19.9268 39.6592V24.2348C19.9268 23.8572 20.2328 23.5512 20.6104 23.5512C20.9879 23.5512 21.2939 23.8571 21.2939 24.2348ZM9.66826 24.2348V39.6592C9.66826 40.0367 9.36221 40.3428 8.98467 40.3428C8.60713 40.3428 8.30107 40.0367 8.30107 39.6592V24.2348C8.30107 23.8572 8.60713 23.5512 8.98467 23.5512C9.36221 23.5512 9.66826 23.8571 9.66826 24.2348ZM15.4812 24.2348V39.6592C15.4812 40.0367 15.1751 40.3428 14.7976 40.3428C14.42 40.3428 14.114 40.0367 14.114 39.6592V24.2348C14.114 23.8572 14.42 23.5512 14.7976 23.5512C15.1751 23.5512 15.4812 23.8571 15.4812 24.2348Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Luggage</p>
-                                            <h3 class="text-dark text-h6 fw-medium">Luggage</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="oy-testimonial-item marquee-item">
+                    <div class="item-author">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client2.png') }}" alt="">
+                        <div class="item-author__text">
+                            <h6 class="text-b3-semibold">Andrewemslie</h6>
+                            <p class="text-b5-regular">1 month ago</p>
                         </div>
                     </div>
-                    <!-- Slider Item -->
-                    <div class="swiper-slide mb-5">
-                        <div class="card card--product card--product-2 h-100">
-                            <div class="card--product__thumb mb-3">
-                                <img class="img-fluid w-100 rounded-3" src="{{asset('assets-v2/img/products/category-1.png')}}" alt="">
+                    <div class="item-content text-b5-medium">
+                        <p>"Wouldn't go anywhere else to get my car fixed. Great staff and service.great work kamil"</p>
+                    </div>
+                    <div class="item-review">
+                        <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                    </div>
+                </div>
+                <div class="oy-testimonial-item marquee-item">
+                    <div class="item-author">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client3.png') }}" alt="">
+                        <div class="item-author__text">
+                            <h6 class="text-b3-semibold">Michael Moran</h6>
+                            <p class="text-b5-regular">3 Months ago</p>
+                        </div>
+                    </div>
+                    <div class="item-content text-b5-medium">
+                        <p>"Booked my car in for it's service, all went well and the staff were very helpful. Would have no problem recommending this garage."</p>
+                    </div>
+                    <div class="item-review">
+                        <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                    </div>
+                </div>
+                <div class="oy-testimonial-item marquee-item">
+                    <div class="item-author">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client4.png') }}" alt="">
+                        <div class="item-author__text">
+                            <h6 class="text-b3-semibold">Eileen Pillar</h6>
+                            <p class="text-b5-regular">6 months ago</p>
+                        </div>
+                    </div>
+                    <div class="item-content text-b5-medium">
+                        <p>"Great customer service, polite, helpful and respectful. Great price to replace my tyre, would highly recommend them"</p>
+                    </div>
+                    <div class="item-review">
+                        <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                    </div>
+                </div>
+                <div class="oy-testimonial-item marquee-item">
+                    <div class="item-author">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client7.png') }}" alt="">
+                        <div class="item-author__text">
+                            <h6 class="text-b3-semibold">Char and ems</h6>
+                            <p class="text-b5-regular">18 days ago</p>
+                        </div>
+                    </div>
+                    <div class="item-content text-b5-medium">
+                        <p>Been to Autofusion for a couple of jobs so far. Both times they were quick and efficient. The staff are friendly and informative, which helps if your hopeless with cars like I am.</p>
+                    </div>
+                    <div class="item-review">
+                        <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                    </div>
+                </div>
+                <div class="oy-testimonial-item marquee-item">
+                    <div class="item-author">
+                        <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client6.png') }}" alt="">
+                        <div class="item-author__text">
+                            <h6 class="text-b3-semibold">Char and ems</h6>
+                            <p class="text-b5-regular">18 days ago</p>
+                        </div>
+                    </div>
+                    <div class="item-content text-b5-medium">
+                        <p>Been to Autofusion for a couple of jobs so far. Both times they were quick and efficient. The staff are friendly and informative, which helps if your hopeless with cars like I am.</p>
+                    </div>
+                    <div class="item-review">
+                        <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </marquee-slider>
+        </div>
+        <div class="d-none d-md-block">
+            <marquee-slider class="marquee-slider oy-testimonial-slider" data-direction="right" data-marquee-speed="100" data-marquee-gap="20">
+                <div class="marquee-track">
+                    <div class="oy-testimonial-item marquee-item">
+                        <div class="item-author">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client1.png') }}" alt="">
+                            <div class="item-author__text">
+                                <h6 class="text-b3-semibold">Char and ems</h6>
+                                <p class="text-b5-regular">18 days ago</p>
                             </div>
-                            <div class="card--product__content px-0 px-lg-4 space-y-3 flex-fill d-flex flex-column align-items-start">
-                                <div class="mb-5 d-flex flex-wrap flex-fill w-100 justify-content-between align-items-center">
-                                    <h5 class="card--product__title text-h5 mb-4">Compact city cruiser</h5>
-                                    <div class="text-b1-semibold">
-                                        <span class="text-primary">$150</span>
-                                        /<span class="text-secondary text-opacity-50 fw-normal text-b6-regular">per day</span>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex w-100 align-items-center card--product__features">
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M34.9943 48.6487H15.0078V37.0743H34.9943V48.6487ZM16.3592 47.2973H33.6429V38.4257H16.3592V47.2973Z" fill="#0072FF"/>
-                                            <path d="M34.8068 48.6486H34.2933L34.3473 47.2973C40.5703 47.5473 41.469 42.3986 41.5027 42.1824V42.1081C42.773 37.3784 39.5568 36.4189 39.4217 36.3851C37.3136 35.7095 34.8136 38.2027 34.7933 38.2297L33.8203 37.2838C33.9487 37.1554 36.9014 34.1622 39.8 35.0878C40.9114 35.4428 41.8523 36.196 42.4419 37.2027C43.246 38.5541 43.3744 40.3311 42.8203 42.4324C42.7257 43 41.4757 48.6486 34.8068 48.6486Z" fill="#0072FF"/>
-                                            <path d="M15.1969 48.6487C8.52796 48.6487 7.27796 43 7.16985 42.4257C6.6158 40.3243 6.74418 38.5676 7.54823 37.196C8.15004 36.1724 9.11481 35.4126 10.2509 35.0676C13.1158 34.1487 16.0617 37.1487 16.1901 37.277L15.2172 38.223C15.2172 38.223 12.7239 35.696 10.6226 36.3649C10.4536 36.4122 7.24418 37.3446 8.50769 42.1014V42.1757C8.54148 42.3919 9.43337 47.5405 15.6631 47.2905L15.7172 48.6419L15.1969 48.6487Z" fill="#0072FF"/>
-                                            <path d="M38.7494 35.8108C38.6615 35.473 36.621 27.4595 37.1683 20.5V20.4189C37.2829 19.7471 37.2637 19.0592 37.1118 18.3948C36.96 17.7304 36.6783 17.1026 36.2831 16.5473C35.3913 15.4865 33.8642 14.9324 31.7561 14.9324H18.2426C16.121 14.9324 14.594 15.4865 13.6953 16.5743C13.3048 17.1316 13.028 17.7603 12.8808 18.4247C12.7335 19.089 12.7187 19.7759 12.8372 20.4459V20.527C13.3845 27.4865 11.344 35.5 11.2561 35.8378L9.94531 35.5C9.94531 35.4189 12.0061 27.3919 11.4926 20.6351C11.345 19.7756 11.3725 18.895 11.5733 18.0463C11.7742 17.1976 12.1443 16.3982 12.6615 15.6959C13.8304 14.277 15.7156 13.554 18.2629 13.554H31.7561C34.3034 13.554 36.1886 14.277 37.3575 15.6959C37.8759 16.4026 38.2456 17.207 38.4442 18.0606C38.6428 18.9142 38.6662 19.7993 38.5129 20.6622C37.9994 27.4189 40.0332 35.4189 40.0602 35.527L38.7494 35.8108Z" fill="#0072FF"/>
-                                            <path d="M32.479 38.4257H17.5195V14.2567H18.8709V37.0743H31.1276V14.2567H32.479V38.4257Z" fill="#0072FF"/>
-                                            <path d="M18.1953 23.5946H31.8034V24.946H18.1953V23.5946Z" fill="#0072FF"/>
-                                            <path d="M28.8301 14.9324H21.168V10.7027H28.8301V14.9324ZM22.5193 13.5811H27.4788V12.054H22.5193V13.5811Z" fill="#0072FF"/>
-                                            <path d="M30.1741 12.0541H19.8228C19.4802 12.0542 19.1414 11.9821 18.8285 11.8425C18.5156 11.703 18.2356 11.4991 18.0067 11.2441C17.7779 10.9891 17.6053 10.6888 17.5003 10.3627C17.3952 10.0365 17.3601 9.69196 17.3971 9.35135L17.9782 3.53379C18.0402 2.93292 18.3237 2.37665 18.7733 1.97324C19.2229 1.56983 19.8065 1.34815 20.4106 1.35135H29.5863C30.1935 1.34864 30.7798 1.57314 31.2299 1.98074C31.68 2.38833 31.9614 2.94954 32.0187 3.55406L32.5998 9.36487C32.6368 9.70547 32.6017 10.0501 32.4966 10.3762C32.3916 10.7023 32.219 11.0026 31.9902 11.2576C31.7613 11.5126 31.4813 11.7165 31.1684 11.856C30.8555 11.9956 30.5167 12.0677 30.1741 12.0676V12.0541ZM20.4106 2.7027C20.1399 2.70136 19.8784 2.80102 19.6772 2.98219C19.476 3.16337 19.3497 3.41305 19.3228 3.68243L18.7417 9.5C18.7245 9.65189 18.7396 9.8057 18.7862 9.95129C18.8328 10.0969 18.9098 10.2309 19.012 10.3446C19.1144 10.4579 19.2395 10.5483 19.3792 10.61C19.5189 10.6717 19.6701 10.7033 19.8228 10.7027H30.1741C30.3268 10.7033 30.478 10.6717 30.6177 10.61C30.7573 10.5483 30.8825 10.4579 30.9849 10.3446C31.0871 10.2309 31.1641 10.0969 31.2106 9.95129C31.2572 9.8057 31.2724 9.65189 31.2552 9.5L30.6741 3.68919C30.6488 3.41859 30.5231 3.16726 30.3218 2.98469C30.1204 2.80212 29.8581 2.70152 29.5863 2.7027H20.4106Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Seat</p>
-                                            <h3 class="text-dark text-h6 fw-medium">4</h3>
-                                        </div>
-                                    </div>
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M44.0477 0C40.7667 0 38.0953 2.67143 38.0953 5.95234C38.0953 8.82612 40.143 11.2309 42.8573 11.7833V23.8095H26.1905V11.7834C28.9048 11.231 30.9525 8.82623 30.9525 5.95246C30.9523 2.67143 28.2809 0 25 0C21.7191 0 19.0477 2.67143 19.0477 5.95234C19.0477 8.82612 21.0953 11.2309 23.8096 11.7833V23.8095H7.14286V11.7834C9.85714 11.231 11.9048 8.82623 11.9048 5.95246C11.9048 2.67143 9.23337 0 5.95234 0C2.67132 0 0 2.67143 0 5.95234C0 8.82612 2.04766 11.2309 4.76194 11.7833V38.2166C2.04766 38.7691 0 41.1738 0 44.0477C0 47.3286 2.67143 50 5.95234 50C9.23326 50 11.9047 47.3286 11.9047 44.0477C11.9047 41.1739 9.85703 38.7691 7.14275 38.2167V26.1905H23.8094V38.2167C21.0951 38.7691 19.0474 41.1739 19.0474 44.0477C19.0477 47.3286 21.7191 50 25 50C28.2809 50 30.9523 47.3286 30.9523 44.0477C30.9523 41.1739 28.9047 38.7691 26.1904 38.2167V26.1905H44.0475C44.7047 26.1905 45.2381 25.6571 45.2381 25V11.7834C47.9523 11.2309 50 8.82623 50 5.95234C50 2.67143 47.3286 0 44.0477 0ZM9.52377 44.0477C9.52377 46.0167 7.92143 47.6191 5.95234 47.6191C3.98326 47.6191 2.38092 46.0167 2.38092 44.0477C2.38092 42.0786 3.98326 40.4762 5.95234 40.4762C7.92143 40.4762 9.52377 42.0786 9.52377 44.0477ZM5.95234 9.52377C3.98326 9.52377 2.38092 7.92143 2.38092 5.95234C2.38092 3.98326 3.98326 2.38092 5.95234 2.38092C7.92143 2.38092 9.52377 3.98326 9.52377 5.95234C9.52377 7.92143 7.92143 9.52377 5.95234 9.52377ZM28.5714 44.0477C28.5714 46.0167 26.9691 47.6191 25 47.6191C23.0309 47.6191 21.4286 46.0167 21.4286 44.0477C21.4286 42.0786 23.0309 40.4762 25 40.4762C26.9691 40.4762 28.5714 42.0786 28.5714 44.0477ZM25 9.52377C23.0309 9.52377 21.4286 7.92143 21.4286 5.95234C21.4286 3.98326 23.0309 2.38092 25 2.38092C26.9691 2.38092 28.5714 3.98326 28.5714 5.95234C28.5714 7.92143 26.9691 9.52377 25 9.52377ZM44.0477 9.52377C42.0786 9.52377 40.4762 7.92143 40.4762 5.95234C40.4762 3.98326 42.0786 2.38092 44.0477 2.38092C46.0167 2.38092 47.6191 3.98326 47.6191 5.95234C47.6191 7.92143 46.0166 9.52377 44.0477 9.52377Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Gearbox</p>
-                                            <h3 class="text-dark text-h6 fw-medium">Manual</h3>
-                                        </div>
-                                    </div>
-                                    <!-- Flex Fill -->
-                                    <div class="list-item flex-fill gap-2">
-                                        <svg class="img-fluid" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M44.707 9.87041H40.1624V3.68242C40.1624 2.13652 38.9048 0.878906 37.359 0.878906H33.0436C31.4977 0.878906 30.24 2.13652 30.24 3.68242V9.87051H25.6954C24.1496 9.87051 22.892 11.1281 22.892 12.6739V18.3503H19.7588V12.1622C19.7588 10.6163 18.5012 9.35869 16.9554 9.35869H12.6399C11.094 9.35869 9.83643 10.6163 9.83643 12.1622V18.3503H5.2917C3.7459 18.3503 2.48828 19.6079 2.48828 21.1538V42.7402C2.48828 44.286 3.7459 45.5437 5.2917 45.5437H5.65654C5.48955 45.8765 5.39482 46.2517 5.39482 46.6487C5.39482 48.012 6.50381 49.1211 7.86709 49.1211C9.23037 49.1211 10.3395 48.012 10.3395 46.6487C10.3395 46.2517 10.2448 45.8765 10.0777 45.5437H19.5172C19.3502 45.8765 19.2555 46.2517 19.2555 46.6487C19.2555 48.012 20.3645 49.1211 21.7277 49.1211C23.091 49.1211 24.2 48.012 24.2 46.6487C24.2 46.2517 24.1054 45.8765 23.9383 45.5437H24.3031C24.5435 45.5437 24.7769 45.5132 24.9996 45.4561C25.2262 45.5143 25.4592 45.5437 25.6951 45.5437H26.06C25.893 45.8765 25.7982 46.2517 25.7982 46.6487C25.7982 48.012 26.9072 49.1211 28.2705 49.1211C29.6338 49.1211 30.7429 48.012 30.7429 46.6487C30.7429 46.2517 30.6482 45.8765 30.4812 45.5437H39.9206C39.7536 45.8765 39.6589 46.2517 39.6589 46.6487C39.6589 48.012 40.7679 49.1211 42.1312 49.1211C43.4944 49.1211 44.6034 48.012 44.6034 46.6487C44.6034 46.2517 44.5088 45.8765 44.3417 45.5437H44.7065C46.2524 45.5437 47.5101 44.286 47.5101 42.7402V12.6738C47.5105 11.128 46.2529 9.87041 44.707 9.87041ZM31.6072 3.68242C31.6072 2.89043 32.2516 2.24609 33.0436 2.24609H37.359C38.1509 2.24609 38.7952 2.89043 38.7952 3.68242V9.87051H31.6072V3.68242ZM11.2035 12.1622C11.2035 11.3702 11.8479 10.7259 12.6398 10.7259H16.9553C17.7472 10.7259 18.3915 11.3702 18.3915 12.1622V18.3503H11.2035V12.1622ZM8.97236 46.6487C8.97236 47.2581 8.47656 47.7539 7.86719 47.7539C7.25781 47.7539 6.76211 47.2581 6.76211 46.6487C6.76211 46.0394 7.25781 45.5437 7.86719 45.5437C8.47656 45.5437 8.97236 46.0393 8.97236 46.6487ZM22.833 46.6487C22.833 47.2581 22.3373 47.7539 21.7279 47.7539C21.1186 47.7539 20.6229 47.2581 20.6229 46.6487C20.6229 46.0394 21.1186 45.5437 21.7279 45.5437C22.3373 45.5437 22.833 46.0393 22.833 46.6487ZM5.2917 44.1764C4.4998 44.1764 3.85547 43.532 3.85547 42.7401V21.1537C3.85547 20.3617 4.4998 19.7174 5.2917 19.7174H24.3034C25.0954 19.7174 25.7397 20.3617 25.7397 21.1537V42.7401C25.7397 43.532 25.0954 44.1764 24.3034 44.1764H5.2917ZM29.3761 46.6487C29.3761 47.2581 28.8803 47.7539 28.2709 47.7539C27.6615 47.7539 27.1658 47.2581 27.1658 46.6487C27.1658 46.0394 27.6615 45.5437 28.2709 45.5437C28.8803 45.5437 29.3761 46.0393 29.3761 46.6487ZM43.2367 46.6487C43.2367 47.2581 42.741 47.7539 42.1316 47.7539C41.5223 47.7539 41.0266 47.2581 41.0266 46.6487C41.0266 46.0394 41.5223 45.5437 42.1316 45.5437C42.741 45.5437 43.2367 46.0393 43.2367 46.6487ZM46.1434 42.7401C46.1434 43.532 45.499 44.1764 44.707 44.1764H26.7099C26.9617 43.7561 27.1068 43.2647 27.1068 42.7401V21.1537C27.1068 19.6078 25.8492 18.3502 24.3033 18.3502H24.2591V12.6738C24.2591 11.8819 24.9034 11.2376 25.6953 11.2376H44.707C45.499 11.2376 46.1434 11.8819 46.1434 12.6738V42.7401ZM41.6976 15.7549V39.6591C41.6976 40.0366 41.3915 40.3427 41.014 40.3427C40.6364 40.3427 40.3304 40.0366 40.3304 39.6591V15.7549C40.3304 15.3773 40.6364 15.0713 41.014 15.0713C41.3915 15.0713 41.6976 15.3773 41.6976 15.7549ZM35.8848 15.7549V39.6591C35.8848 40.0366 35.5787 40.3427 35.2012 40.3427C34.8236 40.3427 34.5176 40.0366 34.5176 39.6591V15.7549C34.5176 15.3773 34.8236 15.0713 35.2012 15.0713C35.5787 15.0713 35.8848 15.3773 35.8848 15.7549ZM30.072 15.7549V39.6591C30.072 40.0366 29.7659 40.3427 29.3884 40.3427C29.0108 40.3427 28.7048 40.0366 28.7048 39.6591V15.7549C28.7048 15.3773 29.0108 15.0713 29.3884 15.0713C29.7659 15.0713 30.072 15.3773 30.072 15.7549ZM21.2939 24.2348V39.6592C21.2939 40.0367 20.9879 40.3428 20.6104 40.3428C20.2328 40.3428 19.9268 40.0367 19.9268 39.6592V24.2348C19.9268 23.8572 20.2328 23.5512 20.6104 23.5512C20.9879 23.5512 21.2939 23.8571 21.2939 24.2348ZM9.66826 24.2348V39.6592C9.66826 40.0367 9.36221 40.3428 8.98467 40.3428C8.60713 40.3428 8.30107 40.0367 8.30107 39.6592V24.2348C8.30107 23.8572 8.60713 23.5512 8.98467 23.5512C9.36221 23.5512 9.66826 23.8571 9.66826 24.2348ZM15.4812 24.2348V39.6592C15.4812 40.0367 15.1751 40.3428 14.7976 40.3428C14.42 40.3428 14.114 40.0367 14.114 39.6592V24.2348C14.114 23.8572 14.42 23.5512 14.7976 23.5512C15.1751 23.5512 15.4812 23.8571 15.4812 24.2348Z" fill="#0072FF"/>
-                                        </svg>
-                                        <div>
-                                            <p class="fw-normal text-secondary text-b6-regular mb-0">Luggage</p>
-                                            <h3 class="text-dark text-h6 fw-medium">Luggage</h3>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="item-content text-b5-medium">
+                        <p>Been to Autofusion for a couple of jobs so far. Both times they were quick and efficient. The staff are friendly and informative, which helps if your hopeless with cars like I am.</p>
+                    </div>
+                        <div class="item-review">
+                            <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="oy-testimonial-item marquee-item">
+                        <div class="item-author">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client2.png') }}" alt="">
+                            <div class="item-author__text">
+                                <h6 class="text-b3-semibold">Andrewemslie</h6>
+                                <p class="text-b5-regular">1 month ago</p>
                             </div>
+                        </div>
+                    <div class="item-content text-b5-medium">
+                        <p>"Wouldn't go anywhere else to get my car fixed. Great staff and service.great work kamil"</p>
+                    </div>
+                        <div class="item-review">
+                            <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="oy-testimonial-item marquee-item">
+                        <div class="item-author">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client3.png') }}" alt="">
+                            <div class="item-author__text">
+                                <h6 class="text-b3-semibold">Michael Moran</h6>
+                                <p class="text-b5-regular">3 Months ago</p>
+                            </div>
+                        </div>
+                    <div class="item-content text-b5-medium">
+                        <p>"Booked my car in for it's service, all went well and the staff were very helpful. Would have no problem recommending this garage."</p>
+                    </div>
+                        <div class="item-review">
+                            <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="oy-testimonial-item marquee-item">
+                        <div class="item-author">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client4.png') }}" alt="">
+                            <div class="item-author__text">
+                                <h6 class="text-b3-semibold">Eileen Pillar</h6>
+                                <p class="text-b5-regular">6 months ago</p>
+                            </div>
+                        </div>
+                    <div class="item-content text-b5-medium">
+                        <p>"Great customer service, polite, helpful and respectful. Great price to replace my tyre, would highly recommend them</p>
+                    </div>
+                        <div class="item-review">
+                            <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="oy-testimonial-item marquee-item">
+                        <div class="item-author">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client7.png') }}" alt="">
+                            <div class="item-author__text">
+                                <h6 class="text-b3-semibold">Char and ems</h6>
+                                <p class="text-b5-regular">18 days ago</p>
+                            </div>
+                        </div>
+                        <div class="item-content text-b5-medium">
+                        <p>Been to Autofusion for a couple of jobs so far. Both times they were quick and efficient. The staff are friendly and informative, which helps if your hopeless with cars like I am.</p>
+                    </div>
+                        <div class="item-review">
+                            <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="{{ asset('assets/img/home/google.png') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="oy-testimonial-item marquee-item">
+                        <div class="item-author">
+                            <img class="item-author__thumb" src="{{ asset('assets/img/home/r_client6.png') }}" alt="">
+                            <div class="item-author__text">
+                                <h6 class="text-b3-semibold">Char and ems</h6>
+                                <p class="text-b5-regular">18 days ago</p>
+                            </div>
+                        </div>
+                        <div class="item-content text-b5-medium">
+                        <p>Been to Autofusion for a couple of jobs so far. Both times they were quick and efficient. The staff are friendly and informative, which helps if your hopeless with cars like I am.</p>
+                    </div>
+                        <div class="item-review">
+                            <div class="review_ratting" data-rating="4.5"></div>
+                        <img class="review_ratting__logo" src="../assets/img/home/google.png" alt="">
                         </div>
                     </div>
                 </div>
-            </oy-swiper>
-            <div class="mt-5 d-lg-none">
-                <div class="pagination-default" id="oy-slider-journey--pagination"></div>
             </div>
         </div>
-    <!-- /Section: Header TOP BAR (Mobile Only) -->
-     </section>
+    </section>
 
-    <script src="{{asset('assets-v2/js/components/marquee-slider.js')}}" defer></script>    
-    <script src="{{asset('assets-v2/js/components/oy-swiper.js')}}" defer></script>
+    <script src="{{ asset('assets-v2/js/components/marquee-slider.js') }}" defer></script> 
+    <script src="{{ asset('assets-v2/js/components/oy-swiper.js') }}" defer></script>
 
 
 @endsection
