@@ -233,7 +233,7 @@
                         @foreach ($links as $link)
                             @if (sizeof($link->dropdown))
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" 
+                                    <a class="nav-link dropdown-toggle text-capitalize" href="#" 
                                        role="button" 
                                        data-bs-toggle="dropdown" 
                                        aria-expanded="false"
@@ -243,7 +243,7 @@
                                     <ul class="dropdown-menu">
                                         @foreach ($link->dropdown as $dropdown)
                                             <li>
-                                                <a class="dropdown-item" href="{{ $dropdown->route }}">
+                                                <a class="dropdown-item" href="text-capitalize {{ $dropdown->route }}">
                                                     {{ $dropdown->name }}
                                                 </a>
                                             </li>
@@ -252,7 +252,7 @@
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link {{ $link->route == Request::url() ? 'active' : '' }}" 
+                                    <a class="nav-link text-capitalize {{ $link->route == Request::url() ? 'active' : '' }}" 
                                        href="{{ $link->route }}"
                                        aria-current="{{ $link->route == Request::url() ? 'page' : 'false' }}">
                                         {{ $link->name }}

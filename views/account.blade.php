@@ -1,4 +1,4 @@
-@extends('layouts.account')
+@extends('layouts.account-v2')
 @section('head-info')
     <title>Manage Account - {{ config('app.name') }}</title>
     <meta name="description" content="From your account dashboard you can update your details, manage bookings, upload ID documents & more." />
