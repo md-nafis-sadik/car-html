@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"  class="scroll-smooth">
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-S9B4TPQNTH"></script>
@@ -43,25 +42,59 @@
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="preload" href="{{ asset('assets-v2/css/style.css') }}" as="style">
+    <link rel="preload" href="{{ asset('assets-v2/js/app.js') }}" as="script">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Stylesheet -->
+    <link href="{{ asset('assets-v2/css/style.css') }}" rel="stylesheet">
     @yield('head-info')
-    @include('utils.app-styles')
-    @stack('css') 
 </head>
+
+@props([
+    'footerMarginTop' => true,
+])
 
 <body>
 
-    @include('components.navbar')
 
-    <main class="relative min-h-dvh bg-no-repeat bg-cover bg-center bg-[url('/public/assets/images/auth-background.png')]">
-        <div class="px-4 py-7 relative top-[100px] sm:top-[190px]">
-            @yield('main')
+@if(nova_get_setting('promotion_header_enabled'))
+    <div id="promo-bar" class="bg-primary text-white">
+        <!-- Match the same container approach as the nav -->
+        <div class="w-full px-4 py-0 mx-auto xl:px-10 2xl:px-16">
+            <div class="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
+                <!-- Promo Header Text -->
+                <p class="mb-0 text-sm font-medium text-center sm:text-left">
+                    {{ nova_get_setting('promotion_header_text') }}
+                </p>
+                <!-- Terms & Conditions -->
+                <div class="bg-black rounded px-3 py-0.5">
+                    <span class="text-white text-sm">Terms &amp; conditions apply</span>
+                </div>
+            </div>
         </div>
+    </div>
+@endif
+    @include('components.navbar-v2')
+
+
+    <main>
+        @yield('main')
     </main>
 
-    @include('components.footer', ['marginTop' => false])
+    @include('components.footer-v2', [
+        'marginTop' => $footerMarginTop
+    ])
 
-    @include('utils.app-scripts')
+    <script src="{{ asset('assets-v2/js/app.js') }}" defer></script>
+    <!-- Main Application Script (deferred) -->
+    <script src="{{ asset('assets-v2/js/main.js') }}" defer></script>
+
+    @include('utils.app-scripts-v2')
     @stack('js')
+
+    
+
 </body>
 
 </html>

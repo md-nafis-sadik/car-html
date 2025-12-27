@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.auth-v2')
 @section('head-info')
     <title>Register - {{ config('app.name') }} Glasgow</title>
     <meta name="description" content="Register on the {{ config('app.name') }} website." />
