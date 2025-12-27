@@ -4,7 +4,7 @@
 ])
 
 {{--xl:gap-[200px]--}}
-<div class="flex flex-wrap justify-between w-full gap-10  p-5 md:px-8 bg-dark md:py-9 rounded-[14px]">
+<!-- <div class="flex flex-wrap justify-between w-full gap-10  p-5 md:px-8 bg-dark md:py-9 rounded-[14px]">
     @if($title)
     <h5 class="text-white text-[31px] font-bold">
         {!! $title !!}
@@ -19,5 +19,18 @@
         @if ($slot != '')
             {{ $slot }}
         @endif
+    </div>
+</div> -->
+<div class="card p-4 p-lg-5 rounded-5">
+    @if($title)
+        <h2 class="text-h5 text-dark mb-3">{!! $title !!}</h2>
+    @endif
+    <p class="text-secondary text-b4-regular">{{ $caption }}</p>
+
+    <div class="mt-4">
+        @if ($slot != '')
+            {{ $slot }}
+        @endif
+    
     </div>
 </div>
