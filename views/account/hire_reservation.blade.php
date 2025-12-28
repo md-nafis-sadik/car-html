@@ -1,4 +1,4 @@
-@extends('layouts.account')
+@extends('layouts.account-v2')
 @section('head-info')
     <title>{{ $reservation->reference }} - {{ config('app.name') }}</title>
     <meta name="description" content="Manage your booking {{ $reservation->reference }}." />
@@ -15,7 +15,7 @@
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 @endsection
 @section('main')
-    @php
+    <!-- @php
         $breadcrumbItems = [
             ['title' => 'Account', 'url' => route('account')],
             ['title' => "$reservation->reference ($pageTagline)" ],
@@ -36,306 +36,150 @@
     @include('components.breadcrumb', [
        'items' => $breadcrumbItems,
        'actions' => $breadcrumbActions
-    ])
+    ]) -->
+
+
+    <div class="d-flex mb-5 align-items-center justify-content-between gap-10">
+        <h3 class="text-b1-semibold d-flex align-items-center gap-3 text-light">
+            <span class="oy-dashboard__toggler">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.75 1.25V18.25M0.75 7.15C0.75 4.91 0.75 3.79 1.186 2.934C1.56949 2.18139 2.18139 1.56949 2.934 1.186C3.79 0.75 4.91 0.75 7.15 0.75H12.35C14.59 0.75 15.71 0.75 16.566 1.186C17.3186 1.56949 17.9305 2.18139 18.314 2.934C18.75 3.79 18.75 4.91 18.75 7.15V12.35C18.75 14.59 18.75 15.71 18.314 16.566C17.9305 17.3186 17.3186 17.9305 16.566 18.314C15.71 18.75 14.59 18.75 12.35 18.75H7.15C4.91 18.75 3.79 18.75 2.934 18.314C2.18139 17.9305 1.56949 17.3186 1.186 16.566C0.75 15.71 0.75 14.59 0.75 12.35V7.15Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            {{ $reservation->reference }} ({{ $pageTagline }})
+        </h3>
+    </div>
 
     @foreach (['danger' => 'red', 'warning' => 'orange', 'success' => 'primary', 'info' => 'blue'] as $type => $color)
         @if(Session::has('alert-' . $type))
-            <div class="sl:px-1 mt-4">
-                <div class="bg-white border-{{ $color }}-500 text-{{ $color }}-900 border-l-4 p-4 rounded">
-                    <p class="font-bold mb-0">{!! Session::get('alert-' . $type) !!}</p>
+            <div class="px-3 mt-4">
+                <div class="card border-{{ $color }} border-start border-4">
+                    <div class="card-body bg-{{ $color }}-subtle text-{{ $color }}-emphasis">
+                        <p class="card-text mb-0 fw-bold">{!! Session::get('alert-' . $type) !!}</p>
+                    </div>
                 </div>
             </div>
         @endif
     @endforeach
+    
+    <div class="card p-4 p-lg-5 rounded-5" style="--bs-card-bg: #F3F5F9;">
+        <div class="d-flex justify-content-center justify-content-lg-between align-items-center gap-3 mb-4 mb-lg-5">
+            <h2 class="text-h5 text-dark mb-3">The Vehicle</h2>
+        </div>
 
-
-        @component('components.empty-state')
-            <h5 class="text-white  text-md font-bold">
-
-            </h5>
-{{--            @slot('title', 'Manage Subscriptions')--}}
-
-
-            <div class="flex flex-wrap gap-x-6 gap-y-4">
-
-
-                <!-- The Vehicle -->
-                <div>
-                    <h1 class="text-white text-lg font-bold pb-4">
-                      The Vehicle
-                    </h1>
-
-                    <div class="flex flex-col md:flex-row gap-4">
-                        <div class="flex-shrink-0">
-                            <img src="{{ $reservation->car->main_image?->getUrl('thumb') }}" class="rounded" />
-                        </div>
-
-
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            @php
-                                $features = [
-                                    (object) [
-                                        'icon' => asset('assets/svgs/feature-capacity.svg'),
-                                        'name' => 'Capacity',
-                                        'caption' => $reservation->hire_car->passengers . ' people',
-                                    ],
-                                    (object) [
-                                        'icon' => asset('assets/svgs/feature-age_limit.svg'),
-                                        'name' => 'Age Limit',
-                                        'caption' => $reservation->hire_car->age . ' + Hire',
-                                    ],
-                                    (object) [
-                                        'icon' => asset('assets/svgs/feature-transmission.svg'),
-                                        'name' => 'Transmission',
-                                        'caption' => ucfirst($reservation->hire_car->transmission),
-                                    ],
-                                    (object) [
-                                        'icon' => asset('assets/svgs/features-doors_count.svg'),
-                                        'name' => 'Doors count',
-                                        'caption' => $reservation->hire_car->doors,
-                                    ],
-                                ];
-                            @endphp
-                            @foreach ($features as $feature)
-                                <div class="bg-[#F3F4F6] p-5 flex items-center gap-3 rounded-[13px]" data-aos="fade-up"
-                                     data-aos-delay="{{ ($loop->index + 1) * 150 }}">
-                                    <img src="{{ $feature->icon }}" alt="">
-                                    <div class="flex flex-col gap-1">
-                                        <p class="text-xs font-medium text-dark text-opacity-60">
-                                            {{ $feature->name }}
-                                        </p>
-                                        <p class="text-base font-medium tetx-dark">
-                                            {{ $feature->caption }}
-                                        </p>
-                                    </div>
+        <div class="row g-4 mb-5">
+            <div class="col-12 col-md-4">
+                <div class="card shadow-none">
+                    <img src="{{ $reservation->car->main_image?->getUrl('thumb') }}" class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="row g-3 g-4">
+                    @php
+                        $features = [
+                            (object) [
+                                'icon' => asset('assets/svgs/feature-capacity.svg'),
+                                'name' => 'Capacity',
+                                'caption' => $reservation->hire_car->passengers . ' people',
+                            ],
+                            (object) [
+                                'icon' => asset('assets/svgs/feature-age_limit.svg'),
+                                'name' => 'Age Limit',
+                                'caption' => $reservation->hire_car->age . ' + Hire',
+                            ],
+                            (object) [
+                                'icon' => asset('assets/svgs/feature-transmission.svg'),
+                                'name' => 'Transmission',
+                                'caption' => ucfirst($reservation->hire_car->transmission),
+                            ],
+                            (object) [
+                                'icon' => asset('assets/svgs/features-doors_count.svg'),
+                                'name' => 'Doors count',
+                                'caption' => $reservation->hire_car->doors,
+                            ],
+                        ];
+                    @endphp
+                    <!-- Item -->
+                    @foreach ($features as $feature)
+                        <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="{{ ($loop->index + 1) * 150 }}">
+                            <div class="card gap-4 rounded-4 shadow-none p-4 flex-row align-items-center">
+                                <img src="{{ $feature->icon }}" alt="">
+                                <div>
+                                    <p class="text-b6-regular text-secondary text-opacity-75 mb-0">{{ $feature->name }}</p>
+                                    <h5 class="text-b3-semibold text-dark">{{ $feature->caption }}</h5>
                                 </div>
-                            @endforeach
-
-                            @php
-                                $exampleFeatureList = ['USB Input', 'Radio', 'Parking Sensors'];
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                
+                @php
+                    $exampleFeatureList = ['USB Input', 'Radio', 'Parking Sensors'];
 //                                $exampleFeatureList = ['USB Input', 'Radio', 'Parking Sensors', 'Bluetooth', 'GPS', 'Air Conditioning'];
-                            @endphp
-                            <div class="grid gap-4 mt-4">
-                                @foreach ($exampleFeatureList as $list)
-                                    <li class="flex items-start gap-3">
-                                        <img src="{{ asset('assets/svgs/blue-check-square.svg') }}"  alt="">
-                                        <p class="font-medium text-white text-[13px] max-w-[105px]">{{ $list }}</p>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                </div>
-
+                @endphp
+                <ul class="list-unstyled mt-4 ml-0 p-0">
+                    @foreach ($exampleFeatureList as $list)
+                    <li>
+                        <input type="checkbox" name="" id="list-form--1" checked>
+                        <label for="list-form--1">{{ $list }}</label>
+                    </li>
+                    @endforeach
+                </ul>
             </div>
-                <!-- End The Vehicle -->
+        </div>
 
-{{--            <div class="container mx-auto mt-10 p-6 border border-gray-100 text-white">--}}
-{{--                <h2 class="text-2xl font-bold mb-4">The Booking</h2>--}}
-{{--                <table class="table-auto w-full">--}}
-{{--                    <thead>--}}
-{{--                    <tr>--}}
-{{--                        <th class="text-left text-lg font-medium pb-4">Item</th>--}}
-{{--                        <th class="text-right text-lg font-medium pb-4">Price</th>--}}
-{{--                    </tr>--}}
-{{--                    </thead>--}}
-{{--                    <tbody>--}}
-{{--                    <tr class="border-t border-gray-100">--}}
-{{--                        <td class="pt-4 pb-2">Vehicle:</td>--}}
-{{--                        <td class="pt-4 pb-2 text-right">{{ $reservation->car->name }}</td>--}}
-{{--                    </tr>--}}
-{{--                    <tr class="border-t border-gray-100">--}}
-{{--                        <td class="pt-2 pb-2">Pick Up & Drop Off Location:</td>--}}
-{{--                        <td class="pt-2 pb-2 text-right">{{ $reservation->car->location->name }} ({{ $reservation->car->location->address }})</td>--}}
-{{--                    </tr>--}}
-{{--                    <tr class="border-t border-gray-300">--}}
-{{--                        <td class="pt-2 pb-2">Pickup Date & Time:</td>--}}
-{{--                        <td class="pt-2 pb-2 text-right">{{ \Carbon\Carbon::parse($reservation->pickup_date)->format('d M Y (h A)') }}</td>--}}
-{{--                    </tr>--}}
-{{--                    <tr class="border-t border-gray-300">--}}
-{{--                        <td class="pt-2 pb-2">Return Date & Time:</td>--}}
-{{--                        <td class="pt-2 pb-2 text-right">{{ \Carbon\Carbon::parse($reservation->dropoff_date)->format('d M Y (h A)') }}</td>--}}
-{{--                    </tr>--}}
-{{--                    <tr class="border-t border-gray-300">--}}
-{{--                        <td class="pt-4 font-bold text-xl">Total</td>--}}
-{{--                        <td class="pt-4 text-right font-bold text-xl">£4,000.00</td>--}}
-{{--                    </tr>--}}
-{{--                    </tbody>--}}
-{{--                </table>--}}
-{{--            </div>--}}
+        <!-- The Booking -->
+        <div class="card p-4 p-lg-5 shadow-none rounded-4 mb-5">
+            <h2 class="text-h5 text-dark mb-3">The Booking</h2>
 
-
-            <!-- The Booking -->
-            <div class="container mx-auto mt-10 p-6 border border-gray-100 text-white">
-                <h2 class="text-2xl font-bold mb-4">The Booking</h2>
-                <table class="table-auto w-full">
-                    <thead>
+            <table class="w-100 table__flash">
+                <tbody>
                     <tr>
-                        <th class="text-left text-lg font-medium pb-4">Item</th>
-                        <th class="text-right text-lg font-medium pb-4">Price</th>
+                        <td class="text-start">Item</td>
+                        <td class="text-end">Price</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="border-t border-gray-300">
-                        <td class="pt-4 pb-2 font-bold">
-                            Vehicle:
-                        </td>
-                        <td class="pt-4 pb-2 text-right">
-                            {{ $reservation->car->name }}
-                        </td>
+                    <tr>
+                        <th class="text-start">Vehicle:</td>
+                        <td class="text-end">{{ $reservation->car->name }}</td>
                     </tr>
-                    <tr class="border-t border-gray-300">
-                        <td class="pt-2 pb-2 font-bold">
-                            Pick Up & Drop Off Location:
-                        </td>
-                        <td class="pt-2 pb-2 text-right">
-                            {{ $reservation->car->location->name }} ({{ $reservation->car->location->address }})
-                        </td>
+                    <tr>
+                        <th class="text-start">Pick Up & Drop Off Location:</td>
+                        <td class="text-end">{{ $reservation->car->location->name }} ({{ $reservation->car->location->address }})</td>
                     </tr>
-                    <tr class="border-t border-gray-300">
-                        <td class="pt-2 pb-2 font-bold">
-                            Pickup Date & Time:
-                        </td>
-                        <td class="pt-2 pb-2 text-right">
-                            {{ \Carbon\Carbon::parse($reservation->pickup_date)->format('d M Y (h A)') }}
-                        </td>
+                    <tr>
+                        <th class="text-start">Pickup Date & Time:</td>
+                        <td class="text-end">{{ \Carbon\Carbon::parse($reservation->pickup_date)->format('d M Y (h A)') }}</td>
                     </tr>
-                    <tr class="border-t border-gray-300">
-                        <td class="pt-2 pb-2 font-bold">
-                            Return Date & Time:
-                        </td>
-                        <td class="pt-2 pb-2 text-right">
-                            {{ \Carbon\Carbon::parse($reservation->dropoff_date)->format('d M Y (h A)') }}
-                        </td>
+                    <tr>
+                        <th class="text-start">Return Date & Time:</td>
+                        <td class="text-end">{{ \Carbon\Carbon::parse($reservation->dropoff_date)->format('d M Y (h A)') }}</td>
                     </tr>
-
-                    <!-- The following sections will appear conditionally based on your reservation data -->
-                    @if($reservation->billing_savings > 0)
-                        <tr class="border-t border-gray-300">
-                            <td class="pt-2 pb-2 font-bold">
-                                Auto Savings (Multi Day Hire)
-                            </td>
-                            <td class="pt-2 pb-2 text-right">
-                                £-{{ number_format($reservation->billing_savings, 2, '.', ',') }}
-                            </td>
-                        </tr>
-                    @endif
-
-                    @if($reservation->chauffeur_included)
-                        <tr class="border-t border-gray-300">
-                            <td class="pt-2 pb-2 font-bold">
-                                Chauffeur
-                            </td>
-                            <td class="pt-2 pb-2 text-right">
-                                £{{ number_format($reservation->chauffeur_price, 2, '.', ',') }}
-                            </td>
-                        </tr>
-                    @endif
-
-                    @if($reservation->billing_deposit > 1)
-                        <tr class="border-t border-gray-300">
-                            <td class="pt-2 pb-2 font-bold">
-                                Refundable Deposit
-                            </td>
-                            <td class="pt-2 pb-2 text-right">
-                                £{{ number_format($reservation->billing_deposit, 2) }}
-                            </td>
-                        </tr>
-                    @endif
-
-                    @if($reservation->billing_discount_code)
-                        <tr class="border-t border-gray-300">
-                            <td class="pt-2 pb-2 font-bold">
-                                Discount ({{ $reservation->billing_discount_code }} - £{{ $reservation->billing_discount }} OFF)
-                            </td>
-                            <td class="pt-2 pb-2 text-right">
-                                £-{{ number_format($reservation->billing_discount, 2, '.', ',') }}
-                            </td>
-                        </tr>
-                    @endif
-                    </tbody>
-                    <tfoot>
-                    <tr class="border-t border-gray-300">
-                        <th class="text-left font-bold pt-4 pb-2">Total</th>
-                        <td class="font-bold text-right pt-4 pb-2">
-      <span class="Price-amount amount">
-        £{{ number_format($reservation->billing_total, 2) }}
-      </span>
-                        </td>
+                    <tr>
+                        <th class="text-start">Auto Savings (Multi Day Hire)</td>
+                        <td class="text-end">£-{{ number_format($reservation->billing_savings, 2, '.', ',') }}</td>
                     </tr>
-                    </tfoot>
+                    <tr>
+                        <th class="text-start">Total</td>
+                        <td class="text-end fw-bold">£{{ number_format($reservation->billing_total, 2) }}</td>
+                    </tr>
+                </tbody>
+            </table>
 
-                </table>
-            </div>
-            <!-- End Booking -->
+        </div>
+<!-- End Booking -->
+ <!-- Location -->
+        <div>
+            <h2 class="text-h5 text-dark mb-3">The Location</h2>
+            <h6 class="text-b3-semibold text-dark mb-2">Full Address:</h6>
+            <p class="text-secondary text-opacity-75 mb-3">{{ $reservation->location->address }} ({{ $reservation->location->name }})</p>
 
-            <!-- Location -->
-            <div class="container mx-auto my-10 text-white">
-                <div class="mt-[-1.25rem]">
-                    <h1 class="text-white text-lg font-bold pb-4">
-                        The Vehicle
-                    </h1>
-                    <p class="font-bold pl-[0.5rem]">Full Address:</p>
-                    <p class="pl-[0.4rem] py-2">
-                        <a href="https://www.google.com/maps/place/Autofusion+Repairs/@55.8939481,-4.3958794,17z/data=!3m1!4b1!4m5!3m4!1s0x48884f358029aa23:0x50a1fedd2c0cddf!8m2!3d55.8939481!4d-4.3936907" class="text-lg font-medium text-white capitalize text-opacity-80 hover:text-opacity-100 w-max" target="_blank">{{ $reservation->location->address }} ({{ $reservation->location->name }})</a>
-                    </p>
-                    <div class="col-span-12">
-                        <div id="map">
-                            <div class="map-marker" data-title="{{ $reservation->car->location->name }}" data-lat="{{ $reservation->car->location->lat }}" data-lng="{{ $reservation->car->location->lng }}"></div>
-                        </div>
-                    </div>
+            <div class="col-span-12">
+                <div id="map">
+                    <div class="map-marker" data-title="{{ $reservation->car->location->name }}" data-lat="{{ $reservation->car->location->lat }}" data-lng="{{ $reservation->car->location->lng }}"></div>
                 </div>
             </div>
-
-            <!-- Location -->
-{{--                @foreach($subscriptions as $subscription)--}}
-{{--                    @php--}}
-{{--                        $status = '';--}}
-{{--                        switch ($subscription->status) {--}}
-{{--                            case 'active':--}}
-{{--                                $status = 'Active';--}}
-{{--                                break;--}}
-{{--                            case 'pending':--}}
-{{--                                $status = 'Pending';--}}
-{{--                                break;--}}
-{{--                            case 'expired':--}}
-{{--                                $status = 'Expired';--}}
-{{--                                break;--}}
-{{--                            case 'cancelled':--}}
-{{--                                $status = 'Cancelled';--}}
-{{--                                break;--}}
-{{--                        }--}}
-
-{{--                        if($subscription->product->frequency == "lifetime") {--}}
-{{--                            $routeLink = "";--}}
-{{--                        } else {--}}
-{{--                            $routeLink = "/account/subscriptions/$subscription->uuid";--}}
-{{--                        }--}}
-{{--                    @endphp--}}
-
-{{--                    <div class="w-full md:w-1/4 lg:w-1/4 xl:w-1/4">--}}
-{{--                        @include('components.reservation-card', [--}}
-{{--                            'name' => $subscription->product->name,--}}
-{{--                            'type' =>  $status,--}}
-{{--                            'price' => number_format($subscription->price, 2, '.', ',') ,--}}
-{{--                            'index' => $loop->index,--}}
-{{--                            'details' => [--}}
-{{--                                (object)[--}}
-{{--                                    'name' => 'State Date:',--}}
-{{--                                    'value' => \Carbon\Carbon::parse($subscription->start_date)->format('d M Y'),--}}
-{{--                                ],--}}
-{{--                                (object)[--}}
-{{--                                    'name' => 'Renewal:',--}}
-{{--                                    'value' => ($subscription->product->frequency == "lifetime") ? 'Lifetime' : \Carbon\Carbon::parse($subscription->renewal_date)->format('d M Y'),--}}
-{{--                                ]--}}
-{{--                            ],--}}
-{{--                            'routeName' => "View",--}}
-{{--                            'route' =>  $routeLink--}}
-{{--                        ])--}}
-{{--                    </div>--}}
-{{--                @endforeach--}}
-        @endcomponent
+        </div>
+    </div>
 @endsection
 @push('js')
 <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC0bg-_sqh37a5N5U2Z99oIz8xyP53PtGA'></script>
