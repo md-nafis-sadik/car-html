@@ -216,6 +216,9 @@
             };
         });
     </script>
+    <script src="{{ asset('assets-v2/js/components/marquee-slider.js') }}" defer></script> 
+    <script src="{{ asset('assets-v2/js/components/oy-swiper.js') }}" defer></script>
+
 @endpush
 
 @section('main')
@@ -1734,8 +1737,6 @@
         </div>
     </section>
 
-    <script src="{{ asset('assets-v2/js/components/marquee-slider.js') }}" defer></script> 
-    <script src="{{ asset('assets-v2/js/components/oy-swiper.js') }}" defer></script>
 
 
 @endsection
