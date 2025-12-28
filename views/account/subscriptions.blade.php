@@ -1,4 +1,4 @@
-@extends('layouts.account')
+@extends('layouts.account-v2')
 @section('head-info')
     <title>Subscriptions - {{ config('app.name') }}</title>
     <meta name="description" content="Manage subscriptions on your {{ config('app.name') }} account." />
@@ -15,31 +15,34 @@
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 @endsection
 @section('main')
-    @include('components.breadcrumb', [
-       'items' => [
-           ['title' => 'Account', 'url' => route('account')],
-           ['title' => 'Subscriptions']
-       ]
-   ])
+    <div class="d-flex mb-5 align-items-center justify-content-between gap-10">
+        <h3 class="text-b1-semibold d-flex align-items-center gap-3 text-light">
+            <span class="oy-dashboard__toggler">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.75 1.25V18.25M0.75 7.15C0.75 4.91 0.75 3.79 1.186 2.934C1.56949 2.18139 2.18139 1.56949 2.934 1.186C3.79 0.75 4.91 0.75 7.15 0.75H12.35C14.59 0.75 15.71 0.75 16.566 1.186C17.3186 1.56949 17.9305 2.18139 18.314 2.934C18.75 3.79 18.75 4.91 18.75 7.15V12.35C18.75 14.59 18.75 15.71 18.314 16.566C17.9305 17.3186 17.3186 17.9305 16.566 18.314C15.71 18.75 14.59 18.75 12.35 18.75H7.15C4.91 18.75 3.79 18.75 2.934 18.314C2.18139 17.9305 1.56949 17.3186 1.186 16.566C0.75 15.71 0.75 14.59 0.75 12.35V7.15Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            Profile
+        </h3>
+        <a href="#" class="btn text-b5-medium py-3 btn--gradient-primary">
+            <div class="btn__text">Subscriptions</div>
+        </a>
+    </div>
 
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
         @if(Session::has('alert-' . $msg))
-            <div class="sl:px-1 mt-4">
-                <div class="bg-{{ $msg }}-200 border-{{ $msg }}-500 text-{{ $msg }}-900 border-l-4 p-4 rounded">
-                    <p class="font-bold mb-0">{!! Session::get('alert-' . $msg) !!}</p>
+            <div class="px-3 mt-4">
+                <div class="card border-{{ $msg }} border-start border-4">
+                    <div class="card-body bg-{{ $msg }}-subtle text-{{ $msg }}-emphasis">
+                        <p class="card-text mb-0 fw-bold">{!! Session::get('alert-' . $msg) !!}</p>
+                    </div>
                 </div>
             </div>
         @endif
     @endforeach
 
         @if($subscriptions && count($subscriptions) > 0)
-
-            @component('components.empty-state')
-                @slot('title', 'Manage <br> Subscriptions')
-                {{--                    @slot('caption', 'Bookings here.')--}}
-
-
-                <div class="flex flex-wrap gap-x-6 gap-y-4">
+                <div class="card p-4 p-lg-5 rounded-5">
                     @foreach($subscriptions as $subscription)
                         @php
                             $status = '';
@@ -65,7 +68,7 @@
                             }
                         @endphp
 
-                        <div class="w-full md:w-1/4 lg:w-1/4 xl:w-1/4">
+                        <div class="row g-4">
                             @include('components.reservation-card', [
                                 'name' => $subscription->product->name,
                                 'type' =>  $status,
@@ -88,12 +91,9 @@
                     @endforeach
                 </div>
             @endcomponent
-
-
-
         @else
         @component('components.empty-state')
-            @slot('title', 'Manage <br> Subscriptions')
+            @slot('title', 'Manage Subscriptions')
             @slot('caption', 'You currently do not have any subscriptions.')
         @endcomponent
     @endif

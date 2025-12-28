@@ -152,8 +152,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/hire/cars/{slug}', ['uses' => 'HireBookingController@getCar'])->name('hire.cars.car');
     Route::post('/hire/cars/availability', ['as' => 'cars.availability', 'uses' => 'HireBookingController@checkAvailability']);
 
-    Route::get('/hire/checkout', ['as' => 'hire.checkout', 'uses' => 'HireBookingController@getCheckoutIndex'])->middleware('verified');
-    Route::post('/hire/checkout', ['as' => 'hire.checkout.post', 'uses' => 'HireBookingController@postCheckout'])->middleware('verified');
+    Route::get('/hire/checkout', ['as' => 'hire.checkout', 'uses' => 'HireBookingController@getCheckoutIndex']);
+    Route::post('/hire/checkout', ['as' => 'hire.checkout.post', 'uses' => 'HireBookingController@postCheckout']);
+    // Route::get('/hire/checkout', ['as' => 'hire.checkout', 'uses' => 'HireBookingController@getCheckoutIndex'])->middleware('verified');
+    // Route::post('/hire/checkout', ['as' => 'hire.checkout.post', 'uses' => 'HireBookingController@postCheckout'])->middleware('verified');
 
     // Location/Branch Pages
     Route::get('/locations', ['as' => 'locations.index', 'uses' => 'LocationController@index']);

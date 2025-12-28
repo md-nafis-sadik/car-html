@@ -9531,6 +9531,22 @@ textarea.form-control-lg {
   z-index: 3 !important;
 }
 
+.menu-icon {
+  width: 20px;
+  height: 20px;
+  transition: filter 0.2s ease-in-out;
+}
+
+/* Hover effect (similar to group-hover) */
+.menu-item:hover .menu-icon {
+  filter: invert(1) brightness(100);
+}
+
+/* Active state */
+.menu-item.active .menu-icon{
+  filter: invert(1) brightness(100);
+}
+
 @media (min-width: 576px) {
   .float-sm-start {
     float: left !important;

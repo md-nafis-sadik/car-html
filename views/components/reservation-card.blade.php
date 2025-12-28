@@ -1,4 +1,4 @@
-@props(['thumbnail', 'index', 'name', 'price', 'type', 'route' => '#', 'route_name' => $routeName, 'details' => []])
+<!-- @props(['thumbnail', 'index', 'name', 'price', 'type', 'route' => '#', 'route_name' => $routeName, 'details' => []])
 
 <div class="rounded-xl sm:rounded-[20px] bg-[#F3F4F6] flex flex-col gap-3 sm:gap-5 overflow-hidden" data-aos="fade-up" data-aos-delay="{{ 50 * ($index+1) }}">
     <div class="@if(isset($thumbnail)) sm:pt-5 @endif sm:px-5">
@@ -48,6 +48,42 @@
                 {{ $routeName }}
             </a>
             @endif
+        </div>
+    </div>
+</div> -->
+
+@props(['thumbnail', 'index', 'name', 'price', 'type', 'route' => '#', 'routeName' => 'View', 'details' => []])
+
+<div class="col-sm-6 col-md-4 col-xl-3">
+    <div class="card card__light p-4 rounded-4" data-aos="fade-up" data-aos-delay="{{ 50 * ($index+1) }}">
+        <div class="">
+            {{-- Badge for booking type and status --}}
+            <div class="badge mb-3 bg-white rounded-pill text-bg-light py-2 text-b6-medium">
+                {{ $type }}
+            </div>
+            
+            {{-- Booking Reference --}}
+            <h3 class="text-b5-medium mb-2 text-dark">{{ $name }}</h3>
+            
+            {{-- Details Section --}}
+            @if(isset($details) && is_array($details))
+                @foreach($details as $detail)
+                    <div class="text-b5-semibold text-dark @if(!$loop->last) mb-2 @endif">
+                        <span class="text-secondary text-opacity-50">{{ $detail->name }}</span> 
+                        {{ $detail->value }}
+                    </div>
+                @endforeach
+            @endif
+
+            {{-- Price and Action Button --}}
+            <div class="d-flex align-items-center justify-content-between mt-4">
+                <span class="text-b3-semibold text-dark">£{{ $price }}</span>
+                @if($route)
+                    <a href="{{ $route }}" class="btn text-b6-medium py-2 px-4 btn--gradient-primary">
+                        {{ $routeName }}
+                    </a>
+                @endif
+            </div>
         </div>
     </div>
 </div>
