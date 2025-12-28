@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-12 col-lg-auto">
                                 <div class="d-flex flex-wrap gap-4">
-                                    <a class="btn btn--gradient-primary" href="#">
+                                    <a class="btn btn--gradient-primary" href="{{ route('fleet') }}">
                                         <span class="btn__text">View Fleet</span>
                                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -51,13 +51,13 @@
                                     <h5 class="text-b3-semibold text-white mb-4">The Company</h5>
                                     <ul class="oy-footer__menu list-unstyled">
                                         <li><a href="{{ route('about') }}" class="oy-footer__menu-link">About Autofusion</a></li>
-                                        <li><a href="{{ route('testimonials') }}" class="oy-footer__menu-link">Francise Opportunity</a></li>
-                                        <li><a href="{{ route('contact') }}" class="oy-footer__menu-link">Careers</a></li>
+                                        <li><a href="{{ route('franchise') }}" class="oy-footer__menu-link">Francise Opportunity</a></li>
+                                        <li><a href="{{ route('careers') }}" class="oy-footer__menu-link">Careers</a></li>
                                     </ul>
                                     <h5 class="text-b3-semibold text-white mb-4 mt-4">Reservations</h5>
                                     <ul class="oy-footer__menu list-unstyled">
                                         <li><a href="{{ route('account') }}" class="oy-footer__menu-link">My Account</a></li>
-                                        <li><a href="{{ route('hire') }}" class="oy-footer__menu-link">Hiring Process</a></li>
+                                        <li><a href="{{ route('hiring-process') }}" class="oy-footer__menu-link">Hiring Process</a></li>
                                         <li><a href="https://autofusionrepairs.co.uk/book" class="oy-footer__menu-link">Book Now</a></li>
                                         <li><a href="{{ route('hire') }}" class="oy-footer__menu-link">Car Hire Locations</a></li>
                                     </ul>
@@ -469,7 +469,7 @@
                                         <li><a href="#">Cookie Policy</a></li>
                                         <li><a href="#">Privacy Policy</a></li>
                                         <li><a href="https://autofusioncars.co.uk/downloads/Autofusion-Limited-Hire-Car-Terms-And-Conditions.pdf">Terms & Conditions</a></li>
-                                        <li><a href="#">Complaints</a></li>
+                                        <li><a href="{{ route('complaints') }}">Complaints</a></li>
                                         <li><a href="#">Modern Slavery Act Statement</a></li>
                                     </ul>
                                     <p class="text-white text-opacity-75 text-center text-lg-start mb-0">Copyright ©

@@ -7,12 +7,12 @@
     
     $links = [
         (object)[
-            'name' => 'home',
+            'name' => 'Home',
             'route' => route('home'),
             'dropdown' => [],
         ],
         (object)[
-            'name' => 'about',
+            'name' => 'About',
             'route' => route('about'),
             'dropdown' => [],
         ],
@@ -118,12 +118,22 @@
             'dropdown' => [],
         ],
         (object)[
-            'name' => 'learn',
+            'name' => 'Hiring Process',
+            'route' => route('hiring-process'),
+            'dropdown' => [],
+        ],
+        (object)[
+            'name' => 'FAQs',
+            'route' => route('faqs'),
+            'dropdown' => [],
+        ],
+        (object)[
+            'name' => 'Learn',
             'route' => route('blog'),
             'dropdown' => [],
         ],
         (object)[
-            'name' => 'contact',
+            'name' => 'Contact',
             'route' => route('contact'),
             'dropdown' => [],
         ],
@@ -243,7 +253,7 @@
                                     <ul class="dropdown-menu">
                                         @foreach ($link->dropdown as $dropdown)
                                             <li>
-                                                <a class="dropdown-item" href="text-capitalize {{ $dropdown->route }}">
+                                                <a class="dropdown-item" href="{{ $dropdown->route }}">
                                                     {{ $dropdown->name }}
                                                 </a>
                                             </li>
