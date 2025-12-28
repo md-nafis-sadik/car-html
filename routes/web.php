@@ -325,10 +325,38 @@ Route::get('/tester', function () {
     //   return $responseData;
 });
 
+//Footer Links V2
+Route::get('/fleet', function () {
+    return view('fleet');
+})->name('fleet');
 
-Route::get('/v2/home', function () {
-    return view('v2.home');
-});
+Route::get('/hiring-process', function () {
+    return view('hiring-process');
+})->name('hiring-process');
+
+Route::get('/careers', function () {
+    return view('careers');
+})->name('careers');
+
+Route::get('/franchise', function () {
+    return view('franchise');
+})->name('franchise');
+
+Route::get('/faqs', function () {
+    return view('faqs');
+})->name('faqs');
+
+Route::get('/complaints', function () {
+    return view('complaints');
+})->name('complaints');
+
+
+
+// Route::get('/v2/home', function () {
+//     return view('v2.home');
+// });
+
+
 
 Route::get('/v2/about', function () {
     return view('v2.about');
