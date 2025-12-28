@@ -446,7 +446,7 @@
                     <div class="swiper-slide">
                         <div class="card--media card--standard">
                             <div class="card--media__thumb">
-                                <img src="../assets/img/brands/banner-aston-martin.png" alt="">
+                                <img src="{{ asset('assets/img/brands/banner-aston-martin.png') }}" alt="">
                             </div>
                             <div class="card-content">
                                 <div class="text-end">
@@ -459,7 +459,7 @@
                                 </div>
                                 <div class="card-information">
                                     <div class="avatar avatar-md">
-                                        <img src="../assets/img/brands/logo-aston-martin.png" alt="">
+                                        <img src="{{ asset('assets/img/brands/logo-aston-martin.png') }}" alt="">
                                     </div>
                                     <div>
                                         <h3 class="text-h4 fw-medium mb-0">Aston Martin</h3>
@@ -472,7 +472,7 @@
                     <div class="swiper-slide">
                         <div class="card--media card--standard">
                             <div class="card--media__thumb">
-                                <img src="../assets/img/brands/banner-audi.png" alt="">
+                                <img src="{{ asset('assets/img/brands/banner-audi.png') }}" alt="">
                             </div>
                             <div class="card-content">
                                 <div class="text-end">
@@ -485,7 +485,7 @@
                                 </div>
                                 <div class="card-information">
                                     <div class="avatar avatar-md">
-                                        <img src="../assets/img/brands/logo-audi.png" alt="">
+                                        <img src="{{ asset('assets/img/brands/logo-audi.png') }}" alt="">
                                     </div>
                                     <div>
                                         <h3 class="text-h4 fw-medium mb-0">Audi</h3>
@@ -498,7 +498,7 @@
                     <div class="swiper-slide">
                         <div class="card--media card--standard">
                             <div class="card--media__thumb">
-                                <img src="../assets/img/brands/banner-bmw.png" alt="">
+                                <img src="{{ asset('assets/img/brands/banner-bmw.png') }}" alt="">
                             </div>
                             <div class="card-content">
                                 <div class="text-end">
@@ -511,7 +511,7 @@
                                 </div>
                                 <div class="card-information">
                                     <div class="avatar avatar-md">
-                                        <img src="../assets/img/brands/logo-bmw.png" alt="">
+                                        <img src="{{ asset('assets/img/brands/logo-bmw.png') }}" alt="">
                                     </div>
                                     <div>
                                         <h3 class="text-h4 fw-medium mb-0">BMW</h3>
@@ -524,7 +524,7 @@
                     <div class="swiper-slide">
                         <div class="card--media card--standard">
                             <div class="card--media__thumb">
-                                <img src="../assets/img/brands/banner-bentley.png" alt="">
+                                <img src="{{ asset('assets/img/brands/banner-bentley.png') }}" alt="">
                             </div>
                             <div class="card-content">
                                 <div class="text-end">
@@ -537,7 +537,7 @@
                                 </div>
                                 <div class="card-information">
                                     <div class="avatar avatar-md">
-                                        <img src="../assets/img/brands/logo-bentley.png" alt="">
+                                        <img src="{{ asset('assets/img/brands/logo-bentley.png') }}" alt="">
                                     </div>
                                     <div>
                                         <h3 class="text-h4 fw-medium mb-0">Bentley</h3>
@@ -551,7 +551,7 @@
                     <div class="swiper-slide">
                         <div class="card--media card--standard">
                             <div class="card--media__thumb">
-                                <img src="../assets/img/brands/banner-aston-martin.png" alt="">
+                                <img src="{{ asset('assets/img/brands/banner-aston-martin.png') }}" alt="">
                             </div>
                             <div class="card-content">
                                 <div class="text-end">
@@ -564,7 +564,7 @@
                                 </div>
                                 <div class="card-information">
                                     <div class="avatar avatar-md">
-                                        <img src="../assets/img/brands/logo-aston-martin.png" alt="">
+                                        <img src="{{ asset('assets/img/brands/logo-aston-martin.png') }}" alt="">
                                     </div>
                                     <div>
                                         <h3 class="text-h4 fw-medium mb-0">Aston Martin</h3>
@@ -577,7 +577,7 @@
                     <div class="swiper-slide">
                         <div class="card--media card--standard">
                             <div class="card--media__thumb">
-                                <img src="../assets/img/brands/banner-audi.png" alt="">
+                                <img src="{{ asset('assets/img/brands/banner-audi.png') }}" alt="">
                             </div>
                             <div class="card-content">
                                 <div class="text-end">
@@ -590,7 +590,7 @@
                                 </div>
                                 <div class="card-information">
                                     <div class="avatar avatar-md">
-                                        <img src="../assets/img/brands/logo-audi.png" alt="">
+                                        <img src="{{ asset('assets/img/brands/logo-audi.png') }}" alt="">
                                     </div>
                                     <div>
                                         <h3 class="text-h4 fw-medium mb-0">Audi</h3>
@@ -603,7 +603,7 @@
                     <div class="swiper-slide">
                         <div class="card--media card--standard">
                             <div class="card--media__thumb">
-                                <img src="../assets/img/brands/banner-bmw.png" alt="">
+                                <img src="{{ asset('assets/img/brands/banner-bmw.png') }}" alt="">
                             </div>
                             <div class="card-content">
                                 <div class="text-end">
@@ -616,7 +616,7 @@
                                 </div>
                                 <div class="card-information">
                                     <div class="avatar avatar-md">
-                                        <img src="../assets/img/brands/logo-bmw.png" alt="">
+                                        <img src="{{ asset('assets/img/brands/logo-bmw.png') }}" alt="">
                                     </div>
                                     <div>
                                         <h3 class="text-h4 fw-medium mb-0">BMW</h3>
@@ -629,7 +629,7 @@
                     <div class="swiper-slide">
                         <div class="card--media card--standard">
                             <div class="card--media__thumb">
-                                <img src="../assets/img/brands/banner-bentley.png" alt="">
+                                <img src="{{ asset('assets/img/brands/banner-bentley.png') }}" alt="">
                             </div>
                             <div class="card-content">
                                 <div class="text-end">
@@ -642,7 +642,7 @@
                                 </div>
                                 <div class="card-information">
                                     <div class="avatar avatar-md">
-                                        <img src="../assets/img/brands/logo-bentley.png" alt="">
+                                        <img src="{{ asset('assets/img/brands/logo-bentley.png') }}" alt="">
                                     </div>
                                     <div>
                                         <h3 class="text-h4 fw-medium mb-0">Bentley</h3>
@@ -657,7 +657,7 @@
                 <div class="pagination-default" id="oy-slider-journey--pagination"></div>
             </div>
         </div>
-     </section>z
+     </section>
 
     <section class="oy-testimonial overflow-hidden section-padding-y">
         <div class="container">

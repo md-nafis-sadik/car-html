@@ -251,13 +251,13 @@
                         </div>
                         <div class="d-none d-lg-block col-lg-6">
                             <div class="d-flex align-items-center justify-content-lg-end gap-4">
-                                <span class="btn--circle outlined" id="oy-slider-journey-arrow--prev" data-pulse-direction="right">
+                                <span class="btn--circle outlined" id="oy-slider-locations-arrow--prev" data-pulse-direction="right">
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M8.77344 5.43582L3.20927 11L8.77344 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M18.791 11H3.36352" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </span>
-                                <span class="btn--circle outlined" id="oy-slider-journey-arrow--next" data-pulse-direction="left">
+                                <span class="btn--circle outlined" id="oy-slider-locations-arrow--next" data-pulse-direction="left">
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M13.2266 5.43582L18.7907 11L13.2266 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                                         <path d="M3.20898 11H18.6365" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -269,7 +269,7 @@
                 </div>
                 
                 <div class="container">
-                    <oy-swiper data-items="1" data-sm-items="1" data-md-items="2" data-lg-items="3" data-xl-items="3" data-loop="true" data-speed="600" data-lazy="true" data-space="30" data-autoplay="false" data-autoplay-delay="3000" data-pagination="#oy-slider-journey--pagination" data-prev="#oy-slider-journey-arrow--prev" data-next="#oy-slider-journey-arrow--next">
+                    <oy-swiper data-items="1" data-sm-items="1" data-md-items="2" data-lg-items="3" data-xl-items="3" data-loop="true" data-speed="600" data-lazy="true" data-space="30" data-autoplay="false" data-autoplay-delay="3000" data-pagination="#oy-slider-locations--pagination" data-prev="#oy-slider-locations-arrow--prev" data-next="#oy-slider-locations-arrow--next">
                         <div class="swiper-wrapper">
                             <!-- Slider Item -->
                             <div class="swiper-slide mb-5">
@@ -1106,6 +1106,10 @@
         </div>
      </section>
 
+
+@endsection
+
+@push('js')
     <script src="{{ asset('assets-v2/js/components/marquee-slider.js') }}" defer></script> 
     <script src="{{ asset('assets-v2/js/components/oy-swiper.js') }}" defer></script>
-@endsection
+@endpush
