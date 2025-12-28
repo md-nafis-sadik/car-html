@@ -154,7 +154,7 @@
         </div>
     </div>
 </section>
-<nav class="block w-full px-4 pt-4 pb-3 mx-auto bg-opacity-100 border-b-2 bg-dark border-b-white border-opacity-10 xl:px-10 2xl:px-16 lg:bg-opacity-0" data-aos="fade-down">
+{{-- <nav class="block w-full px-4 pt-4 pb-3 mx-auto bg-opacity-100 border-b-2 bg-dark border-b-white border-opacity-10 xl:px-10 2xl:px-16 lg:bg-opacity-0" data-aos="fade-down">
     <div class="flex flex-col justify-between w-full gap-4 lg:flex-row lg:items-center">
         <!-- Logo & Toggler Button here -->
         <div class="flex items-center justify-between">
@@ -181,9 +181,9 @@
                     @foreach ($links as $link)
                         @if (sizeof($link->dropdown))
                             <div class="relative flex flex-col gap-2">
-                                <button type="button" class="nav-link-item text-[#000]" id="dropdownNavbarLink-{{ Str::slug($link->name) }}" data-dropdown-autofusion="{{ Str::slug($link->name) }}">
+                                <button type="button" class="nav-link-item text-[#000] capitalize" id="dropdownNavbarLink-{{ Str::slug($link->name) }}" data-dropdown-autofusion="{{ Str::slug($link->name) }}">
                                     {{ $link->name }}
-                                    <img src="{{ asset('assets/svgs/chevron-right.svg') }}" class="w-[10px] h-[10px] rotate-90" alt="">
+                                    <img src="{{ asset('assets/svgs/chevron-right.svg') }}" class="w-[10px] h-[10px] rotate-90 brightness-0" alt="">
                                 </button>
                                 @include('components.dropdown-menu', [
                                     'menus' => $link->dropdown,
@@ -192,7 +192,7 @@
                             </div>
                         @else
                             <a href="{{ $link->route }}"
-                               class="nav-link-item text-[#000] {{ $link->route == Request::url() ? 'active' : null }}">
+                               class="nav-link-item text-[#000] {{ $link->route == Request::url() ? 'active' : null }} capitalize">
                                 {{ $link->name }}
                             </a>
                         @endif
@@ -209,75 +209,71 @@
             </div>
         </div>
     </div>
-</nav>
-{{-- <script src="{{asset('assets-v2/js/components/header-sticky.js')}}"></script>
-<header class="oy-header">
-    <header-sticky data-sticky-start="350" data-sticky-offset="0">
-        <nav class="navbar bg-white navbar-expand-lg py-3 py-lg-4">
-            <div class="container-fluid">
-                <!-- Logo -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('assets/img/header/logo.svg') }}" alt="logo">
-                </a>
-                
-                <!-- Mobile Toggler -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler__bar"></span>
-                    <span class="navbar-toggler__bar"></span>
-                    <span class="navbar-toggler__bar"></span>
-                </button>
-                
-                <!-- Navigation Menu -->
-                <div class="collapse navbar-collapse" id="navbarScroll">
-                    <ul class="navbar-nav mx-auto my-2 my-lg-0 navbar-nav-scroll">
-                        @foreach ($links as $link)
-                            @if (sizeof($link->dropdown))
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" 
-                                       role="button" 
-                                       data-bs-toggle="dropdown" 
-                                       aria-expanded="false"
-                                       id="dropdownNavbarLink-{{ Str::slug($link->name) }}">
-                                        {{ $link->name }}
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        @foreach ($link->dropdown as $dropdown)
-                                            <li>
-                                                <a class="dropdown-item" href="{{ $dropdown->route }}">
-                                                    {{ $dropdown->name }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @else
-                                <li class="nav-item">
-                                    <a class="nav-link {{ $link->route == Request::url() ? 'active' : '' }}" 
-                                       href="{{ $link->route }}"
-                                       aria-current="{{ $link->route == Request::url() ? 'page' : 'false' }}">
-                                        {{ $link->name }}
-                                    </a>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
+</nav> --}}
 
-                    <!-- Action Buttons -->
-                    <div class="d-flex align-items-center gap-5">
-                        <a class="link link_btn" href="{{ route('account') }}">Login</a>
-                        <a class="btn btn--gradient-primary" href="{{ route('hire') }}">
-                            <span class="btn__text">Car Hire</span>
-                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.2266 5.43579L18.7907 11L13.2266 16.5641" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M3.20703 11H18.6345" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+<nav class="w-full bg-white border-b border-gray-200 sticky top-0 z-50 px-4 pt-4 pb-3 xl:px-10 2xl:px-16" data-aos="fade-down">
+    <div class="flex flex-col lg:flex-row justify-between items-center gap-4 w-full">
+        <!-- Logo + Mobile Toggler -->
+        <div class="flex items-center justify-between w-full lg:w-auto">
+            <!-- Logo -->
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('assets/img/header/logo.svg') }}" alt="logo" class="w-[196px] sm:w-40 h-[53px]" />
+            </a>
+
+            <!-- Mobile Toggler -->
+            <div class="lg:hidden">
+                <button id="navbarToggler" class="p-2 rounded-lg bg-slate-100">
+                    <svg class="w-7 h-7 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
+                    </svg>
+                </button>
             </div>
-        </nav>
-    </header-sticky>
-</header> --}}
+        </div>
+
+        <!-- Navigation Menu -->
+        <div id="navigation" class="hidden w-full lg:flex flex-col lg:flex-row lg:items-center gap-6 mt-6 lg:mt-0">
+            <!-- Links -->
+           <ul class="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-6 w-full">
+            @foreach ($links as $link)
+                @if (sizeof($link->dropdown))
+                    <li class="relative group">
+                        <button class="flex items-center gap-1 text-[#545A64] hover:text-black font-medium transition-colors duration-200 capitalize" 
+                                id="dropdownNavbarLink-{{ Str::slug($link->name) }}" 
+                                data-dropdown-autofusion="{{ Str::slug($link->name) }}">
+                            {{ $link->name }}
+                            <img src="{{ asset('assets/svgs/chevron-right.svg') }}" class="w-3 h-3 rotate-90 brightness-0" alt="">
+                        </button>
+                        @include('components.dropdown-menu', [
+                            'menus' => $link->dropdown,
+                            'id' => Str::slug($link->name)
+                        ])
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ $link->route }}" class="text-[#545A64] hover:text-black font-medium capitalize transition-colors duration-200 {{ $link->route == Request::url() ? 'font-semibold' : '' }}">
+                            {{ $link->name }}
+                        </a>
+                    </li>
+                @endif
+            @endforeach
+        </ul>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col lg:flex-row gap-3 mt-4 lg:mt-0">
+                <a href="{{ route('account') }}" class="btn btn-outline py-2 px-4 rounded-lg text-center">
+                    Account
+                </a>
+                <a href="{{ route('hire') }}" class="btn btn-primary py-2 px-4 rounded-lg text-white text-center bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 flex items-center gap-2">
+                    <span>Car Hire</span>
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.2266 5.43579L18.7907 11L13.2266 16.5641" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3.20703 11H18.6345" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
 
 <script>
     // Mobile toggle
