@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-v2')
 @section('head-info')
     <title>About us | {{ config('app.name') }} Glasgow</title>
     <meta name="description" content="Autofusion is proud to offer an expert car repairs service and unparalleled customer support." />

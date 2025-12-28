@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-v2')
 
 @section('head-info')
     <title>How A Car Works? | Learn with {{ config('app.name') }}</title>
