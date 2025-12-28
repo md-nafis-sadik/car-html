@@ -125,97 +125,86 @@
         </div>
     </section>
 
-    <div class="base-container">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-x-5 md:gap-y-[30px]">
-            @foreach($locations as $location)
-                <div class="rounded-xl sm:rounded-[20px] bg-[#F3F4F6] flex flex-col gap-3 sm:gap-5 overflow-hidden group transition-all ring-transparent ring-4 lg:ring-8 hover:ring-[#505258]" data-aos="fade-up" data-aos-delay="{{ 50 * ($loop->index + 1) }}">
-                    <!-- Location Image/Map Preview -->
-                    <div class="sm:pt-5 sm:px-5">
-                        <div class="relative sm:rounded-[15px] overflow-hidden h-[130px] sm:h-[172px]">
+    <!-- ==================== Section: OUR Branches ==================== -->
+     <section class="section-padding-y overflow-hidden">
+        <div class="container" data-equalize="min-height" data-equalize-target=".card--branch__title" data-equalize-var="--equal-heading-min-height">
+            <div class="row g-4 g-lg-5">
+                <!-- Column -->
+                @foreach($locations as $location)
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card--branch h-100">
+                        <div class="card--branch__thumb position-relative">
                             @if($location->lat && $location->lng)
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2237.196686010308!2d{{ $location->lng }}!3d{{ $location->lat }}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s{{ urlencode($location->name) }}!5e0!3m2!1sen!2suk!4v{{ time() }}!5m2!1sen!2suk" 
-                                        class="w-full h-full sm:rounded-[15px]" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            {{-- <img src="../assets/img/products/product-1.png" alt=""> --}}
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2237.196686010308!2d{{ $location->lng }}!3d{{ $location->lat }}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s{{ urlencode($location->name) }}!5e0!3m2!1sen!2suk!4v{{ time() }}!5m2!1sen!2suk" 
+                                        class="w-100 h-100 rounded-4 d-block" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                                 </iframe>
                             @else
-                                <div class="w-full h-full bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center sm:rounded-[15px]">
-                                    <svg class="w-12 h-12 text-primary/60" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                            @endif
-                            
-                            <!-- Location Badge -->
-                            <div class="absolute top-2 left-2 sm:top-3 sm:left-3">
-                                <div class="inline-flex gap-1 sm:gap-3 items-center p-2 sm:py-2 sm:px-[10px] bg-white bg-opacity-90 rounded-[10px]">
-                                    <svg class="w-3 h-3 sm:w-4 sm:h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                                    </svg>
-                                    <p class="text-[10px] font-semibold sm:text-sm text-dark">
-                                        Location
-                                    </p>
-                                </div>
+                            <div class="w-100 h-100 d-flex align-items-center justify-content-center rounded-4"
+                                style="background: linear-gradient(135deg, rgba(13,110,253,0.2), rgba(13,110,253,0.4));">
+                                <svg width="48" height="48" fill="currentColor" class="text-primary opacity-75" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                        clip-rule="evenodd">
+                                    </path>
+                                </svg>
                             </div>
+                            @endif
+                            @if($location->hireCars()->count() > 0)
+                            <span class="badge badge--top-right rounded-pill text-bg-dark text-b5-regular">Available: <strong>{{ $location->hireCars()->count() }} Cars</strong></span>
+                            @endif
                         </div>
-                    </div>
-
-                    <!-- Location Content -->
-                    <div class="px-3 pb-3 sm:px-5 sm:pb-5">
-                        <p class="text-base font-bold text-dark -tracking-[0.4px] line-clamp-1">
-                            {{ $location->name }}
-                        </p>
-                        <p class="text-sm font-medium text-opacity-50 text-dark -tracking-[0.4px] line-clamp-2">
-                            {{ $location->address }}
-                        </p>
-                        
-                        @if($location->description)
-                            <p class="text-xs text-gray-600 mt-2 line-clamp-2">
-                                {{ $location->description }}
-                            </p>
-                        @endif
-
-                        <div class="flex flex-col gap-3 mt-3 sm:mt-8 sm:items-center sm:justify-between sm:flex-row sm:flex-wrap">
-                            <div class="flex flex-col gap-1">
-                                @if($location->phone)
-                                    <p class="text-xs font-medium text-opacity-50 text-dark -tracking-[0.4px]">
-                                        Phone
-                                    </p>
-                                    <a href="tel:{{ $location->phone }}" class="text-xs font-semibold text-primary -tracking-[0.4px] hover:underline">
-                                        {{ $location->phone }}
-                                    </a>
-                                @endif
-                                
-                                @if($location->hireCars()->count() > 0)
-                                    <p class="text-xs font-medium text-opacity-50 text-dark -tracking-[0.4px] mt-2">
-                                        Available Cars
-                                    </p>
-                                    <p class="text-xs font-semibold text-primary -tracking-[0.4px]">
-                                        {{ $location->hireCars()->count() }} cars
-                                    </p>
-                                @endif
+                        <div class="card--branch__content px-3 pt-4 pb-4 space-y-3 flex-fill d-flex flex-column align-items-start">
+                            <div class="mb-5">
+                                <h5 class="card--branch__title text-h5 fw-semibold mb-3">{{ $location->name }}</h5>
+                                <p class="text-secondary text-b4-regular mb-0">{{ $location->address }}</p>
                             </div>
-                            
-                            @if($location->slug)
-                                <a href="{{ route('locations.show', $location->slug) }}"
-                                    class="w-full py-3 btn btn-primary sm:w-auto sm:py-4 rounded-lg sm:rounded-[15px] group-hover:scale-105 transition-transform">
-                                    View Details
-                                </a>
-                            @endif
+
+                            <!-- Action -->
+                             <div class="card--branch__action d-flex justify-content-between align-items-center w-100 mt-auto">
+                                <div class="d-flex align-items-center gap-3">
+                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="24" cy="24" r="24" fill="#0072FF" fill-opacity="0.14"/>
+                                    <path d="M30.875 17.125V20.875M30.875 17.125H27.125M30.875 17.125L25.875 22.125M28.375 32.125C21.4717 32.125 15.875 26.5283 15.875 19.625V17.75C15.875 17.2527 16.0725 16.7758 16.4242 16.4242C16.7758 16.0725 17.2527 15.875 17.75 15.875H18.8933C19.3233 15.875 19.6983 16.1675 19.8025 16.585L20.7242 20.2708C20.8158 20.6375 20.6792 21.0225 20.3767 21.2483L19.2992 22.0567C19.1449 22.1683 19.0308 22.3267 18.9738 22.5084C18.9167 22.69 18.9198 22.8852 18.9825 23.065C19.4841 24.4293 20.2762 25.6682 21.304 26.696C22.3318 27.7238 23.5707 28.5159 24.935 29.0175C25.3025 29.1525 25.7083 29.0142 25.9433 28.7008L26.7517 27.6233C26.8623 27.4756 27.0141 27.3639 27.188 27.3021C27.3619 27.2402 27.5501 27.2311 27.7292 27.2758L31.415 28.1975C31.8317 28.3017 32.125 28.6767 32.125 29.1067V30.25C32.125 30.7473 31.9275 31.2242 31.5758 31.5758C31.2242 31.9275 30.7473 32.125 30.25 32.125H28.375Z" stroke="#0072FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    @if($location->phone)
+                                    <a href="tel:{{ $location->phone }}" class="text-b3-semibold text-dark">{{ $location->phone }}</a>
+                                    @endif
+                                </div>
+                                <div>
+                                    @if($location->slug)
+                                    <a class="link-primary fw-semibold" href="{{ route('locations.show', $location->slug) }}">View Details</a>
+                                    @endif
+                                </div>
+                             </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
+                @endforeach
+
+            </div>
         </div>
 
-        @if($locations->isEmpty())
-            <div class="text-center py-12" data-aos="fade-up">
-                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        <div class="pagination-default mt-5 d-flex flex-wrap justify-content-center align-items-center gap-4">
+            <a href="#" class="btn--circle outlined" data-pulse-direction="right">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.77344 5.43582L3.20927 11L8.77344 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M18.791 11H3.36352" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <h3 class="mt-2 text-sm font-medium text-gray-900">No locations found</h3>
-                <p class="mt-1 text-sm text-gray-500">We're expanding our network. Check back soon!</p>
-            </div>
-        @endif
-    </div>
+            </a>
+            <!-- Active -->
+            <span class="btn--circle text-b1-medium is-active">01</span>
+
+            <a href="#" class="btn--circle text-b1-medium">02</a>
+            <a href="#" class="btn--circle text-b1-medium">03</a>
+            <a href="#" class="btn--circle text-b1-medium outlined" data-pulse-direction="left">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.2266 5.43582L18.7907 11L13.2266 16.5642" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3.20898 11H18.6365" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            </a>
+        </div>
+     </section>
+    <!-- /Section: OUR Branches -->
 </div>
 @endsection
