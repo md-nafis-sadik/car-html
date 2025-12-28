@@ -412,45 +412,49 @@
                         @method('POST')
 
                         <div class="row g-4 mb-4">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="pickup_dropoff" class="form-label text-b5-regular text-light text-opacity-50 mb-2 text-uppercase">
-                                        Pickup & Dropoff
-                                    </label>
-                                    <input type="text" class="form-control" id="pickup_dropoff" name="pickup_dropoff"
-                                           placeholder="Select Date Range"
-                                           @if(request()->has('pickup_dropoff'))
-                                               value="{{ request()->get('pickup_dropoff') }}"
-                                           @elseif(request()->session()->has('pickupDropoff'))
-                                               value="{{ request()->session()->get('pickupDropoff') }}"
-                                           @endif
-                                           autocomplete="off" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="pickup_time" class="form-label text-b5-regular text-light text-opacity-50 mb-2 text-uppercase">
-                                        Pickup Time
-                                    </label>
-                                    <div class="e-select-group">
-                                        <span class="e-select-icon">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z" 
-                                                      stroke="#969FB7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M15.7089 15.18L12.6089 13.33C12.0689 13.01 11.6289 12.24 11.6289 11.61V7.51001" 
-                                                      stroke="#969FB7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </span>
-                                        <select name="pickup_time" id="pickup_time" class="form-select e-select" e-search="true">
-                                            @foreach(['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'] as $time)
-                                                <option value="{{ $time }}" @if(request()->get('pickup_time') == $time) selected @endif>
-                                                    {{ $time }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            {{-- In the booking form section --}}
+<div class="col-sm-6">
+    <div class="form-group">
+        <label for="pickup_dropoff" class="form-label text-b5-regular text-light text-opacity-50 mb-2 text-uppercase">
+            Pickup & Dropoff
+        </label>
+        <input type="text" class="form-control" id="pickup_dropoff" name="pickup_dropoff"
+               placeholder="Select Date Range"
+               @if(request()->has('pickup_dropoff'))
+                   value="{{ request()->get('pickup_dropoff') }}"
+               @elseif(request()->session()->has('pickupDropoff'))
+                   value="{{ request()->session()->get('pickupDropoff') }}"
+               @endif
+               autocomplete="off" required>
+    </div>
+</div>
+
+<div class="col-sm-6">
+    <div class="form-group">
+        <label for="pickup_time" class="form-label text-b5-regular text-light text-opacity-50 mb-2 text-uppercase">
+            Pickup Time
+        </label>
+        <div class="e-select-group">
+            <span class="e-select-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2C17.52 2 22 6.48 22 12Z" 
+                          stroke="#969FB7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.7089 15.18L12.6089 13.33C12.0689 13.01 11.6289 12.24 11.6289 11.61V7.51001" 
+                          stroke="#969FB7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <select name="pickup_time" id="pickup_time" class="form-select e-select" e-search="true" required>
+                @foreach(['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'] as $time)
+                    <option value="{{ $time }}" @if(request()->get('pickup_time') == $time) selected @endif>
+                        {{ $time }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+</div>
+
+
                             <div class="col-sm-12">
                                 <label for="pickup_location" class="form-label text-b5-regular text-light text-opacity-50 mb-2 text-uppercase">
                                     Pickup Location
@@ -487,18 +491,14 @@
                             </div>
                         </div>
 
-                        <div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="chauffeur_choice" id="flexCheckDefault" 
-                                       @if(request()->get('include_chauffeur') === 'true') checked @endif>
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Include A Chauffeur For <span class="text-teal">£{{ number_format(nova_get_setting('chauffeur_price') ?? 0, 2) }}/day</span>
-                                </label>
-                            </div>
-                            <p class="text-b5-regular text-light text-opacity-50">
-                                No deposit will be required for chauffeur bookings.
-                            </p>
-                        </div>
+                        {{-- Checkbox for chauffeur --}}
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" name="chauffeur_choice" id="chauffeur_choice" 
+           @if(request()->get('include_chauffeur') === 'true') checked @endif>
+    <label class="form-check-label" for="chauffeur_choice">
+        Include A Chauffeur For <span class="text-teal">£{{ number_format(nova_get_setting('chauffeur_price') ?? 0, 2) }}/day</span>
+    </label>
+</div>
 
                         <hr class="border my-4">
 
@@ -1831,101 +1831,80 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.1/dayjs.min.js"
         integrity="sha512-u7elBfdMr+7LhU4rvUk3IM28QZDKTyUxba4Nx2IJ1W9cj4shfRSPq7EZXD2ULD9cBoizw2FQyeR6YBog6LcnHg=="
         crossorigin="anonymous"></script>
-<script type='text/javascript'>
-    jQuery(document).ready(function (jQuery) {
-        jQuery.datepicker.setDefaults({
-            "closeText": "Close",
-            "currentText": "Today",
-            "monthNames": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-            "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            "nextText": "Next",
-            "prevText": "Previous",
-            "dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-            "dayNamesMin": ["S", "M", "T", "W", "T", "F", "S"],
-            "dateFormat": "MM d, yy",
-            "firstDay": 1,
-            "isRTL": false
-        });
-    });
-</script>
-
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js"></script>
 
-<script type='text/javascript' src='/js/plugins/ui/datepicker.min.js'></script>
-<script type='text/javascript'>jQuery(document).ready(function (jQuery) {
-        var lastScrollTop = localStorage.getItem("autofusion_scroll");
-        if (lastScrollTop) {
-            jQuery(window).scrollTop(lastScrollTop);
-            localStorage.removeItem('autofusion_scroll');
+<script type='text/javascript'>
+jQuery(document).ready(function (jQuery) {
+    var lastScrollTop = localStorage.getItem("autofusion_scroll");
+    if (lastScrollTop) {
+        jQuery(window).scrollTop(lastScrollTop);
+        localStorage.removeItem('autofusion_scroll');
+    }
+
+    // Initialize date picker
+    var picker = new Litepicker({
+        element: document.getElementById('pickup_dropoff'),
+        firstDay: 1,
+        showTooltip: false,
+        singleMode: false,
+        format: 'DD/MM/YYYY',
+        minDate: moment().startOf('hour').add(3, 'hour').min(12, 'hour'),
+        maxDays: 29,
+        minDays: 2,
+        selectForward: true,
+        autoApply: true,
+        moveByOneMonth: true,
+        mobileFriendly: true,
+        onSelect: function (date_start, date_end) {
+            checkAvailability(date_start, date_end);
         }
+    });
 
-        var picker = new Litepicker({
-            element: document.getElementById('pickup_dropoff'),
-            firstDay: 1,
-            showTooltip: false,
-            singleMode: false,
-            format: 'DD/MM/YYYY',
-            minDate: moment().startOf('hour').add(3, 'hour').min(12, 'hour'),
-            maxDays: 29,
-            minDays: 2,
-            selectForward: true,
-            autoApply: true,
-            moveByOneMonth: true,
-            mobileFriendly: true,
-            onSelect: function (date_start, date_end) {
-                checkAvailability(date_start, date_end);
-            }
-        });
+    var car = {{ $car->id }};
+    var date_start = 0;
+    var date_end = 0;
 
-        var car = {{ $car->id }};
-        var date_start = 0;
-        var date_end = 0;
-        var customerDetails = document.getElementById('customer-fields');
+    jQuery.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-        jQuery.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
+    // Add event listeners
+    jQuery('#pickup_time').change(function() {
+        var date_start = picker.getStartDate();
+        var date_end = picker.getEndDate();
+        checkAvailability(date_start, date_end);
+    });
 
+    jQuery('#chauffeur_choice').change(function() {
+        var date_start = picker.getStartDate();
+        var date_end = picker.getEndDate();
+        checkAvailability(date_start, date_end);
+    });
 
-        jQuery('#pickup_time').change(function() {
-            var date_start = picker.getStartDate();
-            var date_end = picker.getEndDate();
-            checkAvailability(date_start, date_end);
-        });
+    var checkAvailability = function (date_start, date_end) {
+        var pickup_time_value = document.getElementById('pickup_time').value;
+        var pickup_date_value = document.getElementById('pickup_dropoff').value;
+        var chauffeur_checkbox = document.getElementById('chauffeur_choice');
+        var chauffeur_value = chauffeur_checkbox ? chauffeur_checkbox.checked : false;
+        var current_url = window.location.toString();
 
-        jQuery('#chauffeur_choice').change(function() {
-            var date_start = picker.getStartDate();
-            var date_end = picker.getEndDate();
-            checkAvailability(date_start, date_end);
-        });
+        localStorage.setItem("autofusion_scroll", jQuery(window).scrollTop());
 
-        var checkAvailability = function (date_start, date_end) {
-            var pickup_time_value = document.getElementById('pickup_time').value;
-            var pickup_date_value = document.getElementById('pickup_dropoff').value;
-            var chauffeur_value = document.getElementById('chauffeur_choice').checked;
-            var current_url = window.location.toString();
-            var pricing_details = document.getElementById('pricing_details');
-            var booking_button = document.getElementById('booking_button');
+        // Update URL with changes
+        var url = new URL(current_url);
+        var search_params = url.searchParams;
+        search_params.set('pickup_time', pickup_time_value);
+        search_params.set('pickup_dropoff', pickup_date_value);
+        search_params.set('include_chauffeur', chauffeur_value);
+        url.search = search_params.toString();
+        window.location.href = url.toString();
+    };
+});
+</script>
 
-            localStorage.setItem("autofusion_scroll", $(window).scrollTop());
-
-            // Update URL with changes
-            var url = new URL(current_url);
-            var search_params = url.searchParams;
-            search_params.set('pickup_time', pickup_time_value);
-            search_params.set('pickup_dropoff', pickup_date_value);
-            search_params.set('include_chauffeur', chauffeur_value);
-            url.search = search_params.toString();
-            window.location.href = url;
-            var availabilityMessage = document.getElementById('availabilityMessage');
-            availabilityMessage.innerHTML = "<p><strong>Checking Availability...</strong></p>";
-        };
-    });</script>
-
-    <script src="{{ asset('assets-v2/js/components/marquee-slider.js') }}" defer></script> 
-    <script src="{{ asset('assets-v2/js/components/oy-swiper.js') }}" defer></script>
+<script src="{{ asset('assets-v2/js/components/marquee-slider.js') }}" defer></script> 
+<script src="{{ asset('assets-v2/js/components/oy-swiper.js') }}" defer></script>
 @endpush
