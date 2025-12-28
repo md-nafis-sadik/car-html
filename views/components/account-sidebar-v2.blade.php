@@ -16,6 +16,11 @@
             'icon' => asset('assets/svgs/icon-booking.svg'),
         ],
         (object) [
+            'name' => 'ID docs',
+            'route' => route('account.documents'),
+            'icon' => asset('assets/svgs/icon-docs.svg'),
+        ],
+        (object) [
             'name' => 'settings',
             'route' => route('account.edit'),
             'icon' => asset('assets/svgs/icon-settings.svg'),
