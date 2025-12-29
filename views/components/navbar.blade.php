@@ -135,19 +135,19 @@
 
             <!-- Item 1 -->
             <div class="flex items-center gap-3">
-                <img src="../assets/img/header/satisfied-icon.svg" alt="icon" class="h-auto w-auto">
+                <img src="{{asset('assets-v2/img/header/satisfied-icon.svg')}}" alt="icon" class="h-auto w-auto">
                 <span class="font-medium">1000+ Satisfied Customers</span>
             </div>
 
             <!-- Item 2 -->
             <div class="flex items-center gap-3">
-                <img src="../assets/img/header/vehicles.svg" alt="icon" class="h-auto w-auto">
+                <img src="{{asset('assets-v2/img/header/vehicles.svg')}}" alt="icon" class="h-auto w-auto">
                 <span class="font-medium">Over 200 Vehicles</span>
             </div>
 
             <!-- Item 3 -->
             <div class="flex items-center gap-3">
-                <img src="../assets/img/header/rent.svg" alt="icon" class="h-auto w-auto">
+                <img src="{{asset('assets-v2/img/header/rent.svg')}}" alt="icon" class="h-auto w-auto">
                 <span class="font-medium">Rent with Confidence</span>
             </div>
 

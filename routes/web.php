@@ -152,10 +152,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/hire/cars/{slug}', ['uses' => 'HireBookingController@getCar'])->name('hire.cars.car');
     Route::post('/hire/cars/availability', ['as' => 'cars.availability', 'uses' => 'HireBookingController@checkAvailability']);
 
-    Route::get('/hire/checkout', ['as' => 'hire.checkout', 'uses' => 'HireBookingController@getCheckoutIndex']);
-    Route::post('/hire/checkout', ['as' => 'hire.checkout.post', 'uses' => 'HireBookingController@postCheckout']);
-    // Route::get('/hire/checkout', ['as' => 'hire.checkout', 'uses' => 'HireBookingController@getCheckoutIndex'])->middleware('verified');
-    // Route::post('/hire/checkout', ['as' => 'hire.checkout.post', 'uses' => 'HireBookingController@postCheckout'])->middleware('verified');
+    // Route::get('/hire/checkout', ['as' => 'hire.checkout', 'uses' => 'HireBookingController@getCheckoutIndex']);
+    // Route::post('/hire/checkout', ['as' => 'hire.checkout.post', 'uses' => 'HireBookingController@postCheckout']);
+    Route::get('/hire/checkout', ['as' => 'hire.checkout', 'uses' => 'HireBookingController@getCheckoutIndex'])->middleware('verified');
+    Route::post('/hire/checkout', ['as' => 'hire.checkout.post', 'uses' => 'HireBookingController@postCheckout'])->middleware('verified');
 
     // Location/Branch Pages
     Route::get('/locations', ['as' => 'locations.index', 'uses' => 'LocationController@index']);
@@ -350,6 +350,14 @@ Route::get('/complaints', function () {
     return view('complaints');
 })->name('complaints');
 
+Route::get('/vehicle-type', function () {
+    return view('vehicle-type');
+})->name('vehicle-type');
+
+Route::get('/luxury-cars', function () {
+    return view('luxury-cars');
+})->name('luxury-cars');
+
 
 
 // Route::get('/v2/home', function () {
@@ -358,46 +366,17 @@ Route::get('/complaints', function () {
 
 
 
-Route::get('/v2/about', function () {
-    return view('v2.about');
-});
 
-Route::get('/v2/brand-adudi', function () {
-    return view('v2.brand-adudi');
-});
-Route::get('/v2/brand', function () {
-    return view('v2.brand');
-});
-Route::get('/v2/car-hire', function () {
-    return view('v2.car-hire');
-});
-Route::get('/v2/careers', function () {
-    return view('v2.careers');
-});
-Route::get('/v2/city-details', function () {
-    return view('v2.city-details');
-});
-Route::get('/v2/city-landing', function () {
-    return view('v2.city-landing');
-});
-Route::get('/v2/complaints', function () {
-    return view('v2.complaints');
-});
-Route::get('/v2/contact-us', function () {
-    return view('v2.contact-us');
-});
-Route::get('/v2/dashboard-booking-details', function () {
-    return view('v2.dashboard-booking-details');
-});
-Route::get('/v2/dashboard-booking-tabs', function () {
-    return view('v2.dashboard-booking-tabs');
-});
-Route::get('/v2/dashboard-bookings', function () {
-    return view('v2.dashboard-bookings');
-});
-Route::get('/v2/dashboard-empty-bookings', function () {
-    return view('v2.dashboard-empty-bookings');
-});
+// Route::get('/v2/brand-adudi', function () {
+//     return view('v2.brand-adudi');
+// });
+// Route::get('/v2/brand', function () {
+//     return view('v2.brand');
+// });
+// Route::get('/v2/car-hire', function () {
+//     return view('v2.car-hire');
+// });
+
 
 // Clear application cache:
 Route::get('clear-caches', function () {

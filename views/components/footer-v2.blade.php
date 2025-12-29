@@ -144,7 +144,7 @@
                                             <div class="accordion-body">
                                                 <ul class="oy-footer__menu list-unstyled">
                                                     <li><a href="#" class="oy-footer__menu-link">Supercar Hire</a></li>
-                                                    <li><a href="#" class="oy-footer__menu-link">Luxury Car Hire</a>
+                                                    <li><a href="{{route('luxury-cars')}}" class="oy-footer__menu-link">Luxury Car Hire</a>
                                                     </li>
                                                     <li><a href="#" class="oy-footer__menu-link">Wedding Car Hire</a>
                                                     </li>
@@ -212,10 +212,10 @@
                                 <div class="footer-widget footer-widget-list d-none d-md-block">
                                     <h5 class="text-b3-semibold text-white mb-4">Vehicle Types</h5>
                                     <ul class="oy-footer__menu list-unstyled">
-                                        <li><a href="#">Every-Day Cars</a></li>
-                                        <li><a href="#">Luxury Cars</a></li>
-                                        <li><a href="#">Performance Cars</a></li>
-                                        <li><a href="#">Supercars</a></li>
+                                        <li><a href="{{ route('vehicle-type') }}">Every-Day Cars</a></li>
+                                        <li><a href="{{ route('vehicle-type') }}">Luxury Cars</a></li>
+                                        <li><a href="{{ route('vehicle-type') }}">Performance Cars</a></li>
+                                        <li><a href="{{ route('vehicle-type') }}">Supercars</a></li>
                                     </ul>
                                     <h5 class="text-b3-semibold text-white mb-4 mt-4">Contact Info.</h5>
                                     <ul class="list-unstyled contact-list">

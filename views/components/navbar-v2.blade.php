@@ -144,19 +144,19 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-auto">
                     <div class="d-flex align-items-center gap-3 fw-medium">
-                        <img src="../assets/img/header/satisfied-icon.svg" alt="icon">
+                        <img src="{{asset('assets-v2/img/header/satisfied-icon.svg')}}" alt="icon">
                         <span>1000+ Satisfied Customers</span>
                     </div>
                 </div>
                 <div class="col-auto">
                     <div class="d-flex align-items-center gap-3 fw-medium">
-                        <img src="../assets/img/header/vehicles.svg" alt="icon">
+                        <img src="{{asset('assets-v2/img/header/vehicles.svg')}}" alt="icon">
                         <span>Over 200 Vehicles</span>
                     </div>
                 </div>
                 <div class="col-auto">
                     <div class="d-flex align-items-center gap-3 fw-medium">
-                        <img src="../assets/img/header/rent.svg" alt="icon">
+                        <img src="{{asset('assets-v2/img/header/rent.svg')}}" alt="icon">
                         <span>Rent with Confidence</span>
                     </div>
                 </div>
